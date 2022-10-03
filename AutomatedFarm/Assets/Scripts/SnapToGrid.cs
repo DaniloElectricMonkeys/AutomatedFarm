@@ -6,8 +6,8 @@ public class SnapToGrid : MonoBehaviour
     private void LateUpdate()
     {
         if(parentLock == true)
-            transform.position = NewGrid.instance.GetGridPoint(transform.parent.position);
+            transform.position = NewGrid.Instance.GetGridPoint(transform.parent.position);
         else
-            transform.position = NewGrid.instance.GetGridPoint(transform.position);
+            transform.position = NewGrid.Instance.GetGridPoint(transform.position);
     }
 }
