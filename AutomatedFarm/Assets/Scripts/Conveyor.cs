@@ -4,36 +4,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// Handle converyor logic. Moving objects.
+///</summary>
 [RequireComponent(typeof(Rigidbody))]
 public class Conveyor : MonoBehaviour
 {
     Rigidbody rb;
     public Transform start;
     public Transform end;
-    public List<GameObject> conveyorItens = new List<GameObject>();
+    public List<GameObject> itensInConveyor = new List<GameObject>();
 
     [Header("Speed")]
     public float speed;
 
     public List<GameObject> removeItens = new List<GameObject>();
+    ConveyorItem item;
 
     private void Start() => rb = GetComponent<Rigidbody>();
 
     private void OnTriggerStay(Collider other) 
     {
-        if(other.gameObject.GetComponent<ConveyorItem>() != null)
+        item = other.gameObject.GetComponent<ConveyorItem>();
+
+        if(item != null)
         {
-            if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
+            if(item.isLinked == false)
             {
-                conveyorItens.Add(other.gameObject);
-                other.gameObject.GetComponent<ConveyorItem>().LinLink(this);
+                itensInConveyor.Add(other.gameObject);
+                item.Link(this);
             }
         }
     }
 
     private void Update() 
     {
-        foreach (GameObject item in conveyorItens)
+        foreach (GameObject item in itensInConveyor)
         {
             if(item == null) return;
 
@@ -44,21 +50,25 @@ public class Conveyor : MonoBehaviour
                 removeItens.Add(item);
         }
 
+        // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
         foreach (GameObject item in removeItens.ToArray())
         {
             if(item != null)
                 item.GetComponent<ConveyorItem>().RemoveLink();
         }
     }
-
+    
     bool GetToleranceDistance(Vector3 start, Vector3 end, float tolerance)
     {
         return (end - start).magnitude <= tolerance;
     }
 
-    public void RemoveLink(GameObject conveyorItem)
+    ///<summary>
+    /// Remove item from the converyor.
+    ///</summary>
+    public void RemoveConveyorItem(GameObject conveyorItem)
     {
-        conveyorItens.Remove(conveyorItem);
+        itensInConveyor.Remove(conveyorItem);
         removeItens.Remove(conveyorItem);
     }
     

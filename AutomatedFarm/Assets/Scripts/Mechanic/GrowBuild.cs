@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 
+///<summary>
+/// Build animations and particles
+///</summary>
 [RequireComponent(typeof(SpawnParticle))]
 public class GrowBuild : MonoBehaviour, IGrowBuild, ISpawnParticle
 {

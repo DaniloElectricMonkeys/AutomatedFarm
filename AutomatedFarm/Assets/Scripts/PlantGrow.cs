@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+///<summary>
+/// Grow plants. Simple
+///</summary>
 public class PlantGrow : MonoBehaviour
 {
     [Header("Options")]

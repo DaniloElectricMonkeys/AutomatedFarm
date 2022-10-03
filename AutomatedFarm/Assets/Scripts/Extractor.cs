@@ -1,12 +1,14 @@
-using System.Security.AccessControl;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 
+///<summary>
+/// This class is responsable for creating the resources from the resouce nodes.
+///</summary>
 [RequireComponent(typeof(SingleMiner))]
 public class Extractor : MonoBehaviour
 {
+    // This class is responsable for creating the resources from the resouce nodes.
+
     SingleMiner miner;
     [Header("Options")]
     public ResourceType resourceType;
@@ -40,9 +42,9 @@ public class Extractor : MonoBehaviour
         go.SetActive(true);
     }
 
-    public void ChangeResourceType(ResourceType t)
+    public void ChangeResourceType(ResourceType type)
     {
-        resourceType = t;
+        resourceType = type;
     }
 
     private void OnDestroy() 

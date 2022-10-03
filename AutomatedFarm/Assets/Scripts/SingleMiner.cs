@@ -1,13 +1,16 @@
-using System.Diagnostics.Contracts;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// This class handle miner animatios / speed, and check for inputs and outputs from the machine
+///</summary>
 public class SingleMiner : MonoBehaviour
 {
     [Header("SpawOptions")]
     public float curveSpawnTime;
+
+    [Space]
     [Header("AnimOptions")]
     public AnimationCurve animCurve;
     public float animSpeed;
@@ -16,6 +19,8 @@ public class SingleMiner : MonoBehaviour
     public GameObject[] animRoot;
     bool spawnObj;
     public Action OnSpawn;
+
+    [Space]
     [Header("OutputOptions")]
     public bool isConnected;
     public GameObject outputPoint;
@@ -30,13 +35,11 @@ public class SingleMiner : MonoBehaviour
     public virtual void Start()
     {
         spawnObj = true;
-        Debug.Log("Start");
         StartCoroutine(DoAnim());
     }
 
     IEnumerator DoAnim()
     {
-        Debug.Log("Anim");
         yield return new WaitForSeconds(1);
 
         while(true)
@@ -71,10 +74,7 @@ public class SingleMiner : MonoBehaviour
                 }
             }
             else
-            {
                 CheckOutput();
-                Debug.Log("Checkd");
-            }
         }
     }
 

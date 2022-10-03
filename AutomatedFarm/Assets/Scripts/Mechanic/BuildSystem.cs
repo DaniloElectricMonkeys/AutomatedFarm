@@ -3,16 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BuildSystem : MonoBehaviour
+///<summary>
+/// This class handle the building system.
+/// Putting objects on the mouse.
+/// Instantiating objects such machines and conveyors.
+/// Moving them and rotating them.
+///</summary>
+public class BuildSystem : Singleton<BuildSystem>
 {
-    public static BuildSystem _Instance;
-    private void Awake() => _Instance = this;
+    [Header("Attributes")]
     public GameObject blueprintObj;
+    
     int rotation;
     int rotationIndex;
     int id = 0;
     RaycastHit hit {get { return MouseRaycast.Instance.FireRaycast(); }}
+    GameObject createdObject;
 
+
+    ///<summary>
+    /// Select the desired object on the Build System and create the blueprint of it.
+    ///</summary>
     public void ChosseObject(GameObject obj)
     {
         if(obj != null && blueprintObj == null)
@@ -20,15 +31,14 @@ public class BuildSystem : MonoBehaviour
             blueprintObj = Instantiate(obj, hit.point, Quaternion.identity);
             blueprintObj.tag = "Untagged";
         }
-            
     }
 
     private void Update() 
     {
-        MoveBlueprintObject();
-        BuildBlueprintObj();
-        RemoveSelection();
-        RotateSelection();
+        MoveBlueprintObject(); // Move and snap the bluprint object
+        BuildBlueprintObj();// Build the object blueprint that was on the mouse
+        RemoveSelection();// Remove the object from the mouse (press ESC)
+        RotateSelection();// Rotate the object, press R.
     }
 
     public void RotateSelection()
@@ -41,7 +51,6 @@ public class BuildSystem : MonoBehaviour
                 rotation = rotationIndex * 90;
                 Vector3 newRotation = (Quaternion.Euler(0, rotation, 0)).eulerAngles;
                 blueprintObj.transform.DORotate(newRotation,0.45f).SetEase(Ease.InOutElastic);
-                //blueprintObj.transform.LeanRotateY(rotation, .45f).setEaseInOutElastic();
 
                 if(rotationIndex >= 4)
                     rotationIndex = 0;
@@ -64,33 +73,37 @@ public class BuildSystem : MonoBehaviour
     {
         if(blueprintObj != null && Input.GetMouseButtonDown(0))
         {
-            BuildOnlyInTag boit = blueprintObj.GetComponent<BuildOnlyInTag>();
-            BuildPrice bp = blueprintObj.GetComponent<BuildPrice>();
+            BuildOnlyInTag tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
+            BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
 
-            if(bp != null)
-                if(bp.CanPay() == false) return;
+            // Return if player cant buy.
+            if(price != null)
+                if(price.CanPay() == false) return;
 
-            if(boit != null && boit.tag != "")
+            if(tagChecker != null && tagChecker.tag != "")// If tag checker exist, only allow building in the selected tag and layer.
             {
-                if(boit.CastCheckRay())
+                if(tagChecker.RayHitNode())// Do the cheking on tag and layer
                 {
                     id++;
-                    GameObject go = Instantiate(Library.Instance.currentSelected, NewGrid.instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
-                    go.name = "Object_" + id;
-                    go.GetComponent<IGrowBuild>()?.StartGrow();
-                    go.GetComponent<Extractor>()?.ChangeResourceType(boit.GetResourceBelow());
+                    createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
+                    createdObject.name = "Object_" + id;
+                    createdObject.GetComponent<IGrowBuild>()?.StartGrow();
+                    createdObject.GetComponent<Extractor>()?.ChangeResourceType(tagChecker.GetResourceBelow());
                 }
             }
             else
             {
                 id++;
-                GameObject go = Instantiate(Library.Instance.currentSelected, NewGrid.instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
-                go.name = "Object_" + id;
-                go.GetComponent<IGrowBuild>()?.StartGrow();
+                createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
+                createdObject.name = "Object_" + id;
+                createdObject.GetComponent<IGrowBuild>()?.StartGrow();
             }
         }
     }
 
+    ///<summary>
+    /// Remove the blueprint selection from the mouse.
+    ///</summary>
     void RemoveSelection()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

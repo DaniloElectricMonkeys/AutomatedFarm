@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class NewGrid : MonoBehaviour
+public class NewGrid : Singleton<NewGrid>
 {
-    public static NewGrid instance;
-    private void Awake() => instance = this;
-
     [Range(1,100)]
     [SerializeField] private float size = 1;
 
     int xSize, ySize, zSize;
     Vector3 result;
 
+    ///<summary>
+    /// Return the normalized position of the object on the grid. EX: (0.9f, 1f, 1.35f) = (1, 1, 1.5f).
+    ///</summary>
     public Vector3 GetGridPoint(Vector3 position)
     {
         position -= transform.position;

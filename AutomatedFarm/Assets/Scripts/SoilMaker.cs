@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// Create soil based on the input it recives
+///</summary>
 public class SoilMaker : SingleMiner
 {
     [Header("Soil Maker")]
@@ -30,6 +33,8 @@ public class SoilMaker : SingleMiner
         stoneAmount--;
     }
 
+
+    // Handle objects entering the machine
     private void OnTriggerStay(Collider other) 
     {
         if(other.gameObject.CompareTag("Ore"))
