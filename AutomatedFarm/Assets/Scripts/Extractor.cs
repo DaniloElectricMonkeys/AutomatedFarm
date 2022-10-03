@@ -1,6 +1,9 @@
 using UnityEngine;
 using MyEnums;
 
+///<summary>
+/// This class is responsable for creating the resources from the resouce nodes.
+///</summary>
 [RequireComponent(typeof(SingleMiner))]
 public class Extractor : MonoBehaviour
 {

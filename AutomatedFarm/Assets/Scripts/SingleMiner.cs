@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+///<summary>
+/// This class handle miner animatios / speed, and check for inputs and outputs from the machine
+///</summary>
 public class SingleMiner : MonoBehaviour
 {
-    // This class handle miner animatios / speed, and check for inputs and outputs from the machine
-
     [Header("SpawOptions")]
     public float curveSpawnTime;
+
+    [Space]
     [Header("AnimOptions")]
     public AnimationCurve animCurve;
     public float animSpeed;
@@ -16,6 +19,8 @@ public class SingleMiner : MonoBehaviour
     public GameObject[] animRoot;
     bool spawnObj;
     public Action OnSpawn;
+
+    [Space]
     [Header("OutputOptions")]
     public bool isConnected;
     public GameObject outputPoint;

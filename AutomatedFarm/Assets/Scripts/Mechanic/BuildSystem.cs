@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BuildSystem : MonoBehaviour
+///<summary>
+/// This class handle the building system.
+/// Putting objects on the mouse.
+/// Instantiating objects such machines and conveyors.
+/// Moving them and rotating them.
+///</summary>
+public class BuildSystem : Singleton<BuildSystem>
 {
-    public static BuildSystem _Instance;
-    private void Awake() => _Instance = this;
+    [Header("Attributes")]
     public GameObject blueprintObj;
+    
     int rotation;
     int rotationIndex;
     int id = 0;
@@ -30,9 +36,9 @@ public class BuildSystem : MonoBehaviour
     private void Update() 
     {
         MoveBlueprintObject(); // Move and snap the bluprint object
-        BuildBlueprintObj();
-        RemoveSelection();
-        RotateSelection();
+        BuildBlueprintObj();// Build the object blueprint that was on the mouse
+        RemoveSelection();// Remove the object from the mouse (press ESC)
+        RotateSelection();// Rotate the object, press R.
     }
 
     public void RotateSelection()
@@ -45,7 +51,6 @@ public class BuildSystem : MonoBehaviour
                 rotation = rotationIndex * 90;
                 Vector3 newRotation = (Quaternion.Euler(0, rotation, 0)).eulerAngles;
                 blueprintObj.transform.DORotate(newRotation,0.45f).SetEase(Ease.InOutElastic);
-                //blueprintObj.transform.LeanRotateY(rotation, .45f).setEaseInOutElastic();
 
                 if(rotationIndex >= 4)
                     rotationIndex = 0;

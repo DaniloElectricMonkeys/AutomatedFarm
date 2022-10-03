@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// This class create pool of itens. It stores them for later use.
+/// Instantiate is expensive in large scale.
+/// This class reuse objects that otherwise would be destroyed.
+///</summary>
 public class ObjectPool : Singleton<ObjectPool>
 {
-    // This class create pool of itens. It stores them for later use.
-    // Instantiate is expensive in large scale.
-    // This class reuse objects that otherwise would be destroyed.
-
     public Queue<GameObject> pooling = new Queue<GameObject>();
     public Dictionary<string,Queue<GameObject>> master = new Dictionary<string,Queue<GameObject>>();
 

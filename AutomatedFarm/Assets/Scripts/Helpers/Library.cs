@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// Hold all the info about buildings and prefabs;
+///</summary>
 public class Library : Singleton<Library>
 {
     [Header("ResourcePrefabs")]
@@ -19,25 +22,27 @@ public class Library : Singleton<Library>
     public GameObject fertileSoil;
     public GameObject B_fertileSoil;
 
+
+    // Those are called by UI Buttons
     public void PickConveyor()
     {
-        BuildSystem._Instance.ChosseObject(B_conveyor);
+        BuildSystem.Instance.ChosseObject(B_conveyor);
         currentSelected = conveyor;
     }
     public void PickSeller()
     {
-        BuildSystem._Instance.ChosseObject(B_seller);
+        BuildSystem.Instance.ChosseObject(B_seller);
         currentSelected = seller;
     }
     public void PickRockSmasher()
     {
-        BuildSystem._Instance.ChosseObject(B_singleMiner);
+        BuildSystem.Instance.ChosseObject(B_singleMiner);
         currentSelected = singleMiner;
     }
 
     public void PickFertileSoil()
     {
-        BuildSystem._Instance.ChosseObject(B_fertileSoil);
+        BuildSystem.Instance.ChosseObject(B_fertileSoil);
         currentSelected = fertileSoil;
     }
 }

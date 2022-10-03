@@ -1,5 +1,8 @@
 using UnityEngine;
 
+///<summary>
+/// Singleton pattern. Returns Instance.
+///</summary>
 public class Singleton<Class> : MonoBehaviour where Class : Component
 {
     protected static Class _instance;

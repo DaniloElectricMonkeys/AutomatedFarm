@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 
+///<summary>
+/// Handle conveyour itens logic.
+///</summary>
 public class ConveyorItem : MonoBehaviour
 {
     [Tooltip("Linked object state")]
@@ -14,14 +17,20 @@ public class ConveyorItem : MonoBehaviour
     Conveyor conveyorRef;
     public ResourceType type;
 
+    ///<summary>
+    /// Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
+    ///</summary>
     public void RemoveLink(bool disableLinking = false)
     {
         if(disableLinking == true) enableLinking = false;
         isLinked = false;
-        conveyorRef.RemoveLink(gameObject);
+        conveyorRef.RemoveConveyorItem(gameObject);
     }
 
-    public void LinLink(Conveyor conveyor)
+    ///<summary>
+    /// Creat a link between iten and conveyor.
+    ///</summary>
+    public void Link(Conveyor conveyor)
     {
         if(enableLinking == false) return;
         conveyorRef = conveyor;

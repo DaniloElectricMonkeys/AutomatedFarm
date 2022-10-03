@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// Sell or store resources.
+///</summary>
 public class Seller : MonoBehaviour
 {
     private void OnTriggerStay(Collider other) 

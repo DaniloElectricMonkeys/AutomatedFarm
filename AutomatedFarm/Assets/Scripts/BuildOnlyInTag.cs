@@ -1,14 +1,15 @@
-using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 
+///<summary>
+/// This class check the current tag and layer below the blueprint object.
+/// If tag and layer are apropriated, build is aproved.
+///</summary>
 public class BuildOnlyInTag : MonoBehaviour
 {
-    // This class check the current tag and layer below the blueprint object
-    // If tag and layer are apropriated, build is aproved.
-
+    [Header("Attributes")]
     public Transform checkPoint;
     public LayerMask buildLayer;
     public new string tag = "";
