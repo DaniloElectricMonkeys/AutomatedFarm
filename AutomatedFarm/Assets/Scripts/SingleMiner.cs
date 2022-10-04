@@ -74,7 +74,10 @@ public class SingleMiner : MonoBehaviour
                 }
             }
             else
+            {
+                yield return new WaitForSeconds(.5f);
                 CheckOutput();
+            }
         }
     }
 

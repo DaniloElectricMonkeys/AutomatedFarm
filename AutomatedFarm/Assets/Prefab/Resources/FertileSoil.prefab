@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 4094374066845532852}
   - component: {fileID: 6919222339479042592}
   - component: {fileID: 2658107610548281826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,5 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ed3b7eafcd82f4293ac07d5713d0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
-  desiredScale: {x: 0.06, y: 0.06, z: 0.06}
+  time: 5
+  desiredScale: {x: 1, y: 1, z: 1}
+  canBerHarvested: 0
+  isAssignedToGraber: 0
