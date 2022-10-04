@@ -325,11 +325,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &711267397 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2697571824021452310, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
-  m_PrefabInstance: {fileID: 1032509627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &846880436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4548825372165885628, guid: 60657fe924b887e43b8bd651f737cb97, type: 3}
@@ -353,14 +348,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2697571824021452305, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
-      propertyPath: helper
-      value: 
-      objectReference: {fileID: 1788026047}
-    - target: {fileID: 2697571824021452305, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
-      propertyPath: camSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2697571824021452310, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -409,31 +396,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isometric Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 2697571825631417122, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
---- !u!1 &1225086825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1309744788639485926, guid: de56c1133be032744a813ceab38b6ddb, type: 3}
-  m_PrefabInstance: {fileID: 132586307}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1225086832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225086825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Composter
-  description: Makes soil out of row materials.
 --- !u!1001 &1264839212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,7 +536,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1788026046
+--- !u!1 &1566167089
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -580,29 +544,95 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1788026047}
-  m_Layer: 0
-  m_Name: GameObject
+  - component: {fileID: 1566167090}
+  - component: {fileID: 1566167093}
+  - component: {fileID: 1566167092}
+  - component: {fileID: 1566167091}
+  m_Layer: 6
+  m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1788026047
+--- !u!4 &1566167090
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788026046}
-  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1566167089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 0.06, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 711267397}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
+  m_Father: {fileID: 846880436}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1566167091
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566167089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1566167092
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566167089}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 20a5414178f881044bd8894055f07089, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1566167093
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566167089}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &2094917174 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4613371771689169960, guid: 1ced33520334f1043849cb46fd3d7f13, type: 3}
@@ -950,6 +980,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1967289373615423887, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
+      propertyPath: blueprintRed
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cc47042ccb3b5e4780234b41ebb1242, type: 2}
+    - target: {fileID: 1967289373615423887, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
+      propertyPath: blueprintBlue
+      value: 
+      objectReference: {fileID: 2100000, guid: 6086a1be074d9b44488b1f7673982abc, type: 2}
+    - target: {fileID: 1967289373615423887, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
+      propertyPath: machineLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 5818895337010085617, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
       propertyPath: toolTip
       value: 

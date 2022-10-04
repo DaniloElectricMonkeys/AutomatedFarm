@@ -1,29 +1,74 @@
+using System;
 using UnityEngine;
 using MyEnums;
+using System.Collections;
 
 ///<summary>
 /// This class is responsable for creating the resources from the resouce nodes.
 ///</summary>
-[RequireComponent(typeof(SingleMiner))]
-public class Extractor : MonoBehaviour
+public class Extractor : Machine
 {
     // This class is responsable for creating the resources from the resouce nodes.
 
-    SingleMiner miner;
-    [Header("Options")]
+    [Header("Extraction Options")]
     public ResourceType resourceType;
     public Transform spawnPoint;
-    float time;
+    public float timeToExtract;
+    float refTimer;
     GameObject go;
+    
+    [Space]
+    [Header("AnimOptions")]
+    public AnimationCurve animCurve;
+    public float animSpeed;
+    float curveTime;
+    float value;
+    public GameObject[] animRoot;
 
-    private void Start() 
+    void Start()
     {
-        miner = GetComponent<SingleMiner>();
-        miner.OnSpawn += CreateResource;
+        StartCoroutine(DoAnim());
+        refTimer = timeToExtract;
+
     }
 
-    void CreateResource()
+    IEnumerator DoAnim()
     {
+        yield return new WaitForSeconds(1);
+
+        while(true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            if(isConnected == true)
+            {
+                // Animate
+                curveTime += Time.deltaTime * animSpeed;
+                value = animCurve.Evaluate(curveTime);
+
+                for (int i = 0; i < animRoot.Length; i++)
+                    animRoot[i].transform.localPosition = new Vector3(0,value,0);    
+
+                if(curveTime >= 1)
+                    curveTime = 0;
+            }
+        }
+    }
+
+    private void Update() 
+    {
+        refTimer -= Time.deltaTime;
+        
+        if(refTimer <= 0) { 
+            if(!isConnected) CheckOutput();
+            HarvestResource(); refTimer = timeToExtract; 
+        }
+    }
+
+    void HarvestResource()
+    {
+        if(!isConnected) return;
+
         switch (resourceType)
         {
             case ResourceType.soil:
@@ -42,19 +87,5 @@ public class Extractor : MonoBehaviour
         go.SetActive(true);
     }
 
-    public void ChangeResourceType(ResourceType type)
-    {
-        resourceType = type;
-    }
-
-    private void OnDestroy() 
-    {
-        miner.OnSpawn -= CreateResource;
-    }
-
-    private void OnDisable() 
-    {
-        miner.OnSpawn -= CreateResource;
-    }
-
+    public void ChangeResourceType(ResourceType type) => resourceType = type;
 }

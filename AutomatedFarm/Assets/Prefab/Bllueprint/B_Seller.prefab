@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 1309744788639485722}
   - component: {fileID: 1309744788639485925}
   - component: {fileID: 1309744788639485927}
+  - component: {fileID: -2565959781243821254}
   m_Layer: 0
   m_Name: B_Seller
   m_TagString: Machine
@@ -297,6 +298,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentLock: 0
+--- !u!114 &-2565959781243821254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309744788639485926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7234d8eef85f94991a15548538add7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDistance: 0.85
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1309744789712668538
 GameObject:
   m_ObjectHideFlags: 0

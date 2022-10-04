@@ -33,10 +33,15 @@ public class PlantGrow : MonoBehaviour
 
     public void AssignToGraber() => isAssignedToGraber = true;
 
-    public void Harvest(){
+    public bool Harvest(){
         
         if(canBerHarvested)
+        {
             transform.localScale = Vector3.zero;
+            canBerHarvested = false;
+            return true;
+        }
+        return false;
     }
 
 }
