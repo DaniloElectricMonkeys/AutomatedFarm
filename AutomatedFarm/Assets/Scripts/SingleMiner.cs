@@ -99,6 +99,8 @@ public class SingleMiner : MonoBehaviour
                     item.CheckForMachineConnection();
                 }
             }
+            else if(isConnected)
+                return;
             else
                 isConnected = false;
         }

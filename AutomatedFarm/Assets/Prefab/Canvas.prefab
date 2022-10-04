@@ -569,6 +569,7 @@ GameObject:
   - component: {fileID: 4613371772261892630}
   - component: {fileID: 4613371772261892633}
   - component: {fileID: 4613371772261892632}
+  - component: {fileID: 1593380873}
   m_Layer: 5
   m_Name: PlantGraber
   m_TagString: Untagged
@@ -692,6 +693,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1593380873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613371772261892634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Plant Graber
+  description: Harvest neaby crops automaticly.
 --- !u!1 &4613371772406481392
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +848,7 @@ RectTransform:
   m_Children:
   - {fileID: 4613371772406481393}
   - {fileID: 4613371771689169963}
+  - {fileID: 2170415250277442356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -901,7 +917,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &4613371772816882204
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +930,7 @@ GameObject:
   - component: {fileID: 4613371772816882200}
   - component: {fileID: 4613371772816882203}
   - component: {fileID: 4613371772816882202}
+  - component: {fileID: 1058367495}
   m_Layer: 5
   m_Name: Miner
   m_TagString: Untagged
@@ -1037,6 +1054,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1058367495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613371772816882204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Miner
+  description: Simple miner. use to extract resources.
 --- !u!1 &4613371772928478207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1080,7 @@ GameObject:
   - component: {fileID: 4613371772928478203}
   - component: {fileID: 4613371772928478202}
   - component: {fileID: 4613371772928478205}
+  - component: {fileID: 917658086}
   m_Layer: 5
   m_Name: Conveyour
   m_TagString: Untagged
@@ -1172,6 +1204,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &917658086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613371772928478207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Conveyor
+  description: Used to transport itens.
 --- !u!1 &4613371773448414771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1230,7 @@ GameObject:
   - component: {fileID: 4613371773448414767}
   - component: {fileID: 4613371773448414766}
   - component: {fileID: 4613371773448414769}
+  - component: {fileID: 363983922}
   m_Layer: 5
   m_Name: FertileSoil
   m_TagString: Untagged
@@ -1307,6 +1354,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &363983922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613371773448414771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Soil
+  description: Soil used to plant crops.
 --- !u!1 &4613371773597128628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1380,7 @@ GameObject:
   - component: {fileID: 4613371773597128624}
   - component: {fileID: 4613371773597128627}
   - component: {fileID: 4613371773597128626}
+  - component: {fileID: 244778415}
   m_Layer: 5
   m_Name: Seller
   m_TagString: Untagged
@@ -1442,6 +1504,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &244778415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613371773597128628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b2d8c07b0d2944bcb0190088406a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Seller
+  description: Sell or store resources.
 --- !u!1 &5324779213484921293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,3 +2151,153 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &8920658847353207068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4613371772788006657}
+    m_Modifications:
+    - target: {fileID: 4543777715588027191, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_Name
+      value: TooTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732865887086891050, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240827675907719671, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+--- !u!224 &2170415250277442356 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7337022256722106920, guid: f19b4ab7a7ed9d246aff50887c882ba3, type: 3}
+  m_PrefabInstance: {fileID: 8920658847353207068}
+  m_PrefabAsset: {fileID: 0}

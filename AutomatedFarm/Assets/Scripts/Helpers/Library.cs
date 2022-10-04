@@ -24,6 +24,9 @@ public class Library : Singleton<Library>
     public GameObject plantGraber;
     public GameObject B_plantGraber;
 
+    [Header("UI")]
+    public ToolTip toolTip;
+
 
     // Those are called by UI Buttons
     public void PickConveyor()
