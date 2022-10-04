@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] Camera myCamera;
     readonly float[] Rotations = { 45, 125, 225, 305 };
     int currentRotation;
+    public Transform helper;
 
     private void Start()
     {
@@ -28,10 +30,10 @@ public class CameraManager : MonoBehaviour
         #region Keyboard Movement
         Vector3 inputDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) inputDirection += Vector3.right; // Forward
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) inputDirection -= Vector3.right; // Back
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) inputDirection += Vector3.forward; // Left
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) inputDirection -= Vector3.forward; // Right
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) inputDirection += helper.forward; // Forward
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) inputDirection -= helper.forward; // Back
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) inputDirection -= helper.right; // Left
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) inputDirection += helper.right; // Right
 
         transform.position += camSpeed * Time.deltaTime * inputDirection; // Move
         #endregion
@@ -59,7 +61,9 @@ public class CameraManager : MonoBehaviour
     {
         if (currentRotation < 0) currentRotation = Rotations.Length - 1;
         if (currentRotation > Rotations.Length - 1) currentRotation = 0;
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Rotations[currentRotation], transform.eulerAngles.z);
+        Quaternion finalRotation = Quaternion.Euler(transform.eulerAngles.x, Rotations[currentRotation], transform.eulerAngles.z);
+        transform.DORotateQuaternion(finalRotation, 0.3f);
+        //transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Rotations[currentRotation], transform.eulerAngles.z);
     }
 
     #endregion
