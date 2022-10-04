@@ -21,6 +21,11 @@ public class Library : Singleton<Library>
     public GameObject B_seller;
     public GameObject fertileSoil;
     public GameObject B_fertileSoil;
+    public GameObject plantGraber;
+    public GameObject B_plantGraber;
+
+    [Header("UI")]
+    public ToolTip toolTip;
 
 
     // Those are called by UI Buttons
@@ -44,5 +49,11 @@ public class Library : Singleton<Library>
     {
         BuildSystem.Instance.ChosseObject(B_fertileSoil);
         currentSelected = fertileSoil;
+    }
+
+    public void PickPlantGraber()
+    {
+        BuildSystem.Instance.ChosseObject(B_plantGraber);
+        currentSelected = plantGraber;
     }
 }

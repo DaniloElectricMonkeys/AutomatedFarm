@@ -167,6 +167,9 @@ MonoBehaviour:
   B_seller: {fileID: 1309744788639485926, guid: df86acf63169e2049b42651285104941, type: 3}
   fertileSoil: {fileID: 6467990521855568265, guid: fcc1895e5e517e149be57687231ce1e1, type: 3}
   B_fertileSoil: {fileID: 6467990521855568265, guid: 112eb7b0ef07d2645b4eba492e8c340c, type: 3}
+  plantGraber: {fileID: 1309744788639485926, guid: c0e7c603fb89517418de3f6b03e2fe8d, type: 3}
+  B_plantGraber: {fileID: 1309744788639485926, guid: d212233513b4f274bacebfc2eef442fa, type: 3}
+  toolTip: {fileID: 0}
 --- !u!114 &5818895337010085621
 MonoBehaviour:
   m_ObjectHideFlags: 0

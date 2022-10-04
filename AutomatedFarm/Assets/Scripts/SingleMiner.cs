@@ -74,7 +74,10 @@ public class SingleMiner : MonoBehaviour
                 }
             }
             else
+            {
+                yield return new WaitForSeconds(.5f);
                 CheckOutput();
+            }
         }
     }
 
@@ -96,6 +99,8 @@ public class SingleMiner : MonoBehaviour
                     item.CheckForMachineConnection();
                 }
             }
+            else if(isConnected)
+                return;
             else
                 isConnected = false;
         }
