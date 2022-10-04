@@ -1,4 +1,3 @@
-using System.Net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using UnityEngine;
 /// Handle converyor logic. Moving objects.
 ///</summary>
 [RequireComponent(typeof(Rigidbody))]
-public class Conveyor : MonoBehaviour
+public class Conveyor : MonoBehaviour, I_Deletable
 {
     Rigidbody rb;
     public Transform start;
@@ -71,5 +70,6 @@ public class Conveyor : MonoBehaviour
         itensInConveyor.Remove(conveyorItem);
         removeItens.Remove(conveyorItem);
     }
-    
+
+    public void DeleteMe() => Destroy(gameObject);
 }

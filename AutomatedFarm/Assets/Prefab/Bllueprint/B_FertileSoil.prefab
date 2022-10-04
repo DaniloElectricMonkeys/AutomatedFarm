@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 6129281224517335162}
   - component: {fileID: 7856315247982970399}
   - component: {fileID: -7808806508529296801}
+  - component: {fileID: -3475923842046842222}
   m_Layer: 0
   m_Name: B_FertileSoil
   m_TagString: Untagged
@@ -157,3 +158,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prices: []
+--- !u!114 &-3475923842046842222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467990521855568265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7234d8eef85f94991a15548538add7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDistance: 0.85
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256

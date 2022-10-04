@@ -53,7 +53,7 @@ public class SideCheck : MonoBehaviour
 
         foreach (Collider item in hits)
         {
-            if(item.gameObject.GetComponent<SingleMiner>() != null)
+            if(item.gameObject.GetComponent<Machine>() != null)
             {
                 if(affectedSide != null)
                     affectedSide.SetActive(false);

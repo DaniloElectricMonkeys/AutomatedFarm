@@ -77,7 +77,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6ad04829271bb4ea89ce268bcb3c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minZoom: 5
+  maxZoom: 10
   camSpeed: 10
+  minBoundsX: -30
+  maxBoundsX: 30
+  minBoundsZ: -30
+  maxBoundsZ: 30
   myCamera: {fileID: 2697571825631417123}
   helper: {fileID: 1788026047}
 --- !u!1 &2697571825631417121

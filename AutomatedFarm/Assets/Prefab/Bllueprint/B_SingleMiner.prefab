@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 1309744788639485924}
   - component: {fileID: 1309744788639485927}
   - component: {fileID: 2291956038558741808}
+  - component: {fileID: 1619033307388903684}
   m_Layer: 2
   m_Name: B_SingleMiner
   m_TagString: Machine
@@ -267,7 +268,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9360038, z: 0}
 --- !u!114 &1309744788639485927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +299,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   tag: Rock
+--- !u!114 &1619033307388903684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309744788639485926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7234d8eef85f94991a15548538add7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDistance: 0.85
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1309744788646696170
 GameObject:
   m_ObjectHideFlags: 0
