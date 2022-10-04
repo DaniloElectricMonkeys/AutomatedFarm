@@ -16,6 +16,24 @@ public class ConveyorItem : MonoBehaviour
     public bool enableLinking = true;
     Conveyor conveyorRef;
     public ResourceType type;
+    float timer;
+    Vector3 lastPos;
+
+    private void Update() {
+
+        if(transform.position == lastPos)
+        {
+            timer += Time.deltaTime;
+            lastPos = transform.position;
+            if(timer >= 1)
+                RemoveLink();
+        }
+        else
+        {
+            lastPos = transform.position;
+        }
+        
+    }
 
     ///<summary>
     /// Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
