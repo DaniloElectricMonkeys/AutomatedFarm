@@ -1,36 +1,65 @@
+using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyEnums;
 
 ///<summary>
 /// Create soil based on the input it recives
 ///</summary>
-public class SoilMaker : SingleMiner
+public class SoilMaker : Machine
 {
     [Header("Soil Maker")]
+    public ResourceType type;
     public GameObject outputPrefab;
     GameObject go;
-    float stoneAmount;
+    protected float resourceAmount;
+    public float timeToExtract;
+    float refTimer;
 
-    public override void Start() 
+    private void Update() 
     {
-        base.Start();
-        OnSpawn += CreateSoil;
+        refTimer -= Time.deltaTime;
+        
+        if(refTimer <= 0) { 
+            if(!isConnected) CheckOutput();
+            OutputResource(); refTimer = timeToExtract; 
+        }
     }
 
-    public void CreateSoil()
+    public void OutputResource()
     {
-        if(stoneAmount <= 0) return;
+        if(resourceAmount <= 0) return;
 
         if(outputPrefab != null)
 
-        go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.soilPrefab);
+        if(!isConnected) CheckOutput();
+        if(!isConnected) return;
+
+        if(type == ResourceType.none)
+        {
+            Debug.Log("NO RESOURCE SELECTED");
+            return;
+        }
+
+        switch (type)
+        {
+            case ResourceType.soil:
+                go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.soilPrefab);
+            break;
+            case ResourceType.ore:
+                go = ObjectPool.Instance.GrabFromPool("Ore", Library.Instance.soilPrefab);
+            break;
+            case ResourceType.stone:
+                go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.soilPrefab);
+            break;
+        }
         
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
 
-        stoneAmount--;
+        resourceAmount--;
     }
 
 
@@ -43,6 +72,7 @@ public class SoilMaker : SingleMiner
             {
                 ObjectPool.Instance.AddToPool("Ore", other.gameObject);
                 other.gameObject.SetActive(false);
+                resourceAmount++;
             }
         }
         if(other.gameObject.CompareTag("Soil"))
@@ -51,6 +81,7 @@ public class SoilMaker : SingleMiner
             {
                 ObjectPool.Instance.AddToPool("Soil", other.gameObject);
                 other.gameObject.SetActive(false);
+                resourceAmount++;
             }
         }
         if(other.gameObject.CompareTag("Stone"))
@@ -59,7 +90,7 @@ public class SoilMaker : SingleMiner
             {
                 ObjectPool.Instance.AddToPool("Stone", other.gameObject);
                 other.gameObject.SetActive(false);
-                stoneAmount++;
+                resourceAmount++;
             }
         }
     }

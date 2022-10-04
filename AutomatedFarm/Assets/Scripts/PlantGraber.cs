@@ -4,18 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantGraber : MonoBehaviour
+public class PlantGraber : SoilMaker
 {
     [Header("Attributes")]
     public float influenceArea = 2;
     public LayerMask plantLayerMask;
     List<Collider> plantsHit = new List<Collider>();
     List<Collider> cachedPlants = new List<Collider>();
-    
 
     private void Awake() {
         PlantGrow.OnPlantReady += CollectPlant;
         PlantGrow.OnPlantPlaced += AssignPlants;
+    }
+
+    private void OnDestroy() {
+        PlantGrow.OnPlantReady -= CollectPlant;
+        PlantGrow.OnPlantPlaced -= AssignPlants;
     }
 
     private void Start() {
@@ -24,7 +28,9 @@ public class PlantGraber : MonoBehaviour
 
     private void CollectPlant(GameObject plant) {
         foreach (var item in cachedPlants)
-            item.GetComponent<PlantGrow>()?.Harvest();
+            if(item.GetComponent<PlantGrow>()?.Harvest() == true)
+                resourceAmount++;
+        Debug.Log(resourceAmount);
     }
 
     void AssignPlants(){

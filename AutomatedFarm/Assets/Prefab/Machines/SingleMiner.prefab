@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5770536265094022603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CheckConn
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8443981372619027796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1309744788275224172}
   - component: {fileID: 1309744788275224175}
   - component: {fileID: 1309744788275224174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,11 +172,10 @@ GameObject:
   - component: {fileID: 1309744788639485925}
   - component: {fileID: 1309744788639485924}
   - component: {fileID: 1309744788639485927}
-  - component: {fileID: 1309744788639485720}
   - component: {fileID: 8633207739186398158}
   - component: {fileID: -5349100562669781698}
   - component: {fileID: 1764914792592448747}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SingleMiner
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -283,84 +282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentLock: 0
---- !u!114 &1309744788639485720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309744788639485926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3449d94b708fe44297ce645dde9183a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curveSpawnTime: 0.25
-  animCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1.6
-      inSlope: 0.06444046
-      outSlope: 0.06444046
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.4538578
-    - serializedVersion: 3
-      time: 0.2
-      value: 1.58
-      inSlope: -0.8775464
-      outSlope: -0.8775464
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.22087745
-      outWeight: 0.30156338
-    - serializedVersion: 3
-      time: 0.2276802
-      value: 1.1983314
-      inSlope: 2.25599
-      outSlope: 2.25599
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.05295008
-      outWeight: 0.5264917
-    - serializedVersion: 3
-      time: 0.26405412
-      value: 1.197223
-      inSlope: 0.0006154324
-      outSlope: 0.0006154324
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.26429296
-    - serializedVersion: 3
-      time: 0.7985213
-      value: 1.2010099
-      inSlope: -0.00017960867
-      outSlope: -0.00017960867
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1.6
-      inSlope: 4.805992
-      outSlope: 4.805992
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.06007363
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 4
-  animSpeed: 0.3
-  animRoot:
-  - {fileID: 1309744789044211316}
-  isConnected: 0
-  outputPoint: {fileID: 287729449631402878}
 --- !u!114 &8633207739186398158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,8 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180dfe4629b27dc41a00b95770d7cde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isConnected: 0
+  outputPoint: {fileID: 287729449631402878}
   resourceType: 0
   spawnPoint: {fileID: 8443981372619027796}
+  timeToExtract: 2
 --- !u!114 &-5349100562669781698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +339,7 @@ GameObject:
   - component: {fileID: 1309744788646696174}
   - component: {fileID: 1309744788646696169}
   - component: {fileID: 1309744788646696168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +436,7 @@ GameObject:
   - component: {fileID: 1309744788738292437}
   - component: {fileID: 1309744788738292436}
   - component: {fileID: 1309744788738292439}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +533,7 @@ GameObject:
   - component: {fileID: 1309744788796647662}
   - component: {fileID: 1309744788796647657}
   - component: {fileID: 1309744788796647656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +630,7 @@ GameObject:
   - component: {fileID: 1309744789044211307}
   - component: {fileID: 1309744789044211306}
   - component: {fileID: 1309744789044211317}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Movable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +729,7 @@ GameObject:
   - component: {fileID: 1309744789105659873}
   - component: {fileID: 1309744789105659872}
   - component: {fileID: 1309744789105659875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +826,7 @@ GameObject:
   - component: {fileID: 1309744789415001696}
   - component: {fileID: 1309744789415001699}
   - component: {fileID: 1309744789415001698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +923,7 @@ GameObject:
   - component: {fileID: 1309744789582709653}
   - component: {fileID: 1309744789582709652}
   - component: {fileID: 1309744789582709655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1020,7 @@ GameObject:
   - component: {fileID: 1309744789712668542}
   - component: {fileID: 1309744789712668537}
   - component: {fileID: 1309744789712668536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

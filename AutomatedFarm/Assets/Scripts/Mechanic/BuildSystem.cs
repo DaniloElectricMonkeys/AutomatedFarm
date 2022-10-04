@@ -13,12 +13,21 @@ public class BuildSystem : Singleton<BuildSystem>
 {
     [Header("Attributes")]
     public GameObject blueprintObj;
+    public bool obstructed;
+    public LayerMask machineLayer;
+
+    [Space]
+    [Header("Materials")]
+    public Material blueprintBlue;
+    public Material blueprintRed;
     
     int rotation;
     int rotationIndex;
     int id = 0;
     RaycastHit hit {get { return MouseRaycast.Instance.FireRaycast(); }}
+    RaycastHit machineHit {get { return MouseRaycast.Instance.FireRaycast(machineLayer); }}
     GameObject createdObject;
+    bool doOnce;
 
 
     ///<summary>
@@ -35,10 +44,38 @@ public class BuildSystem : Singleton<BuildSystem>
 
     private void Update() 
     {
+        if(obstructed && blueprintObj != null)
+        {
+            foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
+                item.material = blueprintRed;
+            doOnce = false;
+        }
+            
+        else if(!obstructed && blueprintObj != null && !doOnce)
+        {
+            foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
+                item.material = blueprintBlue;
+                doOnce = true;
+                Debug.Log("Once");
+        }
+
+
         MoveBlueprintObject(); // Move and snap the bluprint object
-        BuildBlueprintObj();// Build the object blueprint that was on the mouse
+        if(!obstructed)
+            BuildBlueprintObj();// Build the object blueprint that was on the mouse
         RemoveSelection();// Remove the object from the mouse (press ESC)
         RotateSelection();// Rotate the object, press R.
+        DeleteMachine();
+    }
+
+    void DeleteMachine()
+    {
+        if(Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Called Delete");
+            if(machineHit.collider != null)
+                Destroy(machineHit.collider.gameObject);
+        }
     }
 
     public void RotateSelection()
