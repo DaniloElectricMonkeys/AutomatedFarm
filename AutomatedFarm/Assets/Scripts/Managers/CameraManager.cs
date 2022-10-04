@@ -5,10 +5,19 @@ public class CameraManager : MonoBehaviour
 {
     #region Settings
 
+    [Header("Settings")]
+    [SerializeField] float minZoom = 5;
+    [SerializeField] float maxZoom = 10;
     [SerializeField] float camSpeed = 50f;
-    [SerializeField] Camera myCamera;
-    readonly float[] Rotations = { 45, 125, 225, 305 };
+    [SerializeField] float minBoundsX = -30;
+    [SerializeField] float maxBoundsX = 30;
+    [SerializeField] float minBoundsZ = -30;
+    [SerializeField] float maxBoundsZ = 30;
+    readonly float[] Rotations = { 45, -45, -135 , 135 };
     int currentRotation;
+
+    [Header("References")]
+    [SerializeField] Camera myCamera;
     public Transform helper;
 
     private void Start()
@@ -19,6 +28,8 @@ public class CameraManager : MonoBehaviour
     private void Update()
     {
         CameraMovement();
+        CameraZoom();
+        CameraRotate();
     }
 
     #endregion
@@ -27,7 +38,6 @@ public class CameraManager : MonoBehaviour
 
     void CameraMovement()
     {
-        #region Keyboard Movement
         Vector3 inputDirection = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) inputDirection += helper.forward; // Forward
@@ -35,15 +45,18 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) inputDirection -= helper.right; // Left
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) inputDirection += helper.right; // Right
 
-        transform.position += camSpeed * Time.deltaTime * inputDirection; // Move
-        #endregion
+        transform.position += camSpeed * Time.deltaTime * inputDirection; // Move           
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minBoundsX, maxBoundsX), transform.position.y, Mathf.Clamp(transform.position.z, minBoundsZ, maxBoundsZ));        
+    }
 
-        #region Mouse Scroll Zoom
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize > 5) myCamera.orthographicSize -= 1;
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize < 10) myCamera.orthographicSize += 1;
-        #endregion
+    void CameraZoom()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize > minZoom) myCamera.orthographicSize -= 1; // In
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize < maxZoom) myCamera.orthographicSize += 1; // Out
+    }
 
-        #region Keyboard Rotation
+    void CameraRotate()
+    {
         if (Input.GetKeyUp(KeyCode.Q))
         {
             currentRotation--;
@@ -54,7 +67,6 @@ public class CameraManager : MonoBehaviour
             currentRotation++;
             RotateCamera();
         }
-        #endregion        
     }
 
     void RotateCamera()
@@ -63,7 +75,6 @@ public class CameraManager : MonoBehaviour
         if (currentRotation > Rotations.Length - 1) currentRotation = 0;
         Quaternion finalRotation = Quaternion.Euler(transform.eulerAngles.x, Rotations[currentRotation], transform.eulerAngles.z);
         transform.DORotateQuaternion(finalRotation, 0.3f);
-        //transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Rotations[currentRotation], transform.eulerAngles.z);
     }
 
     #endregion
