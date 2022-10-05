@@ -29,5 +29,6 @@ public class SeedContainer : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         SeedsManager.Instance.UpdateSeedDetails(seed.name, seed.price, seed.goldObtained, seed.expObtained, seed.amountObtained);
+        SeedsManager.Instance.CurrentSeedSelected(seed);
     }
 }

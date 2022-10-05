@@ -32,4 +32,9 @@ public class Library : Singleton<Library>
         BuildSystem.Instance.ChosseObject(buildingsSO.buildings[ID].blueprint);
         currentSelected = buildingsSO.buildings[ID].original;
     }
+
+    public void SetCurrentSelected(GameObject obj)
+    {
+        currentSelected = obj;
+    }
 }
