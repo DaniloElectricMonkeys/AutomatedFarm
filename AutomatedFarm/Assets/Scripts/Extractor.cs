@@ -30,7 +30,7 @@ public class Extractor : Machine
         StartCoroutine(DoAnim());
         refTimer = timeToExtract;
     }
-    
+
     IEnumerator DoAnim()
     {
         yield return new WaitForSeconds(1);
@@ -71,13 +71,13 @@ public class Extractor : Machine
         switch (resourceType)
         {
             case ResourceType.soil:
-                go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.soilPrefab);
+                go = ObjectPool.Instance.GrabFromPool(resourceType.ToString(), Library.Instance.soilPrefab);
                 break;
             case ResourceType.ore:
-                go = ObjectPool.Instance.GrabFromPool("Ore", Library.Instance.orePrefab);
+                go = ObjectPool.Instance.GrabFromPool(resourceType.ToString(), Library.Instance.orePrefab);
                 break;
             case ResourceType.stone:
-                go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.stonePrefab);
+                go = ObjectPool.Instance.GrabFromPool(resourceType.ToString(), Library.Instance.stonePrefab);
                 break;
         }
         

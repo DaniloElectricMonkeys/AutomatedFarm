@@ -42,7 +42,8 @@ public class ConveyorItem : MonoBehaviour
     {
         if(disableLinking == true) enableLinking = false;
         isLinked = false;
-        conveyorRef.RemoveConveyorItem(gameObject);
+        if(conveyorRef != null)
+            conveyorRef.RemoveConveyorItem(gameObject);
     }
 
     ///<summary>

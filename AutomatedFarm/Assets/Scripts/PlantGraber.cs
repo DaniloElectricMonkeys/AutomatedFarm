@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantGraber : SoilMaker
+public class PlantGraber : OutputMachine
 {
     [Header("Attributes")]
     public float influenceArea = 2;
