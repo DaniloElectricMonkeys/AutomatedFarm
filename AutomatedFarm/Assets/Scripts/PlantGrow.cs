@@ -10,9 +10,10 @@ using System;
 public class PlantGrow : MonoBehaviour
 {
     [Header("Options")]
-    public float time;
-    public Vector3 desiredScale;
-    public bool canBerHarvested;
+    string name;
+    float time;
+    public SeedTypes type;
+    public bool canBeHarvested;
     public static Action<GameObject> OnPlantReady;
     public static Action OnPlantPlaced;
     [HideInInspector] public bool isAssignedToGraber;
@@ -21,13 +22,13 @@ public class PlantGrow : MonoBehaviour
     {
         OnPlantPlaced?.Invoke();
         gameObject.transform.localScale = new Vector3(0.001f,0.001f,0.001f);
-        transform.DOScale(desiredScale, time).SetEase(Ease.Linear).OnComplete((CompletePlant));
+        transform.DOScale(Vector3.one, time).SetEase(Ease.Linear).OnComplete((CompletePlant));
         //LeanTween.scale(gameObject, desiredScale, time);
     }
 
     void CompletePlant()
     {
-        canBerHarvested = true;
+        canBeHarvested = true;
         OnPlantReady?.Invoke(gameObject);
     }
 
@@ -35,13 +36,18 @@ public class PlantGrow : MonoBehaviour
 
     public bool Harvest(){
         
-        if(canBerHarvested)
+        if(canBeHarvested)
         {
             transform.localScale = Vector3.zero;
-            canBerHarvested = false;
+            canBeHarvested = false;
             return true;
         }
         return false;
     }
 
+    void LoadSettings(Seed settings)
+    {
+        name = settings.name;
+        time = settings.timeToGrow;
+    }
 }
