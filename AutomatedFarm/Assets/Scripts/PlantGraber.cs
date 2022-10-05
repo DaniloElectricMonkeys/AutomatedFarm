@@ -30,7 +30,6 @@ public class PlantGraber : SoilMaker
         foreach (var item in cachedPlants)
             if(item.GetComponent<PlantGrow>()?.Harvest() == true)
                 resourceAmount++;
-        Debug.Log(resourceAmount);
     }
 
     void AssignPlants(){
@@ -46,7 +45,7 @@ public class PlantGraber : SoilMaker
         }
 
         foreach (var item in cachedPlants)
-            item.GetComponent<PlantGrow>()?.Harvest();
+            CollectPlant(item.gameObject);
     }
 
     private void OnDrawGizmos() {

@@ -29,9 +29,8 @@ public class Extractor : Machine
     {
         StartCoroutine(DoAnim());
         refTimer = timeToExtract;
-
     }
-
+    
     IEnumerator DoAnim()
     {
         yield return new WaitForSeconds(1);

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab561f327cf87e043b5dab8ac672ffb6, type: 3}
+  m_Name: FirstWorld
+  m_EditorClassIdentifier: 
+  seeds:
+  - name: Corn
+    seed: {fileID: 0}
+    type: 0
+    timeToGrow: 60
+  - name: Apple
+    seed: {fileID: 0}
+    type: 1
+    timeToGrow: 70
+  - name: Pumpkin
+    seed: {fileID: 0}
+    type: 2
+    timeToGrow: 80

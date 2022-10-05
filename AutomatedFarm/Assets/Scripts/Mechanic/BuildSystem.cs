@@ -28,6 +28,8 @@ public class BuildSystem : Singleton<BuildSystem>
     RaycastHit machineHit {get { return MouseRaycast.Instance.FireRaycast(machineLayer); }}
     GameObject createdObject;
     bool doOnce;
+    bool canBuildAnyway;
+    BuildOnlyInTag tagChecker;
 
 
     ///<summary>
@@ -44,8 +46,37 @@ public class BuildSystem : Singleton<BuildSystem>
 
     private void Update() 
     {
+        CheckObstructions();// Ckeck and change material in case of obstructions
+        MoveBlueprintObject(); // Move and snap the bluprint object
+        if(!obstructed || canBuildAnyway)//Allow to build if is not obstructed or it casn be built anyway
+            BuildBlueprintObj();// Build the object blueprint that was on the mouse
+        RemoveSelection();// Remove the object from the mouse (press ESC)
+        RotateSelection();// Rotate the object, press R.
+        DeleteMachine();
+    }
+
+    void CheckObstructions()
+    {
         if(obstructed && blueprintObj != null)
         {
+            tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
+
+            if(tagChecker != null && tagChecker.tag != "")
+            {
+                if(tagChecker.RayHitNode())
+                {
+                    canBuildAnyway = true;
+                    foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
+                        item.material = blueprintBlue;
+                    return;
+                }
+                else
+                    canBuildAnyway = false;
+            }
+            else
+                canBuildAnyway = false;
+                
+
             foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
                 item.material = blueprintRed;
             doOnce = false;
@@ -55,17 +86,9 @@ public class BuildSystem : Singleton<BuildSystem>
         {
             foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
                 item.material = blueprintBlue;
-                doOnce = true;
-                Debug.Log("Once");
+            doOnce = true;
+            Debug.Log("Once");
         }
-
-
-        MoveBlueprintObject(); // Move and snap the bluprint object
-        if(!obstructed)
-            BuildBlueprintObj();// Build the object blueprint that was on the mouse
-        RemoveSelection();// Remove the object from the mouse (press ESC)
-        RotateSelection();// Rotate the object, press R.
-        DeleteMachine();
     }
 
     void DeleteMachine()
@@ -110,7 +133,7 @@ public class BuildSystem : Singleton<BuildSystem>
     {
         if(blueprintObj != null && Input.GetMouseButtonDown(0))
         {
-            BuildOnlyInTag tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
+            tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
             BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
 
             // Return if player cant buy.
