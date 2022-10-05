@@ -326,6 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43725fe70fc69584e839ef012c60cc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useInput: 1
+  useOutput: 0
+  isConnected: 0
+  outputPoint: {fileID: 0}
 --- !u!114 &1179155495317848486
 MonoBehaviour:
   m_ObjectHideFlags: 0

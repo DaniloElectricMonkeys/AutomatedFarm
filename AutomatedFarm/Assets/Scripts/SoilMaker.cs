@@ -10,8 +10,7 @@ using MyEnums;
 public class SoilMaker : Machine
 {
     [Header("Soil Maker")]
-    public ResourceType type;
-    public GameObject outputPrefab;
+    public ResourceType outputType;
     GameObject go;
     [SerializeField] protected float resourceAmount;
     public float timeToExtract;
@@ -31,18 +30,16 @@ public class SoilMaker : Machine
     {
         if(resourceAmount <= 0) return;
 
-        if(outputPrefab != null)
-
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
 
-        if(type == ResourceType.none)
+        if(outputType == ResourceType.none)
         {
             Debug.Log("NO RESOURCE SELECTED");
             return;
         }
 
-        switch (type)
+        switch (outputType)
         {
             case ResourceType.soil:
                 go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.soilPrefab);

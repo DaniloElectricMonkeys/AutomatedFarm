@@ -294,11 +294,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180dfe4629b27dc41a00b95770d7cde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useInput: 0
+  useOutput: 1
   isConnected: 0
   outputPoint: {fileID: 287729449631402878}
   resourceType: 0
   spawnPoint: {fileID: 8443981372619027796}
   timeToExtract: 2
+  animCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animSpeed: 0
+  animRoot: []
 --- !u!114 &-5349100562669781698
 MonoBehaviour:
   m_ObjectHideFlags: 0
