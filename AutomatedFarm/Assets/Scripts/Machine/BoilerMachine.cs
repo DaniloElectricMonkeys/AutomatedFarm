@@ -6,34 +6,9 @@ using System;
 
 public class BoilerMachine : OutputMachine
 {
-    Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
-    int quantity;
-
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
-    {
-        string key = type.ToString();
-
-        //Add object to the list of its type
-        if(resourcesInTheMachine.ContainsKey(key))
-        {
-            resourcesInTheMachine[key] += 1;
-        }
-        //Add object to the list of its type by creating a new list if it is a new resource type
-        else
-        {
-            int q = 1;
-            resourcesInTheMachine.Add(key, q);
-        }
-
-        ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        obj.GetComponent<ConveyorItem>().RemoveLink();
-        obj.SetActive(false);
-        resourceAmount++;
-    }
-
     public override void OutputResource()
     {
-        if(resourceAmount <= 0) return;
+        //if(resourceAmount <= 0) return;
 
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
@@ -66,7 +41,15 @@ public class BoilerMachine : OutputMachine
                     break;
                 }
             }
+            else
+                return;
         }
+        else
+        {
+            Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
+            return;
+        }
+            
 
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;

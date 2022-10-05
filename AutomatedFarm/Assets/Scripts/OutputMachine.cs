@@ -17,6 +17,28 @@ public class OutputMachine : Machine
     public float timeToExtract;
     protected float refTimer;
 
+    protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
+
+    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    {
+        string key = type.ToString();
+
+        //Add object to the list of its type
+        if(resourcesInTheMachine.ContainsKey(key))
+            resourcesInTheMachine[key] += 1;
+        //Add object to the list of its type by creating a new list if it is a new resource type
+        else
+        {
+            int q = 1;
+            resourcesInTheMachine.Add(key, q);
+        }
+
+        ObjectPool.Instance.AddToPool(key, obj.gameObject);
+        obj.GetComponent<ConveyorItem>().RemoveLink();
+        obj.SetActive(false);
+        //resourceAmount++;
+    }
+
     private void Update() 
     {
         refTimer -= Time.deltaTime;

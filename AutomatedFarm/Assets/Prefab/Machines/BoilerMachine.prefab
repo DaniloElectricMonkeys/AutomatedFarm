@@ -437,7 +437,7 @@ MonoBehaviour:
   outputPoint: {fileID: 4760575304993527008}
   outputType: 4
   resourceAmount: 0
-  timeToExtract: 1
+  timeToExtract: 5
 --- !u!1 &4760575304993527008
 GameObject:
   m_ObjectHideFlags: 0

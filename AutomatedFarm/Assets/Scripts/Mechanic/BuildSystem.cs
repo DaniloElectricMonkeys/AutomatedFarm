@@ -87,7 +87,6 @@ public class BuildSystem : Singleton<BuildSystem>
             foreach (MeshRenderer item in blueprintObj.GetComponentsInChildren<MeshRenderer>())
                 item.material = blueprintBlue;
             doOnce = true;
-            Debug.Log("Once");
         }
     }
 
@@ -95,7 +94,6 @@ public class BuildSystem : Singleton<BuildSystem>
     {
         if(Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Called Delete");
             if(machineHit.collider != null)
                 Destroy(machineHit.collider.gameObject);
         }
