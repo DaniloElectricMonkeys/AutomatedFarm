@@ -100,7 +100,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 249fbf2d3bedc1f43a7f4d4263b6a8d2, type: 2}
   seedContainer: {fileID: 7729394168615425591, guid: 01720b08b9b3e1d43806805e20274376, type: 3}
   grid: {fileID: 8531949501853110284}
-  name: {fileID: 4970250785741961840}
+  myName: {fileID: 4970250785741961840}
   price: {fileID: 2868606392876850751}
   gold: {fileID: 5917268682317220967}
   exp: {fileID: 8870067453054224423}
