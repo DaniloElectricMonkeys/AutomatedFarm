@@ -6,8 +6,8 @@ using System;
 
 public class BoilerMachine : OutputMachine
 {
-    Dictionary<string, List<GameObject>> resourcesInTheMachine = new Dictionary<string, List<GameObject>>();
-    List<GameObject> objList = new List<GameObject>();
+    Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
+    int quantity;
 
     public override void OnResourceEnter(ResourceType type, GameObject obj)
     {
@@ -16,18 +16,17 @@ public class BoilerMachine : OutputMachine
         //Add object to the list of its type
         if(resourcesInTheMachine.ContainsKey(key))
         {
-            if(resourcesInTheMachine.TryGetValue(key, out objList))
-                objList.Add(obj);
+            resourcesInTheMachine[key] += 1;
         }
         //Add object to the list of its type by creating a new list if it is a new resource type
         else
         {
-            List<GameObject> newList = new List<GameObject>();
-            newList.Add(obj);
-            resourcesInTheMachine.Add(key, newList);
+            int q = 1;
+            resourcesInTheMachine.Add(key, q);
         }
 
         ObjectPool.Instance.AddToPool(key, obj.gameObject);
+        obj.GetComponent<ConveyorItem>().RemoveLink();
         obj.SetActive(false);
         resourceAmount++;
     }
@@ -56,8 +55,12 @@ public class BoilerMachine : OutputMachine
                     switch (type)
                     {
                         case ResourceType.corn:
-                            go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool("BoiledCorn", Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] += 1;
                         break;
+
+                        default:
+                            return;
                     }
                     break;
                 }

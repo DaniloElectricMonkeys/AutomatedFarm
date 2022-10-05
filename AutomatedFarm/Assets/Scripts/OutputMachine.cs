@@ -43,16 +43,16 @@ public class OutputMachine : Machine
         switch (outputType)
         {
             case ResourceType.soil:
-                go = ObjectPool.Instance.GrabFromPool("Soil", Library.Instance.soilPrefab);
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
             break;
             case ResourceType.ore:
-                go = ObjectPool.Instance.GrabFromPool("Ore", Library.Instance.soilPrefab);
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
             break;
             case ResourceType.stone:
-                go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.soilPrefab);
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
             break;
             case ResourceType.corn:
-                go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.rawCorn);
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.rawCorn);
             break;
         }
         
