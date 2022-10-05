@@ -381,10 +381,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d6dd3d4f6731148948f0df11c9bfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useInput: 0
+  useOutput: 1
   isConnected: 0
   outputPoint: {fileID: 558222623241340745}
-  type: 1
-  outputPrefab: {fileID: 2519493171549123563, guid: d5a23f9e3eac06a42bd2bbbafbe0731e, type: 3}
+  outputType: 1
+  resourceAmount: 0
   timeToExtract: 1
   influenceArea: 2.75
   plantLayerMask:

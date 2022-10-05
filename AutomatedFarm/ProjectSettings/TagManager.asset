@@ -10,6 +10,7 @@ TagManager:
   - Rock
   - Soil
   - Stone
+  - ResourceNode
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - BuildableGround
   - Plant
   - Machine
-  - 
+  - Node
   - 
   - 
   - 
