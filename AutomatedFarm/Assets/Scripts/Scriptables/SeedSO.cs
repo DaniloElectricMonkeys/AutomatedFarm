@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 public enum SeedTypes { Corn, Apple, Pumpkin }
 
 [CreateAssetMenu(fileName = "WorldSeed", menuName = "Harvestable Seeds")]
@@ -21,6 +23,7 @@ public class SeedSO : ScriptableObject
 public class Seed
 {
     public string name;
+    public Sprite icon; 
     public GameObject seed;
     public SeedTypes type;
     public float timeToGrow;
