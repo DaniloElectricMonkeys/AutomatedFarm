@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wavy
-  m_Shader: {fileID: -6465566751694194690, guid: b85c5e2c0d0c9774ab24e77078fc44cb,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b85c5e2c0d0c9774ab24e77078fc44cb, type: 3}
   m_ValidKeywords:
   - FOAM_SHADOWS_ON
   - INTERSECTION_EFFECTS_ON
@@ -154,8 +153,8 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _SurfaceFoamBlend: 1
-    - _SurfaceFoamHeightMask: 0.12
-    - _SurfaceFoamHeightMaskSmoothness: 1
+    - _SurfaceFoamHeightMask: 0
+    - _SurfaceFoamHeightMaskSmoothness: 0
     - _SurfaceFoamShadowProjection: 15
     - _UnderwaterRefractionStrength: 0.099
     - _WaterColorDepth: 0.57

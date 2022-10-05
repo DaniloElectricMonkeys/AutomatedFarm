@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2697571825631417123}
   - component: {fileID: 2697571825631417120}
   - component: {fileID: 2697571825631417133}
+  - component: {fileID: 2185122012466314049}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -204,3 +205,23 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &2185122012466314049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697571825631417121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9252d638ad36b6b4492bd3b6fb282670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderScale: 1
+  reflectionLayer:
+    serializedVersion: 2
+    m_Bits: 4294967247
+  reflectSkybox: 1
+  reflectionTarget: {fileID: 0}
+  reflectionPlaneOffset: 0
+  hideReflectionCamera: 1
