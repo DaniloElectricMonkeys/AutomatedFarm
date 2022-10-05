@@ -1,3 +1,4 @@
+using System;
 using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,14 +8,14 @@ using MyEnums;
 ///<summary>
 /// Create soil based on the input it recives
 ///</summary>
-public class SoilMaker : Machine
+public class OutputMachine : Machine
 {
-    [Header("Soil Maker")]
+    [Header("Output Resource")]
     public ResourceType outputType;
-    GameObject go;
+    protected GameObject go;
     [SerializeField] protected float resourceAmount;
     public float timeToExtract;
-    float refTimer;
+    protected float refTimer;
 
     private void Update() 
     {
@@ -26,7 +27,7 @@ public class SoilMaker : Machine
         }
     }
 
-    public void OutputResource()
+    public virtual void OutputResource()
     {
         if(resourceAmount <= 0) return;
 
@@ -38,7 +39,7 @@ public class SoilMaker : Machine
             Debug.Log("NO RESOURCE SELECTED");
             return;
         }
-
+        
         switch (outputType)
         {
             case ResourceType.soil:
@@ -50,6 +51,9 @@ public class SoilMaker : Machine
             case ResourceType.stone:
                 go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.soilPrefab);
             break;
+            case ResourceType.corn:
+                go = ObjectPool.Instance.GrabFromPool("Stone", Library.Instance.rawCorn);
+            break;
         }
         
         go.transform.position = outputPoint.transform.position;
@@ -57,38 +61,5 @@ public class SoilMaker : Machine
         go.SetActive(true);
 
         resourceAmount--;
-    }
-
-
-    // Handle objects entering the machine
-    private void OnTriggerStay(Collider other) 
-    {
-        if(other.gameObject.CompareTag("Ore"))
-        {
-            if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            {
-                ObjectPool.Instance.AddToPool("Ore", other.gameObject);
-                other.gameObject.SetActive(false);
-                resourceAmount++;
-            }
-        }
-        if(other.gameObject.CompareTag("Soil"))
-        {
-            if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            {
-                ObjectPool.Instance.AddToPool("Soil", other.gameObject);
-                other.gameObject.SetActive(false);
-                resourceAmount++;
-            }
-        }
-        if(other.gameObject.CompareTag("Stone"))
-        {
-            if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            {
-                ObjectPool.Instance.AddToPool("Stone", other.gameObject);
-                other.gameObject.SetActive(false);
-                resourceAmount++;
-            }
-        }
     }
 }

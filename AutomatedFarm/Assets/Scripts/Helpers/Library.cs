@@ -9,7 +9,13 @@ public class Library : Singleton<Library>
     [Header("Dependecys")]
     public SO_Buildings buildingsSO;
 
-    [Header("ResourcePrefabs")]
+    [Space]
+    [Header("Corn Prefabs")]
+    public GameObject rawCorn;
+    public GameObject boiledCorn;
+
+    [Space]
+    [Header("Resource Prefabs")]
     public GameObject soilPrefab;
     public GameObject orePrefab;
     public GameObject stonePrefab;

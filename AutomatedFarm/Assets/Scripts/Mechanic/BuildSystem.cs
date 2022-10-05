@@ -166,7 +166,7 @@ public class BuildSystem : Singleton<BuildSystem>
     ///</summary>
     void RemoveSelection()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
         {
             Destroy(blueprintObj);
             blueprintObj = null;

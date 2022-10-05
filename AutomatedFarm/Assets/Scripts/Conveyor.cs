@@ -10,6 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Conveyor : MonoBehaviour
 {
+    public static Action OnConveyorDeleted;
     Rigidbody rb;
     public Transform start;
     public Transform end;
@@ -76,4 +77,8 @@ public class Conveyor : MonoBehaviour
         }
     }
     
+    private void OnDestroy() {
+        OnConveyorDeleted?.Invoke();
+    }
+
 }
