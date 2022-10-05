@@ -48,6 +48,50 @@ MonoBehaviour:
   buildableLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!1 &4008573430205398667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923219793772865293}
+  - component: {fileID: 2198420538810468215}
+  m_Layer: 0
+  m_Name: TooTipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &923219793772865293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008573430205398667}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 624, y: 351, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5818895337010085630}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2198420538810468215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008573430205398667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f96eac1d22d92348b3051b0e239c8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4458718542197437884
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprintObj: {fileID: 0}
+  obstructed: 0
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  blueprintBlue: {fileID: 0}
+  blueprintRed: {fileID: 0}
 --- !u!1 &5818895337010085628
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +177,7 @@ Transform:
   - {fileID: 7767077132934817480}
   - {fileID: 1770406200288182916}
   - {fileID: 8328306660339707469}
+  - {fileID: 923219793772865293}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -155,20 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c6d55b9cab6344e8247e68adc8fd45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingsSO: {fileID: 0}
   soilPrefab: {fileID: 2519493171549123563, guid: d5a23f9e3eac06a42bd2bbbafbe0731e, type: 3}
   orePrefab: {fileID: 2519493171549123563, guid: b3fb7788344277d459cdeb943116d3cc, type: 3}
   stonePrefab: {fileID: 2519493171549123563, guid: 99ffcabc16444c54bb1909432e6205bb, type: 3}
   currentSelected: {fileID: 0}
-  conveyor: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
-  B_conveyor: {fileID: 4739135483468428020, guid: 002e00db52fd4404ab387ec49b810144, type: 3}
-  singleMiner: {fileID: 1309744788639485926, guid: f96aacf0840991f4daf4e16d0df31487, type: 3}
-  B_singleMiner: {fileID: 1309744788639485926, guid: 45c4303388ad74d4a9217b153001d24a, type: 3}
-  seller: {fileID: 1309744788639485926, guid: bd1736eb157ff7a499f33d6819a4eeb5, type: 3}
-  B_seller: {fileID: 1309744788639485926, guid: df86acf63169e2049b42651285104941, type: 3}
-  fertileSoil: {fileID: 6467990521855568265, guid: fcc1895e5e517e149be57687231ce1e1, type: 3}
-  B_fertileSoil: {fileID: 6467990521855568265, guid: 112eb7b0ef07d2645b4eba492e8c340c, type: 3}
-  plantGraber: {fileID: 1309744788639485926, guid: c0e7c603fb89517418de3f6b03e2fe8d, type: 3}
-  B_plantGraber: {fileID: 1309744788639485926, guid: d212233513b4f274bacebfc2eef442fa, type: 3}
   toolTip: {fileID: 0}
 --- !u!114 &5818895337010085621
 MonoBehaviour:

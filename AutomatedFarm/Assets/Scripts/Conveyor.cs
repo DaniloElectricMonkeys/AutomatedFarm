@@ -1,3 +1,4 @@
+using System.Net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 /// Handle converyor logic. Moving objects.
 ///</summary>
 [RequireComponent(typeof(Rigidbody))]
-public class Conveyor : MonoBehaviour, I_Deletable
+public class Conveyor : MonoBehaviour
 {
     Rigidbody rb;
     public Transform start;
@@ -28,6 +29,7 @@ public class Conveyor : MonoBehaviour, I_Deletable
 
         if(item != null)
         {
+            //item.transform.position = Vector3.MoveTowards(item.transform.position, end.position, speed * Time.deltaTime);
             if(item.isLinked == false)
             {
                 itensInConveyor.Add(other.gameObject);
@@ -45,7 +47,7 @@ public class Conveyor : MonoBehaviour, I_Deletable
             item.transform.position = Vector3.MoveTowards(item.transform.position, end.position, speed * Time.deltaTime);
             if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
                 removeItens.Add(item);
-            if(item.transform.position.y <= 0)
+            if(item.transform.position.y <= 0.2f)
                 removeItens.Add(item);
         }
 
@@ -67,9 +69,11 @@ public class Conveyor : MonoBehaviour, I_Deletable
     ///</summary>
     public void RemoveConveyorItem(GameObject conveyorItem)
     {
-        itensInConveyor.Remove(conveyorItem);
-        removeItens.Remove(conveyorItem);
+        if(itensInConveyor.Contains(conveyorItem))
+        {
+            itensInConveyor.Remove(conveyorItem);
+            removeItens.Remove(conveyorItem);
+        }
     }
-
-    public void DeleteMe() => Destroy(gameObject);
+    
 }

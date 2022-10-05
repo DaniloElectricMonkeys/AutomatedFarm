@@ -1074,6 +1074,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: 0.75
+  ramp: 0
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  downRamp: {fileID: 0}
   affectedSide: {fileID: 0}
   affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
@@ -1123,6 +1128,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: 0.75
+  ramp: 0
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  downRamp: {fileID: 0}
   affectedSide: {fileID: 5576516933973737423}
   affectedBridge: {fileID: 555375924235958717}
   root: {fileID: 9210626987964966081}
@@ -1172,6 +1182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: 0.75
+  ramp: 0
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  downRamp: {fileID: 0}
   affectedSide: {fileID: 2358856100617682049}
   affectedBridge: {fileID: 3984657883999648848}
   root: {fileID: 9210626987964966081}
@@ -1256,6 +1271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: 0.75
+  ramp: 0
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  downRamp: {fileID: 0}
   affectedSide: {fileID: 731069673227459087}
   affectedBridge: {fileID: 2664694425088677673}
   root: {fileID: 9210626987964966081}

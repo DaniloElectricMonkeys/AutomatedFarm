@@ -129,4 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLinked: 0
   enableLinking: 1
-  type: 0
+  type: 1

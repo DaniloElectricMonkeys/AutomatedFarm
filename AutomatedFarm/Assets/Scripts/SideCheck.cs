@@ -3,7 +3,10 @@ using UnityEngine;
 public class SideCheck : MonoBehaviour
 {
     public float boxSize;
+    public bool ramp;
     Collider[] hits;
+    public LayerMask machineLayer;
+    public GameObject downRamp;
     public GameObject affectedSide;
     public GameObject affectedBridge;
     public Transform root;
@@ -19,7 +22,7 @@ public class SideCheck : MonoBehaviour
 
     private void CheckSide()
     {
-        hits = Physics.OverlapBox(transform.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize / 2) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z));
+        hits = Physics.OverlapBox(transform.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize * 1.2f) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
 
         foreach (Collider item in hits)
         {
@@ -65,6 +68,6 @@ public class SideCheck : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(boxSize * root.lossyScale.x,boxSize * root.lossyScale.y,boxSize * root.lossyScale.z));
+        Gizmos.DrawWireCube(transform.position, new Vector3(boxSize * root.lossyScale.x,boxSize * root.lossyScale.y * 2,boxSize * root.lossyScale.z));
     }
 }
