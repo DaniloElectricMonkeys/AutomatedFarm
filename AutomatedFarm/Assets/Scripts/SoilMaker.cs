@@ -13,7 +13,7 @@ public class SoilMaker : Machine
     public ResourceType type;
     public GameObject outputPrefab;
     GameObject go;
-    protected float resourceAmount;
+    [SerializeField] protected float resourceAmount;
     public float timeToExtract;
     float refTimer;
 

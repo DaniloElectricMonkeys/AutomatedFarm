@@ -69,8 +69,11 @@ public class Conveyor : MonoBehaviour
     ///</summary>
     public void RemoveConveyorItem(GameObject conveyorItem)
     {
-        itensInConveyor.Remove(conveyorItem);
-        removeItens.Remove(conveyorItem);
+        if(itensInConveyor.Contains(conveyorItem))
+        {
+            itensInConveyor.Remove(conveyorItem);
+            removeItens.Remove(conveyorItem);
+        }
     }
     
 }

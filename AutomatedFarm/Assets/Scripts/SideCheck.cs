@@ -45,7 +45,6 @@ public class SideCheck : MonoBehaviour
                 for (int i = 0; i < sides.Length; i++)
                 {
                     sides[i].CheckSide();
-                    Debug.Log("Many");
                 }
             }
         }

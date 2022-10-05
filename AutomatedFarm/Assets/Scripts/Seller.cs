@@ -27,5 +27,13 @@ public class Seller : MonoBehaviour
                 ResourceManager.Instance.IncrementSoil(1);
             }
         }
+        if(other.gameObject.CompareTag("Stone"))
+        {
+            if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
+            {
+                ObjectPool.Instance.AddToPool("Stone", other.gameObject);
+                other.gameObject.SetActive(false);
+            }
+        }
     }
 }
