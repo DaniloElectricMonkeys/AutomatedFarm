@@ -55,8 +55,9 @@ public class BoilerMachine : OutputMachine
                     switch (type)
                     {
                         case ResourceType.corn:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
                             go = ObjectPool.Instance.GrabFromPool("BoiledCorn", Library.Instance.boiledCorn);
-                            resourcesInTheMachine[item.Key] += 1;
+                            resourcesInTheMachine[item.Key] -= 1;
                         break;
 
                         default:

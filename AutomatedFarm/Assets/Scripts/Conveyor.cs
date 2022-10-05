@@ -30,7 +30,6 @@ public class Conveyor : MonoBehaviour
 
         if(item != null)
         {
-            //item.transform.position = Vector3.MoveTowards(item.transform.position, end.position, speed * Time.deltaTime);
             if(item.isLinked == false)
             {
                 itensInConveyor.Add(other.gameObject);
@@ -45,7 +44,7 @@ public class Conveyor : MonoBehaviour
         {
             if(item == null) return;
 
-            item.transform.position = Vector3.MoveTowards(item.transform.position, end.position, speed * Time.deltaTime);
+            item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
             if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
                 removeItens.Add(item);
             if(item.transform.position.y <= 0.2f)
