@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SeedsManager : Singleton<SeedsManager>
@@ -10,6 +7,13 @@ public class SeedsManager : Singleton<SeedsManager>
     [SerializeField] SeedSO[] seedScriptable;
     [SerializeField] SeedContainer seedContainer;
     [SerializeField] GridLayoutGroup grid;
+
+    [Header("Seed Details")]
+    [SerializeField] TextMeshProUGUI myName;
+    [SerializeField] TextMeshProUGUI price;
+    [SerializeField] TextMeshProUGUI gold;
+    [SerializeField] TextMeshProUGUI exp;
+    [SerializeField] TextMeshProUGUI obtain;
 
     private void Start()
     {
@@ -22,7 +26,16 @@ public class SeedsManager : Singleton<SeedsManager>
         {
             Seed currentSeed = seedScriptable[0].seeds[i];
             SeedContainer container = Instantiate(seedContainer, grid.transform);
-            container.Settings(currentSeed.icon, currentSeed.timeToGrow);
+            container.GetSeed(currentSeed);
         }
+    }
+
+    public void UpdateSeedDetails(string seedName, float seedPrice, float seedGold, float seedExp, float seedObtained)
+    {
+        myName.text = seedName;
+        price.text = "Price: " + seedPrice.ToString();
+        gold.text = "Gold: " + seedGold.ToString();
+        exp.text = "Exp: " + seedExp.ToString();
+        obtain.text = "Obtain: " + seedObtained.ToString();
     }
 }

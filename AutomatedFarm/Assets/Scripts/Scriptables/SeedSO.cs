@@ -23,7 +23,11 @@ public class SeedSO : ScriptableObject
 public class Seed
 {
     public string name;
-    public Sprite icon; 
+    public Sprite icon;
+    public float price;
+    public float goldObtained;
+    public float expObtained;
+    public float amountObtained;
     public GameObject seed;
     public SeedTypes type;
     public float timeToGrow;
