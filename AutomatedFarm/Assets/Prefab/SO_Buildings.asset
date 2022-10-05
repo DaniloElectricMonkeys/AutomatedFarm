@@ -25,3 +25,5 @@ MonoBehaviour:
     original: {fileID: 1309744788639485926, guid: c0e7c603fb89517418de3f6b03e2fe8d, type: 3}
   - blueprint: {fileID: 6732838891807173496, guid: fbee82f6399c9fb479fe843f7455c3b1, type: 3}
     original: {fileID: 6732838891807173496, guid: 6577a6e22abbb5d4ab3b513118eba1b2, type: 3}
+  - blueprint: {fileID: 1309744788639485926, guid: 8e4ae1b928a2cae4cb7ada57b21f10fc, type: 3}
+    original: {fileID: 1309744788639485926, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
