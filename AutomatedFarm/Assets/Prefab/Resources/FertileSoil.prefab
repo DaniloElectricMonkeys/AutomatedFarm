@@ -93,7 +93,7 @@ BoxCollider:
   m_GameObject: {fileID: 5080841958372193813}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7856315247982970399}
   - component: {fileID: -6723761068594068062}
   - component: {fileID: 4951857683917812560}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: FertileSoil
   m_TagString: Untagged
   m_Icon: {fileID: 0}

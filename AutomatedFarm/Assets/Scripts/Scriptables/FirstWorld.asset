@@ -19,24 +19,7 @@ MonoBehaviour:
     goldObtained: 10
     expObtained: 6
     amountObtained: 12
-    seed: {fileID: 0}
+    seed: {fileID: 1818079054005288, guid: 9eb115bdb7c27e444bb1db74df0fc581, type: 3}
+    seedBlueprint: {fileID: 1818079054005288, guid: 9eb115bdb7c27e444bb1db74df0fc581, type: 3}
     type: 0
-    timeToGrow: 60
-  - name: Apple
-    icon: {fileID: 21300000, guid: 61fb9ecce04358246901dadbdfbd2230, type: 3}
-    price: 6
-    goldObtained: 15
-    expObtained: 10
-    amountObtained: 10
-    seed: {fileID: 0}
-    type: 1
-    timeToGrow: 70
-  - name: Pumpkin
-    icon: {fileID: 21300000, guid: 0aa785b4d2d38264f88b4208fb283207, type: 3}
-    price: 8
-    goldObtained: 25
-    expObtained: 15
-    amountObtained: 7
-    seed: {fileID: 0}
-    type: 2
-    timeToGrow: 80
+    timeToGrow: 50
