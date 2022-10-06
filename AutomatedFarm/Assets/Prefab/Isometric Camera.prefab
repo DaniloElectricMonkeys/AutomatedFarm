@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6ad04829271bb4ea89ce268bcb3c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minZoom: 5
+  minZoom: 2
   maxZoom: 10
   camSpeed: 10
   minBoundsX: -30
@@ -220,7 +220,7 @@ MonoBehaviour:
   renderScale: 1
   reflectionLayer:
     serializedVersion: 2
-    m_Bits: 4294967247
+    m_Bits: 4294967279
   reflectSkybox: 1
   reflectionTarget: {fileID: 0}
   reflectionPlaneOffset: 0

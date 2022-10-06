@@ -15,6 +15,8 @@ public class SeedsManager : Singleton<SeedsManager>
     [SerializeField] TextMeshProUGUI exp;
     [SerializeField] TextMeshProUGUI obtain;
 
+    public Seed currentSeed { get; private set; }
+
     private void Start()
     {
         SpawnSeedContainer();
@@ -37,5 +39,17 @@ public class SeedsManager : Singleton<SeedsManager>
         gold.text = "Gold: " + seedGold.ToString();
         exp.text = "Exp: " + seedExp.ToString();
         obtain.text = "Obtain: " + seedObtained.ToString();
+    }
+
+    public void CurrentSeedSelected(Seed seed)
+    {
+        currentSeed = seed;
+    }
+
+    public void SeedSelected()
+    {
+        CanvasManager.Instance.ToggleSeedsUI();
+        Library.Instance.SetCurrentSelected(currentSeed.seed);
+        BuildSystem.Instance.ChosseObject(currentSeed.seedBlueprint);
     }
 }
