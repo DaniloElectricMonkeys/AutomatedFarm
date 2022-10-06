@@ -77,9 +77,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6ad04829271bb4ea89ce268bcb3c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minZoom: 2
-  maxZoom: 10
+  minOrtoZoom: 5
+  maxOrtoZoom: 10
+  minPerspZoom: -5
+  maxPerspZoom: -20
   camSpeed: 10
+  minRotAxisX: 20
+  maxRotAxisX: 50
   minBoundsX: -30
   maxBoundsX: 30
   minBoundsZ: -30

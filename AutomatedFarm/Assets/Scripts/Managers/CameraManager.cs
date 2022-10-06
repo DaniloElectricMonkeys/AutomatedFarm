@@ -1,14 +1,23 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Singleton<CameraManager>
 {
     #region Settings
-
-    [Header("Settings")]
-    [SerializeField] float minZoom = 5;
-    [SerializeField] float maxZoom = 10;
+    public enum CameraType { Ortographic, Perspective }
+    public CameraType type;
+    [Header("Ortographic")]
+    [SerializeField] float minOrtoZoom = 5;
+    [SerializeField] float maxOrtoZoom = 10;
+    [Header("Perspective")]
+    [SerializeField] float minPerspZoom = -5;
+    [SerializeField] float maxPerspZoom = -20;
+    [Header("Camera")]
     [SerializeField] float camSpeed = 50f;
+    [Header("Rotation")]
+    [SerializeField] float minRotAxisX = 20;
+    [SerializeField] float maxRotAxisX = 50;
+    [Header("Bounds")]
     [SerializeField] float minBoundsX = -30;
     [SerializeField] float maxBoundsX = 30;
     [SerializeField] float minBoundsZ = -30;
@@ -27,9 +36,10 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        CameraMovement();
-        CameraZoom();
-        CameraRotate();
+        CameraMovement();        
+        CameraRotate();        
+        RotateCameraAxisX();
+        SetCamera();
     }
 
     #endregion
@@ -49,10 +59,16 @@ public class CameraManager : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minBoundsX, maxBoundsX), transform.position.y, Mathf.Clamp(transform.position.z, minBoundsZ, maxBoundsZ));        
     }
 
-    void CameraZoom()
+    void OrtoZoom()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize > minZoom) myCamera.orthographicSize -= 1; // In
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize < maxZoom) myCamera.orthographicSize += 1; // Out
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize > minOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize < maxOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
+    }
+
+    void PerspZoom()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.transform.localPosition.z <= minPerspZoom) myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z + 1, 0.3f); // In
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.transform.localPosition.z >= maxPerspZoom) myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z - 1, 0.3f); // Out
     }
 
     void CameraRotate()
@@ -77,5 +93,46 @@ public class CameraManager : MonoBehaviour
         transform.DORotateQuaternion(finalRotation, 0.3f);
     }
 
+    void RotateCameraAxisX()
+    {        
+        if (Input.GetKey(KeyCode.Z) && transform.eulerAngles.x <= maxRotAxisX)
+        {
+            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x + 1, transform.eulerAngles.y, transform.eulerAngles.z);
+            transform.DORotateQuaternion(updateRotation, 0.3f);
+        }
+        if (Input.GetKey(KeyCode.X) && transform.eulerAngles.x >= minRotAxisX)
+        {
+            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x - 1, transform.eulerAngles.y, transform.eulerAngles.z);
+            transform.DORotateQuaternion(updateRotation, 0.3f);
+        }
+    }
+
+    void SetCamera()
+    {
+        if (type == CameraType.Ortographic)
+        {
+            myCamera.orthographic = true;
+            OrtoZoom();
+        }
+
+        if (type == CameraType.Perspective)
+        {
+            myCamera.orthographic = false;
+            PerspZoom();
+        }
+    }
+
+    public void ToggleCamera()
+    {
+        switch (type)
+        {
+            case CameraType.Ortographic:
+                type = CameraType.Perspective;
+                break;
+            case CameraType.Perspective:
+                type = CameraType.Ortographic;
+                break;
+        }
+    }
     #endregion
 }
