@@ -19,7 +19,6 @@ MonoBehaviour:
     goldObtained: 10
     expObtained: 6
     amountObtained: 12
-    seed: {fileID: 1818079054005288, guid: 9eb115bdb7c27e444bb1db74df0fc581, type: 3}
+    seed: {fileID: 2519493171549123563, guid: 9a2759068f089904984eadf416bc6c7a, type: 3}
     seedBlueprint: {fileID: 1818079054005288, guid: 9eb115bdb7c27e444bb1db74df0fc581, type: 3}
-    type: 0
     timeToGrow: 50
