@@ -194,7 +194,7 @@ MonoBehaviour:
   shoreFoamBreakupStrength: 0
   shoreFoamBreakupScale: 0
   lighting: 0
-  lightingSmoothness: 0.71
+  lightingSmoothness: 1
   lightingSpecularColor: {r: 1, g: 1, b: 1, a: 0}
   lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
   lightingHardness: 0

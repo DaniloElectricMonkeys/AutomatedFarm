@@ -91,7 +91,7 @@ Material:
     - _IntersectionFoamShadowProjection: 4.6
     - _IntersectionWaterBlend: 0
     - _LightingHardness: 0
-    - _LightingSmoothness: 0.71
+    - _LightingSmoothness: 1
     - _NormalsStrength: 0.42
     - _PlanarReflectionFresnel: 2.5
     - _PlanarReflectionStrength: 0.82
