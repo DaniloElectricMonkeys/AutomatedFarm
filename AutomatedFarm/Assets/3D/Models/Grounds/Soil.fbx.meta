@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5ef4f79b2f40024ca12a9e18ea03231
+guid: 7dfdb0a05a8be454e9f571509ed75861
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Corn_Material
-    second: {fileID: 2100000, guid: 2852ce346ed6d2346b0db1c28d1bb540, type: 2}
+      name: Soil_Material
+    second: {fileID: 2100000, guid: 1f20cb6a4d3c4114a961dedb7fa65995, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
