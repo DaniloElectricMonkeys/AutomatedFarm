@@ -7,78 +7,83 @@ using DG.Tweening;
 
 public class Drone : PlantGraber
 {
+    [Header("Drone Attributes - Curve")]
+    public AnimationCurve yCurve;
+
     [Header("Drone Attributes")]
+    public float speed;
     public bool collectBulk;
-    public float droneSpeed;
     public GameObject droneObject;
+    public GameObject armObject;
     public ResourceType resourceToPick;
     public Transform deployPoint;
     bool isCollecting;
-    float timeToGetThere;
+    float timeToTravel;
     Vector3 endPoint;
     Vector3 midPoint;
     Vector3 distance;
     public int cahcedResources;
+    Vector3 plant;
+    float curveTimer;
+    Tween anyTween;
 
-
-    void FlyThemCollect(GameObject obj)
+    void FlyToCrop()//Step 01
     {
-        endPoint = new Vector3(obj.transform.position.x, obj.transform.position.y+0.5f, obj.transform.position.z);
-        midPoint = new Vector3(endPoint.x/2, 3, endPoint.z/2);
-        distance = (endPoint - droneObject.transform.position);
-
-        timeToGetThere = distance.magnitude * droneSpeed;
-
-        droneObject.transform.DOMove(midPoint, timeToGetThere/2).SetEase(Ease.InCubic).OnComplete(FlyToEndPoint);
-    }
-
-    void FlyToEndPoint()
-    {
-        if(collectBulk)
-            droneObject.transform.DOMove(endPoint, timeToGetThere/2).SetEase(Ease.OutCubic).OnComplete(FlyThemCollectNext);
-        else
+        if(cachedPlants.Count <= 0)
         {
-            droneObject.transform.DOMove(endPoint, timeToGetThere/2).SetEase(Ease.OutCubic).OnComplete(FlyToMiddlePoint);
-            cachedPlants.RemoveAt(0);
+            FlyToDeployPoint();
+            return;
         }
+
+        plant = cachedPlants.First().transform.position;
+        endPoint = new Vector3(plant.x, plant.y, plant.z);
+        distance = (endPoint - droneObject.transform.position);
+        timeToTravel = distance.magnitude / speed;
+
+        droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(HarvestPlant);
+        anyTween = droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate( () => 
+        {
+            //move the y based on the curve
+            armObject.transform.LookAt(plant);
+            Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
+            droneObject.transform.position = nextPoint;
+        });
     }
 
-    void FlyThemCollectNext()
-    {   
+    void HarvestPlant()//Setp 02
+    {
+        //Get plant reference and remove it from soil
         cachedPlants.RemoveAt(0);
         cahcedResources++;
 
-        if(cachedPlants.Count <= 0)
-            FlyToMiddlePoint();
-        else
-            FlyThemCollect(cachedPlants.First().gameObject);
-    }
-
-    void FlyToMiddlePoint()
-    {
-        droneObject.transform.DOMove(midPoint, timeToGetThere/2).SetEase(Ease.InCubic).OnComplete(FlyToDeployPoint);
-    }
-
-    void FlyToDeployPoint()
-    {
-        Vector3 endPoint = new Vector3(deployPoint.transform.position.x, deployPoint.transform.position.y+0.5f, deployPoint.transform.position.z);
-        droneObject.transform.DOMove(endPoint, timeToGetThere).SetEase(Ease.OutCubic).OnComplete(FillBase);
-    }
-
-    void FillBase()
-    {
         if(collectBulk)
-        {
-            resourceAmount += cahcedResources;
-            cahcedResources = 0;
-        }
+            FlyToCrop();
         else
-        {
-            resourceAmount++;
-            cachedPlants.RemoveAt(0);
-            if(cachedPlants.Count > 0)
-                FlyThemCollect(cachedPlants.First().gameObject);
-        }
+            FlyToDeployPoint();
+    }
+
+    void FlyToDeployPoint()//Step 03
+    {
+        endPoint = new Vector3(deployPoint.transform.position.x, deployPoint.transform.position.y, deployPoint.transform.position.z);
+        distance = (endPoint - droneObject.transform.position);
+        timeToTravel = distance.magnitude / speed;
+
+        droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(FillBase);
+        anyTween = droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate(() => {
+            //move the y based on the curve
+            armObject.transform.LookAt(deployPoint);
+            Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
+            droneObject.transform.position = nextPoint;
+        });
+    }
+
+    void FillBase()//Step 04
+    {
+        resourceAmount += cahcedResources;
+        cahcedResources = 0;
+
+        if(cachedPlants.Count > 0)
+            FlyToCrop();
     }
 
     protected override void CollectPlant(GameObject plant)
@@ -94,6 +99,7 @@ public class Drone : PlantGraber
     protected override void CollectOnAssign()
     {
         isCollecting = true;
-        FlyThemCollect(cachedPlants.First().gameObject);
+        // FlyThemCollect(cachedPlants.First().gameObject);
+        FlyToCrop();
     }
 }
