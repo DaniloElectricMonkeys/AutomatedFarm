@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4951857683917812560}
   m_Layer: 10
   m_Name: FertileSoil
-  m_TagString: Untagged
+  m_TagString: Soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5037109, z: 1}
-  m_Center: {x: 0, y: -0.24814452, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6723761068594068062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3652660955501573010, guid: 17953787ceb8a76499a4b8a65773d1c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.498
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3652660955501573010, guid: 17953787ceb8a76499a4b8a65773d1c8, type: 3}
       propertyPath: m_LocalPosition.z

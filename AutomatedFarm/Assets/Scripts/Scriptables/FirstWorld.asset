@@ -21,5 +21,5 @@ MonoBehaviour:
     amountObtained: 12
     type: 5
     seed: {fileID: 8722315825738008324, guid: 4c181bea508c2a54ea56efa29829c8d4, type: 3}
-    seedBlueprint: {fileID: 8722315825738008324, guid: 4c181bea508c2a54ea56efa29829c8d4, type: 3}
+    seedBlueprint: {fileID: 8722315825738008324, guid: 5a14d5d9950aa3441a15738aeb5b4127, type: 3}
     timeToGrow: 50

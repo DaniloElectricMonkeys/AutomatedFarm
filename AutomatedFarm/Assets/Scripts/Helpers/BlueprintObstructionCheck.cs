@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class BlueprintObstructionCheck : MonoBehaviour
 {
-    public LayerMask machineLayer;
+    public LayerMask blockedLayers;
+    public LayerMask allowedLayers;
     Vector3 rayStart;
 
     private void Update() {
 
         rayStart = NewGrid.Instance.GetGridPoint(transform.position + new Vector3(0,10,0));
-        if(Physics.Raycast(rayStart, -transform.up, 100f, machineLayer))
-            BuildSystem.Instance.obstructed = true;
-        else
+
+        if(Physics.Raycast(rayStart, -transform.up, 100f, allowedLayers))//Hit what i wanted
+        {
+            if(Physics.Raycast(rayStart, -transform.up, 100f, blockedLayers))//Check if i also hit some that i dont wanted
+            {
+                BuildSystem.Instance.obstructed = true;
+                return;
+            }
+
             BuildSystem.Instance.obstructed = false;
+            return;
+        }
+        else
+        {
+            BuildSystem.Instance.obstructed = true;
+            return;
+        }
     }
 
     private void OnDestroy() {
