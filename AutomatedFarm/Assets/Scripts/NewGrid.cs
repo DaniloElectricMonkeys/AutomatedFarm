@@ -29,18 +29,18 @@ public class NewGrid : Singleton<NewGrid>
         return result;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.yellow;
 
-        for (int x = 0; x < 10; x += (int)size)
-        {
-            for (int z = 0; z < 10; z += (int)size)
-            {
-                var point = GetGridPoint(new Vector3(x, 0, z));
-                Gizmos.DrawSphere(point, 0.1f);
-            }
-        }
-    }
+    //     for (int x = 0; x < 10; x += (int)size)
+    //     {
+    //         for (int z = 0; z < 10; z += (int)size)
+    //         {
+    //             var point = GetGridPoint(new Vector3(x, 0, z));
+    //             Gizmos.DrawSphere(point, 0.1f);
+    //         }
+    //     }
+    // }
 
 }

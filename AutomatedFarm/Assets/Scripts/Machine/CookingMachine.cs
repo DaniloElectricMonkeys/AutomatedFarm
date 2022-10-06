@@ -4,8 +4,9 @@ using UnityEngine;
 using MyEnums;
 using System;
 
-public class Smasher : OutputMachine
+public class CookingMachine : OutputMachine
 {
+    public GameObject smokeVFX;
     public override void OnResourceEnter(ResourceType type, GameObject obj)
     {
         base.OnResourceEnter(type, obj);
@@ -14,7 +15,13 @@ public class Smasher : OutputMachine
 
     public override void OutputResource()
     {
-        if(resourceAmount <= 0) return;
+        if(resourceAmount <= 0)
+        {
+            smokeVFX.SetActive(false);
+            return;
+        }
+        else
+            smokeVFX.SetActive(true);
 
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
@@ -44,8 +51,8 @@ public class Smasher : OutputMachine
 
                     switch (type)
                     {
-                        case ResourceType.boiledCorn:
-                            go = ObjectPool.Instance.GrabFromPool("smashedCorn", Library.Instance.smashedCorn);
+                        case ResourceType.smashedCorn:
+                            go = ObjectPool.Instance.GrabFromPool("cookedCorn", Library.Instance.cookedCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
 

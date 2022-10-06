@@ -10,4 +10,9 @@ public class CanvasManager : Singleton<CanvasManager>
     {
         seedsUI.gameObject.SetActive(!seedsUI.gameObject.activeInHierarchy);
     }
+
+    public void ToggleCamera()
+    {
+        CameraManager.Instance.ToggleCamera();
+    }
 }

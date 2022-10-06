@@ -26,11 +26,12 @@ public class BuildOnlyInTag : MonoBehaviour
             Debug.DrawRay(NewGrid.Instance.GetGridPoint(checkPoint.position), Vector3.down * 100, Color.magenta, 10);
             if(hit.collider.gameObject.CompareTag(tag))
             {
-                resNode = hit.collider.gameObject.GetComponent<ResourceNode>();
-                if(resNode != null)
-                    return true;
-                else
-                    return false;
+                // resNode = hit.collider.gameObject.GetComponent<ResourceNode>();
+                return true;
+                // if(resNode != null)
+                //     return true;
+                // else
+                //     return false;
             }
                 
         }

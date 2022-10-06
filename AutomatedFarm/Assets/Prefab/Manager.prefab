@@ -141,9 +141,9 @@ MonoBehaviour:
   obstructed: 0
   machineLayer:
     serializedVersion: 2
-    m_Bits: 0
-  blueprintBlue: {fileID: 0}
-  blueprintRed: {fileID: 0}
+    m_Bits: 256
+  blueprintBlue: {fileID: 2100000, guid: 6086a1be074d9b44488b1f7673982abc, type: 2}
+  blueprintRed: {fileID: 2100000, guid: 0cc47042ccb3b5e4780234b41ebb1242, type: 2}
 --- !u!1 &5818895337010085628
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,11 +207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c6d55b9cab6344e8247e68adc8fd45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingsSO: {fileID: 0}
+  buildingsSO: {fileID: 11400000, guid: 91bedfa728f95ba4f91a2a22b87260fa, type: 2}
   seedScriptable:
   - {fileID: 11400000, guid: 249fbf2d3bedc1f43a7f4d4263b6a8d2, type: 2}
-  rawCorn: {fileID: 0}
-  boiledCorn: {fileID: 0}
+  rawCorn: {fileID: 2519493171549123563, guid: 323159e2c8effd4428c0c1b7e3d80d82, type: 3}
+  boiledCorn: {fileID: 2519493171549123563, guid: 9a2759068f089904984eadf416bc6c7a, type: 3}
+  smashedCorn: {fileID: 2519493171549123563, guid: a633b5b8890715740b6ae8a7a6c95569, type: 3}
+  cookedCorn: {fileID: 2519493171549123563, guid: fa332e2f3ccf674428bbc905429e56fa, type: 3}
   soilPrefab: {fileID: 2519493171549123563, guid: d5a23f9e3eac06a42bd2bbbafbe0731e, type: 3}
   orePrefab: {fileID: 2519493171549123563, guid: b3fb7788344277d459cdeb943116d3cc, type: 3}
   stonePrefab: {fileID: 2519493171549123563, guid: 99ffcabc16444c54bb1909432e6205bb, type: 3}

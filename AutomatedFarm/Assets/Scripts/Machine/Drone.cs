@@ -57,7 +57,8 @@ public class Drone : PlantGraber
     {
         //Get plant reference and remove it from soil
         cahcedResources++;
-        // OnResourceEnter(cachedPlants.First().GetComponent<PlantGrow>());
+        Debug.Log(readyPlants.First().GetComponent<PlantGrow>().type.ToString());
+        OnResourceEnter(readyPlants.First().GetComponent<PlantGrow>().type, null);
         readyPlants.RemoveAt(0);
 
         if(collectBulk)
@@ -128,7 +129,7 @@ public class Drone : PlantGraber
 
     public override void OutputResource()
     {
-        //if(resourceAmount <= 0) return;
+        if(resourceAmount <= 0) return;
 
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
@@ -138,6 +139,15 @@ public class Drone : PlantGraber
             Debug.Log("NO RESOURCE SELECTED");
             return;
         }
+
+        foreach(var item in resourcesInTheMachine)
+            if(resourcesInTheMachine[item.Key] <= 0) 
+                removeKeys.Add(item.Key);
+
+        foreach (var item in removeKeys)
+            resourcesInTheMachine.Remove(item);
+
+        removeKeys.Clear();
 
         if(outputType == ResourceType.variable)
         {
@@ -150,33 +160,27 @@ public class Drone : PlantGraber
                     switch (type)
                     {
                         case ResourceType.corn:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.rawCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
                         case ResourceType.boiledCorn:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
                             go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
                         case ResourceType.smashedCorn:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.smashedCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
                         case ResourceType.soil:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.soilPrefab);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
                         case ResourceType.ore:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.orePrefab);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
                         case ResourceType.stone:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.stonePrefab);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
 
