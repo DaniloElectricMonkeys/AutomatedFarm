@@ -1,4 +1,3 @@
-using System.Security.AccessControl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +17,7 @@ public class ConveyorItem : MonoBehaviour
     public ResourceType type;
     float timer;
     Vector3 lastPos;
+    public bool dontKill;
 
     private void Update() {
 
@@ -33,6 +33,11 @@ public class ConveyorItem : MonoBehaviour
             lastPos = transform.position;
         }
         
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Machine"))
+            dontKill = false;
     }
 
     ///<summary>

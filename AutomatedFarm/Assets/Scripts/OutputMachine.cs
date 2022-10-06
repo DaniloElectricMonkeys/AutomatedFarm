@@ -18,11 +18,16 @@ public class OutputMachine : Machine
 
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
     protected List<string> removeKeys = new List<string>();
+    protected ConveyorItem item;
 
 
     public override void OnResourceEnter(ResourceType type, GameObject obj)
     {
         string key = type.ToString();
+
+        if(obj != null)
+            item = obj.GetComponent<ConveyorItem>();
+        if(item != null && item.dontKill) return;
 
         //Add object to the list of its type
         if(resourcesInTheMachine.ContainsKey(key))
@@ -95,6 +100,9 @@ public class OutputMachine : Machine
             break;
             case ResourceType.smashedCorn:
                 go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.smashedCorn);
+            break;
+            case ResourceType.crystalCorn:
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.crystalCorn);
             break;
         }
         

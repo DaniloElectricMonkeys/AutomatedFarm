@@ -214,6 +214,7 @@ MonoBehaviour:
   boiledCorn: {fileID: 2519493171549123563, guid: 9a2759068f089904984eadf416bc6c7a, type: 3}
   smashedCorn: {fileID: 2519493171549123563, guid: a633b5b8890715740b6ae8a7a6c95569, type: 3}
   cookedCorn: {fileID: 2519493171549123563, guid: fa332e2f3ccf674428bbc905429e56fa, type: 3}
+  crystalCorn: {fileID: 2519493171549123563, guid: d9ae32303c0f0ff4bb69ff0b5ee13ba8, type: 3}
   soilPrefab: {fileID: 2519493171549123563, guid: d5a23f9e3eac06a42bd2bbbafbe0731e, type: 3}
   orePrefab: {fileID: 2519493171549123563, guid: b3fb7788344277d459cdeb943116d3cc, type: 3}
   stonePrefab: {fileID: 2519493171549123563, guid: 99ffcabc16444c54bb1909432e6205bb, type: 3}

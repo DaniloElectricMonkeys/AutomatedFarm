@@ -25,8 +25,13 @@ public class Machine : MonoBehaviour
     {
         string key = type.ToString();
 
+        if(obj == null) return;
+        ConveyorItem item = obj.GetComponent<ConveyorItem>();
+        
+        if(item.dontKill) return;
+        
         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        obj.GetComponent<ConveyorItem>().RemoveLink();
+        item.RemoveLink();
         obj.SetActive(false);
     }
 
