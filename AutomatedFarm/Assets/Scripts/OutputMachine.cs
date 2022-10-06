@@ -32,9 +32,13 @@ public class OutputMachine : Machine
             resourcesInTheMachine.Add(key, q);
         }
 
-        ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        obj.GetComponent<ConveyorItem>().RemoveLink();
-        obj.SetActive(false);
+        if(obj != null)
+        {
+            ObjectPool.Instance.AddToPool(key, obj.gameObject);
+            obj.GetComponent<ConveyorItem>().RemoveLink();
+            obj.SetActive(false);
+        }
+        
         //resourceAmount++;
     }
 
@@ -75,6 +79,12 @@ public class OutputMachine : Machine
             case ResourceType.corn:
                 go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.rawCorn);
             break;
+            case ResourceType.boiledCorn:
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.boiledCorn);
+            break;
+            case ResourceType.smashedCorn:
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.smashedCorn);
+            break;
         }
         
         go.transform.position = outputPoint.transform.position;
@@ -84,3 +94,4 @@ public class OutputMachine : Machine
         resourceAmount--;
     }
 }
+

@@ -47,10 +47,10 @@ public class PlantGraber : OutputMachine
             if (plant.isAssignedToGraber == false) cachedPlants.Add(item);
         }
 
-        CollectOnAssign();
+        AskForCollection();
     }
 
-    protected virtual void CollectOnAssign()
+    protected virtual void AskForCollection()
     {
         foreach (var item in cachedPlants)
             CollectPlant(item.gameObject);

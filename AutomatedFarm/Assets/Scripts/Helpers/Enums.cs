@@ -1,4 +1,4 @@
 namespace MyEnums
 {
-    public enum ResourceType {none ,soil, ore, stone, variable, corn, boiledCorn};
+    public enum ResourceType {none ,soil, ore, stone, variable, corn, boiledCorn, smashedCorn};
 }
