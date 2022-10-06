@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f96eac1d22d92348b3051b0e239c8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipRefence: {fileID: 0}
 --- !u!1 &4458718542197437884
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingsSO: {fileID: 0}
+  seedScriptable:
+  - {fileID: 11400000, guid: 249fbf2d3bedc1f43a7f4d4263b6a8d2, type: 2}
+  rawCorn: {fileID: 0}
+  boiledCorn: {fileID: 0}
   soilPrefab: {fileID: 2519493171549123563, guid: d5a23f9e3eac06a42bd2bbbafbe0731e, type: 3}
   orePrefab: {fileID: 2519493171549123563, guid: b3fb7788344277d459cdeb943116d3cc, type: 3}
   stonePrefab: {fileID: 2519493171549123563, guid: 99ffcabc16444c54bb1909432e6205bb, type: 3}

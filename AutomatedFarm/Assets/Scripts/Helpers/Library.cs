@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using MyEnums;
 
 ///<summary>
 /// Hold all the info about buildings and prefabs;
@@ -8,6 +8,7 @@ public class Library : Singleton<Library>
 {
     [Header("Dependecys")]
     public SO_Buildings buildingsSO;
+    public SeedSO[] seedScriptable;
 
     [Space]
     [Header("Corn Prefabs")]
@@ -36,5 +37,15 @@ public class Library : Singleton<Library>
     public void SetCurrentSelected(GameObject obj)
     {
         currentSelected = obj;
+    }
+
+    public Seed GetType(ResourceType resource)
+    {
+        for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
+        {
+            if (resource == seedScriptable[0].seeds[i].type) return seedScriptable[0].seeds[i];
+        }
+
+        return null;
     }
 }

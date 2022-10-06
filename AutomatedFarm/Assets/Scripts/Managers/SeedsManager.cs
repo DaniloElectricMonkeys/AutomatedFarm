@@ -5,7 +5,6 @@ using MyEnums;
 
 public class SeedsManager : Singleton<SeedsManager>
 {
-    [SerializeField] SeedSO[] seedScriptable;
     [SerializeField] SeedContainer seedContainer;
     [SerializeField] GridLayoutGroup grid;
 
@@ -25,9 +24,9 @@ public class SeedsManager : Singleton<SeedsManager>
 
     void SpawnSeedContainer()
     {
-        for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
+        for (int i = 0; i < Library.Instance.seedScriptable[0].seeds.Length; i++)
         {
-            Seed currentSeed = seedScriptable[0].seeds[i];
+            Seed currentSeed = Library.Instance.seedScriptable[0].seeds[i];
             SeedContainer container = Instantiate(seedContainer, grid.transform);
             container.GetSeed(currentSeed);
         }
@@ -52,14 +51,5 @@ public class SeedsManager : Singleton<SeedsManager>
         CanvasManager.Instance.ToggleSeedsUI();
         Library.Instance.SetCurrentSelected(currentSeed.seed);
         BuildSystem.Instance.ChosseObject(currentSeed.seedBlueprint);
-    }
-    public Seed GetType(ResourceType resource)
-    {
-        for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
-        {
-            if (resource == seedScriptable[0].seeds[i].type) return seedScriptable[0].seeds[i];
-        }
-
-        return null;
-    }
+    }    
 }
