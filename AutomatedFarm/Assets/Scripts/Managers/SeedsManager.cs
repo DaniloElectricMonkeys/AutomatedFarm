@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using MyEnums;
 
 public class SeedsManager : Singleton<SeedsManager>
 {
@@ -51,5 +52,14 @@ public class SeedsManager : Singleton<SeedsManager>
         CanvasManager.Instance.ToggleSeedsUI();
         Library.Instance.SetCurrentSelected(currentSeed.seed);
         BuildSystem.Instance.ChosseObject(currentSeed.seedBlueprint);
+    }
+    public Seed GetType(ResourceType resource)
+    {
+        for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
+        {
+            if (resource == seedScriptable[0].seeds[i].type) return seedScriptable[0].seeds[i];
+        }
+
+        return null;
     }
 }
