@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MyEnums;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,9 +12,9 @@ public class PlantGrow : MonoBehaviour
     [Header("Options")]
     string myName;
     float time = 11;
+    public ResourceType type;
     Seed seedSettings;
-    public bool canBeHarvested { get; private set; }
-
+    public bool canBeHarvested { get; private set; }    
     public static Action<GameObject> OnPlantReady;
     public static Action OnPlantPlaced;
 
@@ -22,9 +23,10 @@ public class PlantGrow : MonoBehaviour
     private void Start()
     {
         OnPlantPlaced?.Invoke();
+    
 
-        //myName = seedSettings.name;
-        //time = seedSettings.timeToGrow;
+        /*myName = seedSettings.name;
+        time = seedSettings.timeToGrow;*/
 
         transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         transform.DOScale(new Vector3(0.33f, 0.33f, 0.33f), 1).SetEase(Ease.InOutBack);
@@ -77,10 +79,5 @@ public class PlantGrow : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void SetSeed(Seed seed)
-    {
-        seedSettings = seed;
     }
 }

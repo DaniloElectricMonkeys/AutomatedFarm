@@ -1,3 +1,4 @@
+using MyEnums;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WorldSeed", menuName = "Harvestable Seeds")]
@@ -15,6 +16,7 @@ public class Seed
     public float goldObtained;
     public float expObtained;
     public float amountObtained;
+    public ResourceType type;
     public GameObject seed;
     public GameObject seedBlueprint;
     public float timeToGrow;
