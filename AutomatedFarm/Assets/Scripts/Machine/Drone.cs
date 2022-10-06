@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 using DG.Tweening;
+using System;
 
 public class Drone : PlantGraber
 {
@@ -55,8 +56,9 @@ public class Drone : PlantGraber
     void HarvestPlant()//Setp 02
     {
         //Get plant reference and remove it from soil
-        readyPlants.RemoveAt(0);
         cahcedResources++;
+        // OnResourceEnter(cachedPlants.First().GetComponent<PlantGrow>());
+        readyPlants.RemoveAt(0);
 
         if(collectBulk)
             FlyToCrop();
@@ -122,5 +124,82 @@ public class Drone : PlantGraber
         if (readyPlants.Count > 0) isCollecting = true;
         else return;
         FlyToCrop();
+    }
+
+    public override void OutputResource()
+    {
+        //if(resourceAmount <= 0) return;
+
+        if(!isConnected) CheckOutput();
+        if(!isConnected) return;
+
+        if(outputType == ResourceType.none)
+        {
+            Debug.Log("NO RESOURCE SELECTED");
+            return;
+        }
+
+        if(outputType == ResourceType.variable)
+        {
+            if(resourcesInTheMachine.Count > 0)
+            {
+                foreach(var item in resourcesInTheMachine)
+                {
+                    ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
+                    
+                    switch (type)
+                    {
+                        case ResourceType.corn:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.boiledCorn:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.smashedCorn:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.soil:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.ore:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.stone:
+                            if(resourcesInTheMachine[item.Key] < 0) return;
+                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+
+                        default:
+                            return;
+                    }
+                    break;
+                }
+            }
+            else
+                return;
+        }
+        else
+        {
+            Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
+            return;
+        }
+            
+
+        go.transform.position = outputPoint.transform.position;
+        go.transform.rotation = Quaternion.identity;
+        go.SetActive(true);
+
+        resourceAmount--;
     }
 }

@@ -13,6 +13,7 @@ public class Library : Singleton<Library>
     [Header("Corn Prefabs")]
     public GameObject rawCorn;
     public GameObject boiledCorn;
+    public GameObject smashedCorn;
 
     [Space]
     [Header("Resource Prefabs")]
