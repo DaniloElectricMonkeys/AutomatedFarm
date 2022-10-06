@@ -313,7 +313,7 @@ MonoBehaviour:
   useOutput: 1
   isConnected: 0
   outputPoint: {fileID: 4913125744741666974}
-  outputType: 5
+  outputType: 4
   resourceAmount: 0
   timeToExtract: 1
   boxSize: {x: 20, y: 4, z: 20}

@@ -14,6 +14,7 @@ public class Library : Singleton<Library>
     public GameObject rawCorn;
     public GameObject boiledCorn;
     public GameObject smashedCorn;
+    public GameObject cookedCorn;
 
     [Space]
     [Header("Resource Prefabs")]

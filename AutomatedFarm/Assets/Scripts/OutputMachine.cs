@@ -17,6 +17,8 @@ public class OutputMachine : Machine
     protected float refTimer;
 
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
+    protected List<string> removeKeys = new List<string>();
+
 
     public override void OnResourceEnter(ResourceType type, GameObject obj)
     {
@@ -64,6 +66,15 @@ public class OutputMachine : Machine
             Debug.Log("NO RESOURCE SELECTED");
             return;
         }
+
+        foreach(var item in resourcesInTheMachine)
+            if(resourcesInTheMachine[item.Key] <= 0) 
+                removeKeys.Add(item.Key);
+
+        foreach (var item in removeKeys)
+            resourcesInTheMachine.Remove(item);
+
+        removeKeys.Clear();
         
         switch (outputType)
         {
