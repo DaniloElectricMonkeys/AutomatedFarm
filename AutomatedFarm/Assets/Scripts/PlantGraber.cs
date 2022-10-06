@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class PlantGraber : OutputMachine
 {
-    [Header("Attributes")]
-    public float influenceArea = 2;
+    [Space]
+    [Header("Collection Area")]
+    public Vector3 boxSize = new Vector3(10,3,10);
+    public Vector3 boxOffset;
     public LayerMask plantLayerMask;
     List<Collider> plantsHit = new List<Collider>();
-    List<Collider> cachedPlants = new List<Collider>();
+    protected List<Collider> cachedPlants = new List<Collider>();
 
     private void Awake() {
         PlantGrow.OnPlantReady += CollectPlant;
@@ -26,29 +28,35 @@ public class PlantGraber : OutputMachine
         AssignPlants();
     }
 
-    private void CollectPlant(GameObject plant) {
+    protected virtual void CollectPlant(GameObject plant) {
         foreach (var item in cachedPlants)
             if(item.GetComponent<PlantGrow>()?.Harvest() == true)
                 resourceAmount++;
     }
 
-    void AssignPlants(){
-        plantsHit = Physics.OverlapBox(transform.position, ((Vector3.one * influenceArea)/2),Quaternion.identity, plantLayerMask).ToList();
+    protected virtual void AssignPlants()
+    {
+        plantsHit = Physics.OverlapBox(transform.position, boxSize / 2, Quaternion.identity, plantLayerMask).ToList();
 
-        if(plantsHit.Count <= 0) return;
+        if (plantsHit.Count <= 0) return;
 
         //Remove plants that are arealdy assigned to a graber
         foreach (var item in plantsHit)
         {
             PlantGrow plant = item.GetComponent<PlantGrow>();
-            if(plant.isAssignedToGraber == false) cachedPlants.Add(item);
+            if (plant.isAssignedToGraber == false) cachedPlants.Add(item);
         }
 
+        CollectOnAssign();
+    }
+
+    protected virtual void CollectOnAssign()
+    {
         foreach (var item in cachedPlants)
             CollectPlant(item.gameObject);
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawWireCube(transform.position, Vector3.one * influenceArea);
+        Gizmos.DrawWireCube(transform.position, boxSize);
     }
 }
