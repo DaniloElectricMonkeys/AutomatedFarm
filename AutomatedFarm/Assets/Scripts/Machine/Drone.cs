@@ -20,22 +20,24 @@ public class Drone : PlantGraber
     bool isCollecting;
     float timeToTravel;
     Vector3 endPoint;
-    Vector3 midPoint;
     Vector3 distance;
     public int cahcedResources;
     Vector3 plant;
-    float curveTimer;
     Tween anyTween;
+    List<GameObject> readyPlants = new List<GameObject>();
 
+    private void Awake() {
+        PlantGrow.OnPlantReady += CanCollect;
+    }
     void FlyToCrop()//Step 01
     {
-        if(cachedPlants.Count <= 0)
+        if(readyPlants.Count <= 0)
         {
             FlyToDeployPoint();
             return;
         }
 
-        plant = cachedPlants.First().transform.position;
+        plant = readyPlants.First().transform.position;
         endPoint = new Vector3(plant.x, plant.y, plant.z);
         distance = (endPoint - droneObject.transform.position);
         timeToTravel = distance.magnitude / speed;
@@ -53,7 +55,7 @@ public class Drone : PlantGraber
     void HarvestPlant()//Setp 02
     {
         //Get plant reference and remove it from soil
-        cachedPlants.RemoveAt(0);
+        readyPlants.RemoveAt(0);
         cahcedResources++;
 
         if(collectBulk)
@@ -82,8 +84,13 @@ public class Drone : PlantGraber
         resourceAmount += cahcedResources;
         cahcedResources = 0;
 
-        if(cachedPlants.Count > 0)
+        if(readyPlants.Count > 0)
             FlyToCrop();
+        else
+        {
+            isCollecting = false;
+            AskForCollection();
+        }
     }
 
     protected override void CollectPlant(GameObject plant)
@@ -96,10 +103,24 @@ public class Drone : PlantGraber
         if(isCollecting) return;
         base.AssignPlants();
     }
-    protected override void CollectOnAssign()
+
+    protected override void AskForCollection()
     {
-        isCollecting = true;
+        CanCollect();
+    }
+
+    private void CanCollect(GameObject obj = null)
+    {
+        if (isCollecting) return;
         // FlyThemCollect(cachedPlants.First().gameObject);
+        foreach (var item in cachedPlants)
+        {
+            if (item.GetComponent<PlantGrow>().canBeHarvested)
+                if (!readyPlants.Contains(item.gameObject))
+                    readyPlants.Add(item.gameObject);
+        }
+        if (readyPlants.Count > 0) isCollecting = true;
+        else return;
         FlyToCrop();
     }
 }
