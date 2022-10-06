@@ -23,10 +23,13 @@ public class PlantGrow : MonoBehaviour
     private void Start()
     {
         OnPlantPlaced?.Invoke();
-    
 
-        /*myName = seedSettings.name;
-        time = seedSettings.timeToGrow;*/
+        if (Library.Instance.GetType(type) != null)
+        {
+            seedSettings = Library.Instance.GetType(type);
+            myName = seedSettings.name;
+            time = seedSettings.timeToGrow;
+        }        
 
         transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         transform.DOScale(new Vector3(0.33f, 0.33f, 0.33f), 1).SetEase(Ease.InOutBack);
