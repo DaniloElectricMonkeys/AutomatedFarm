@@ -40,11 +40,12 @@ public class PlantGraber : OutputMachine
 
         if (plantsHit.Count <= 0) return;
 
+        cachedPlants.Clear();
         //Remove plants that are arealdy assigned to a graber
         foreach (var item in plantsHit)
         {
             PlantGrow plant = item.GetComponent<PlantGrow>();
-            if (plant.isAssignedToGraber == false) cachedPlants.Add(item);
+                cachedPlants.Add(item);
         }
 
         AskForCollection();

@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using MyEnums;
-using System;
+using UnityEngine;
 
-public class BoilerMachine : OutputMachine
+public class CrystilizeMachine : OutputMachine
 {
+    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    {
+        base.OnResourceEnter(type, obj);
+        resourceAmount++;
+    }
+
     public override void OutputResource()
     {
-        //if(resourceAmount <= 0) return;
-
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
 
@@ -18,6 +22,15 @@ public class BoilerMachine : OutputMachine
             Debug.Log("NO RESOURCE SELECTED");
             return;
         }
+
+        foreach(var item in resourcesInTheMachine)
+            if(resourcesInTheMachine[item.Key] <= 0) 
+                removeKeys.Add(item.Key);
+
+        foreach (var item in removeKeys)
+            resourcesInTheMachine.Remove(item);
+
+        removeKeys.Clear();
 
         if(outputType == ResourceType.variable)
         {
@@ -29,9 +42,8 @@ public class BoilerMachine : OutputMachine
 
                     switch (type)
                     {
-                        case ResourceType.corn:
-                            if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool(ResourceType.boiledCorn.ToString(), Library.Instance.boiledCorn);
+                        case ResourceType.cookedCorn:
+                            go = ObjectPool.Instance.GrabFromPool("crystalCorn", Library.Instance.crystalCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
 
@@ -49,7 +61,7 @@ public class BoilerMachine : OutputMachine
             Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
             return;
         }
-            
+
         go.GetComponent<ConveyorItem>().dontKill = true;
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;

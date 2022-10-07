@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seeds:
   - name: Corn
-    icon: {fileID: 21300000, guid: db6c53a51f4ff0243919f780d898a0c2, type: 3}
+    icon: {fileID: 21300000, guid: ef0597d47864cbf45b941175ef46681c, type: 3}
     price: 5
     goldObtained: 10
     expObtained: 6
@@ -22,4 +22,4 @@ MonoBehaviour:
     type: 5
     seed: {fileID: 8722315825738008324, guid: 4c181bea508c2a54ea56efa29829c8d4, type: 3}
     seedBlueprint: {fileID: 8722315825738008324, guid: 5a14d5d9950aa3441a15738aeb5b4127, type: 3}
-    timeToGrow: 50
+    timeToGrow: 2

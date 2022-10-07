@@ -17,11 +17,13 @@ public class PlantGrow : MonoBehaviour
     public bool canBeHarvested { get; private set; }    
     public static Action<GameObject> OnPlantReady;
     public static Action OnPlantPlaced;
+    public bool ignore;
 
     [HideInInspector] public bool isAssignedToGraber;
 
     private void Start()
     {
+        if(ignore) return;
         OnPlantPlaced?.Invoke();
 
         if (Library.Instance.GetType(type) != null)
@@ -65,6 +67,7 @@ public class PlantGrow : MonoBehaviour
 
     void CompletePlant()
     {
+        if(ignore) return;
         canBeHarvested = true;
         OnPlantReady?.Invoke(gameObject);
     }
@@ -73,6 +76,7 @@ public class PlantGrow : MonoBehaviour
 
     public bool Harvest()
     {
+        if(ignore) return false;
 
         if (canBeHarvested)
         {
