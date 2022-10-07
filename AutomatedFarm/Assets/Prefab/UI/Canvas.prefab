@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 2324142662110659745}
   - component: {fileID: 149127717714370054}
   - component: {fileID: 165367959}
-  - component: {fileID: 8161844413220453800}
+  - component: {fileID: 4158416197005201182}
   m_Layer: 5
   m_Name: RampConveyor
   m_TagString: Untagged
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8161844413220453800
+--- !u!114 &4158416197005201182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 4613371772261892632}
   - component: {fileID: 1593380873}
   - component: {fileID: 904566172}
-  - component: {fileID: 8806428930856152652}
+  - component: {fileID: 6503925131219605795}
   m_Layer: 5
   m_Name: PlantGraber
   m_TagString: Untagged
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8806428930856152652
+--- !u!114 &6503925131219605795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2073,7 +2073,7 @@ GameObject:
   - component: {fileID: 4613371772816882202}
   - component: {fileID: 1058367495}
   - component: {fileID: 787361636}
-  - component: {fileID: 3885899750095851481}
+  - component: {fileID: 3825483077450535658}
   m_Layer: 5
   m_Name: Miner
   m_TagString: Untagged
@@ -2223,7 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3885899750095851481
+--- !u!114 &3825483077450535658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 4613371772928478205}
   - component: {fileID: 917658086}
   - component: {fileID: 1335031129}
-  - component: {fileID: 49775650241960287}
+  - component: {fileID: 1613740238667677091}
   m_Layer: 5
   m_Name: Conveyour
   m_TagString: Untagged
@@ -2399,7 +2399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &49775650241960287
+--- !u!114 &1613740238667677091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2425,7 +2425,7 @@ GameObject:
   - component: {fileID: 4613371773448414769}
   - component: {fileID: 363983922}
   - component: {fileID: 38089994}
-  - component: {fileID: 4474446608941673163}
+  - component: {fileID: 6124665080890930729}
   m_Layer: 5
   m_Name: FertileSoil
   m_TagString: Untagged
@@ -2575,7 +2575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4474446608941673163
+--- !u!114 &6124665080890930729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2601,7 +2601,7 @@ GameObject:
   - component: {fileID: 4613371773597128626}
   - component: {fileID: 244778415}
   - component: {fileID: 685994115}
-  - component: {fileID: 8212433928283612164}
+  - component: {fileID: 8528623512605470598}
   m_Layer: 5
   m_Name: Seller
   m_TagString: Untagged
@@ -2751,7 +2751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8212433928283612164
+--- !u!114 &8528623512605470598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3344,7 +3344,6 @@ GameObject:
   - component: {fileID: 4782669411278527989}
   - component: {fileID: 8680862069063357086}
   - component: {fileID: 4317388720759004439}
-  - component: {fileID: 1968375970041053041}
   m_Layer: 5
   m_Name: Cooking Machine
   m_TagString: Untagged
@@ -3463,7 +3462,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3482,18 +3481,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Cooking Machine
   description: Used to cook the resource.
---- !u!114 &1968375970041053041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6778694315685228400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7013184143142671194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3788,7 +3775,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd293cfa8c16ce64cb7f8c55b2e99b1f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ee8d635314f64b4fba4a16ed9f1f193, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3964,7 +3951,7 @@ GameObject:
   - component: {fileID: 710888058512367683}
   - component: {fileID: 4224119381002425615}
   - component: {fileID: 1455498675}
-  - component: {fileID: 7906091703383425649}
+  - component: {fileID: 8367182601897866783}
   m_Layer: 5
   m_Name: Boiler
   m_TagString: Untagged
@@ -4114,7 +4101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783f436960eece40ab77729ad900e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7906091703383425649
+--- !u!114 &8367182601897866783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4624,22 +4611,6 @@ PrefabInstance:
     - target: {fileID: 1812699140497045045, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
       propertyPath: m_Name
       value: TabSeeds
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8572646193923642599}
-    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleSeedsUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CanvasManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4086097580076778686, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
       propertyPath: m_Pivot.x

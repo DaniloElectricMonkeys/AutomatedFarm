@@ -71,6 +71,7 @@ public class CookingMachine : OutputMachine
             return;
         }
 
+        go.GetComponent<ConveyorItem>().dontKill = true;
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);

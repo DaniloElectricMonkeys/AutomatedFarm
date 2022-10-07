@@ -13,6 +13,7 @@ public class Machine : MonoBehaviour
     [Header("OutputOptions")]
     public bool isConnected;
     public GameObject outputPoint;
+    public GameObject checkConnectionPoint;
 
     private void Awake() {
         Conveyor.OnConveyorDeleted += CheckOutput;
@@ -25,8 +26,13 @@ public class Machine : MonoBehaviour
     {
         string key = type.ToString();
 
+        if(obj == null) return;
+        ConveyorItem item = obj.GetComponent<ConveyorItem>();
+        
+        if(item.dontKill) return;
+        
         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        obj.GetComponent<ConveyorItem>().RemoveLink();
+        item.RemoveLink();
         obj.SetActive(false);
     }
 
@@ -38,7 +44,7 @@ public class Machine : MonoBehaviour
     {
         if(useOutput == false) return;
 
-        if(Physics.Raycast(outputPoint.transform.position, Vector3.down, out RaycastHit hit, 10f))
+        if(Physics.Raycast(checkConnectionPoint.transform.position, Vector3.down, out RaycastHit hit, 10f))
         {
             if(!hit.collider.gameObject.CompareTag("Conveyor"))
             {
@@ -76,36 +82,11 @@ public class Machine : MonoBehaviour
             if(useInput == false) return;
             
             ConveyorItem item = other.GetComponent<ConveyorItem>();
-            if(item != null)
+            if(item == null) return;
+            if(item.dontKill)
+                item.transform.position += outputPoint.transform.forward * 1 * Time.deltaTime;
+            else if(item != null)
                 OnResourceEnter(item.type, other.gameObject);
-
-            // if(other.gameObject.CompareTag("Ore"))
-            // {
-            //     if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            //     {
-            //         ObjectPool.Instance.AddToPool("Ore", other.gameObject);
-            //         other.gameObject.SetActive(false);
-            //         OnOreEnter();
-            //     }
-            // }
-            // if(other.gameObject.CompareTag("Soil"))
-            // {
-            //     if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            //     {
-            //         ObjectPool.Instance.AddToPool("Soil", other.gameObject);
-            //         other.gameObject.SetActive(false);
-            //         OnSoilEnter();
-            //     }
-            // }
-            // if(other.gameObject.CompareTag("Stone"))
-            // {
-            //     if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-            //     {
-            //         ObjectPool.Instance.AddToPool("Stone", other.gameObject);
-            //         other.gameObject.SetActive(false);
-            //         OnStoneEnter();
-            //     }
-            // }
         }
 
     #endregion 

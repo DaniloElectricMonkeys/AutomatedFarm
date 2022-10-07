@@ -31,7 +31,7 @@ public class BoilerMachine : OutputMachine
                     {
                         case ResourceType.corn:
                             if(resourcesInTheMachine[item.Key] < 0) return;
-                            go = ObjectPool.Instance.GrabFromPool("boiledCorn", Library.Instance.boiledCorn);
+                            go = ObjectPool.Instance.GrabFromPool(ResourceType.boiledCorn.ToString(), Library.Instance.boiledCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
 
@@ -50,7 +50,7 @@ public class BoilerMachine : OutputMachine
             return;
         }
             
-
+        go.GetComponent<ConveyorItem>().dontKill = true;
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
