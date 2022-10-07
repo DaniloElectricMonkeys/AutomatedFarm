@@ -32,7 +32,7 @@ public class Machine : MonoBehaviour
         if(item.dontKill) return;
         
         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        item.RemoveLink();
+        // item.RemoveLink();
         obj.SetActive(false);
     }
 
