@@ -50,10 +50,10 @@ public class BoilerMachine : OutputMachine
             return;
         }
             
-        go.GetComponent<ConveyorItem>().dontKill = true;
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
+        go.GetComponent<ConveyorItem>().FreshSpawnItem();
 
         resourceAmount--;
     }
