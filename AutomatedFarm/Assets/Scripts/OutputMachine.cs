@@ -42,7 +42,7 @@ public class OutputMachine : Machine
         if(obj != null)
         {
             ObjectPool.Instance.AddToPool(key, obj.gameObject);
-            obj.GetComponent<ConveyorItem>().RemoveLink();
+            // obj.GetComponent<ConveyorItem>().RemoveLink();
             obj.SetActive(false);
         }
         
