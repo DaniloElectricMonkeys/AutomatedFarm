@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyEnums;
 using UnityEngine;
 
 ///<summary>
@@ -7,35 +8,31 @@ using UnityEngine;
 ///</summary>
 public class Seller : Machine
 {
-    public override void OnSoilEnter() => ResourceManager.Instance.IncrementSoil(1);
-
-    // private void OnTriggerStay(Collider other) 
-    // {
-    //     if(other.gameObject.CompareTag("Ore"))
-    //     {
-    //         if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-    //         {
-    //             ObjectPool.Instance.AddToPool("Ore", other.gameObject);
-    //             other.gameObject.SetActive(false);
-    //             // gain Money here
-    //         }
-    //     }
-    //     if(other.gameObject.CompareTag("Soil"))
-    //     {
-    //         if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-    //         {
-    //             ObjectPool.Instance.AddToPool("Soil", other.gameObject);
-    //             other.gameObject.SetActive(false);
-    //             
-    //         }
-    //     }
-    //     if(other.gameObject.CompareTag("Stone"))
-    //     {
-    //         if(other.gameObject.GetComponent<ConveyorItem>().isLinked == false)
-    //         {
-    //             ObjectPool.Instance.AddToPool("Stone", other.gameObject);
-    //             other.gameObject.SetActive(false);
-    //         }
-    //     }
-    // }
+    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    {
+        base.OnResourceEnter(type, obj);
+        switch(type)
+        {
+            case ResourceType.corn:
+                ResourceManager.Instance.IncrementSoil(1);
+            break;
+            case ResourceType.boiledCorn:
+                ResourceManager.Instance.IncrementSoil(2);
+            break;
+            case ResourceType.smashedCorn:
+                ResourceManager.Instance.IncrementSoil(3);
+            break;  
+            case ResourceType.cookedCorn:
+                ResourceManager.Instance.IncrementSoil(4);
+            break;
+            case ResourceType.crystalCorn:
+                ResourceManager.Instance.IncrementSoil(5);
+            break;
+            case ResourceType.packedCorn:
+                ResourceManager.Instance.IncrementSoil(6);
+            break;
+            
+        }
+        
+    }
 }

@@ -42,7 +42,7 @@ public class OutputMachine : Machine
         if(obj != null)
         {
             ObjectPool.Instance.AddToPool(key, obj.gameObject);
-            obj.GetComponent<ConveyorItem>().RemoveLink();
+            // obj.GetComponent<ConveyorItem>().RemoveLink();
             obj.SetActive(false);
         }
         
@@ -106,6 +106,7 @@ public class OutputMachine : Machine
             break;
         }
         
+        go.GetComponent<ConveyorItem>().FreshSpawnItem();
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);

@@ -21,6 +21,7 @@ public class Conveyor : MonoBehaviour
 
     public List<GameObject> removeItens = new List<GameObject>();
     ConveyorItem item;
+    bool inTrigger;
 
     private void Start() => rb = GetComponent<Rigidbody>();
 
@@ -30,51 +31,65 @@ public class Conveyor : MonoBehaviour
 
         if(item != null)
         {
-            if(item.isLinked == false)
+            if(item.UsedByOther(GetComponent<Collider>()) == false)
             {
-                itensInConveyor.Add(other.gameObject);
-                item.Link(this);
+                item.conveyorRef = this;
+                inTrigger = true;
+                item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
             }
+            
+            // if(item.isLinked == false)
+            // {
+            //     itensInConveyor.Add(other.gameObject);
+            //     item.Link(this);
+            // }
         }
     }
 
+    private void OnTriggerExit(Collider other) {
+        item = other.gameObject.GetComponent<ConveyorItem>();
+        if(item != null)
+            item.conveyorRef = null;
+    }
     private void Update() 
     {
-        foreach (GameObject item in itensInConveyor)
-        {
-            if(item == null) return;
+        
 
-            item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
-            if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
-                removeItens.Add(item);
-            if(item.transform.position.y <= 0.2f)
-                removeItens.Add(item);
-        }
+        // foreach (GameObject item in itensInConveyor)
+        // {
+        //     if(item == null) return;
 
-        // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
-        foreach (GameObject item in removeItens.ToArray())
-        {
-            if(item != null)
-                item.GetComponent<ConveyorItem>().RemoveLink();
-        }
+        //     item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
+        //     if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
+        //         removeItens.Add(item);
+        //     if(item.transform.position.y <= 0.2f)
+        //         removeItens.Add(item);
+        // }
+
+        // // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
+        // foreach (GameObject item in removeItens.ToArray())
+        // {
+        //     if(item != null)
+        //         item.GetComponent<ConveyorItem>().RemoveLink();
+        // }
     }
     
     bool GetToleranceDistance(Vector3 start, Vector3 end, float tolerance)
     {
-        return (end - start).magnitude <= tolerance;
+        return ((end - start).magnitude <= tolerance);
     }
 
     ///<summary>
     /// Remove item from the converyor.
     ///</summary>
-    public void RemoveConveyorItem(GameObject conveyorItem)
-    {
-        if(itensInConveyor.Contains(conveyorItem))
-        {
-            itensInConveyor.Remove(conveyorItem);
-            removeItens.Remove(conveyorItem);
-        }
-    }
+    // public void RemoveConveyorItem(GameObject conveyorItem)
+    // {
+    //     if(itensInConveyor.Contains(conveyorItem))
+    //     {
+    //         itensInConveyor.Remove(conveyorItem);
+    //         removeItens.Remove(conveyorItem);
+    //     }
+    // }
     
     private void OnDestroy() {
         OnConveyorDeleted?.Invoke();

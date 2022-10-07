@@ -41,7 +41,9 @@ public class ObjectPool : Singleton<ObjectPool>
         {
             if(pooling.Count > 0)
             {
-                return pooling.Dequeue();
+                GameObject obj = pooling.Dequeue();
+                obj.GetComponent<ConveyorItem>().FreshSpawnItem();
+                return obj;
             }
             else
             {

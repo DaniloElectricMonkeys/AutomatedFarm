@@ -61,8 +61,8 @@ public class CameraManager : Singleton<CameraManager>
 
     void OrtoZoom()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize > minOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize < maxOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize >= minOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize <= maxOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
     }
 
     void PerspZoom()
@@ -128,9 +128,12 @@ public class CameraManager : Singleton<CameraManager>
         {
             case CameraType.Ortographic:
                 type = CameraType.Perspective;
+                myCamera.transform.DOLocalMoveZ(maxPerspZoom, 0.2f);
                 break;
             case CameraType.Perspective:
+                myCamera.transform.DOLocalMoveZ(maxPerspZoom, 0);
                 type = CameraType.Ortographic;
+                myCamera.DOOrthoSize(maxOrtoZoom, 0.2f);
                 break;
         }
     }

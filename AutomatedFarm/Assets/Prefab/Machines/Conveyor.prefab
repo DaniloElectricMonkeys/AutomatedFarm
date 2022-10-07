@@ -755,7 +755,7 @@ MonoBehaviour:
   start: {fileID: 8360402702474279562}
   end: {fileID: 6078797605869612956}
   itensInConveyor: []
-  speed: 0.3
+  speed: 1
   removeItens: []
 --- !u!114 &-4376743840595739002
 MonoBehaviour:
