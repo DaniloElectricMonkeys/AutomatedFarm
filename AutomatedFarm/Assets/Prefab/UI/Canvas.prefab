@@ -4612,6 +4612,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TabSeeds
       objectReference: {fileID: 0}
+    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8572646193923642599}
+    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSeedsUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042594981011034679, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4086097580076778686, guid: 845e0d1f8166ca944a56a1266d906f00, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
