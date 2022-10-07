@@ -1,14 +1,22 @@
 fileFormatVersion: 2
-guid: b39f315fe7a36b74f8bbfd1901314c5d
+guid: d0a0d5d6a10c4024fa9718de4232f8fc
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Ground_Material
-    second: {fileID: 2100000, guid: 87570c207a7064e4d92ee880a74d9135, type: 2}
+      name: Drone_Light_Material
+    second: {fileID: 2100000, guid: 9adbd0910027d8c4bac9d7c6733d9d23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drone_Material
+    second: {fileID: 2100000, guid: ff7a29c2576f07441b9f1fd4784c64be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

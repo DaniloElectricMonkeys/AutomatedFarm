@@ -142,7 +142,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: -10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   active: 1
   effectIntensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.5
   distanceFade:
     m_OverrideState: 1
     m_Value: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 12.5
+    m_Value: 50
   tint:
     m_OverrideState: 1
     m_Value: 0
