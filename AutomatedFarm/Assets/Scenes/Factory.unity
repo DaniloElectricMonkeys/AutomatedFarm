@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.41972235, g: 0.50533813, b: 0.6792453, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f03d9765169b60c43913d159b4065ca8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e9f1a62fef2f2814487ba5e54d0fdbc6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32180822, g: 0.39128998, b: 0.55145025, a: 1}
+  m_IndirectSpecularColor: {r: 0.43861142, g: 0.5760389, b: 0.59588766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -971,7 +971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &306555824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,7 +3226,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5818895337010085617, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
   m_PrefabInstance: {fileID: 5818895336766624537}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001782639}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c6d55b9cab6344e8247e68adc8fd45, type: 3}
@@ -3365,11 +3365,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
---- !u!1 &1001782639 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5818895337010085628, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
-  m_PrefabInstance: {fileID: 5818895336766624537}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1002178313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 341841047626945339, guid: 61e336f40891bb14b8c1c2c0f6988fd5, type: 3}
@@ -3494,6 +3489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e336f40891bb14b8c1c2c0f6988fd5, type: 3}
+--- !u!1 &1026417969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6081397349501108414, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+  m_PrefabInstance: {fileID: 1133692065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1032509627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3501,6 +3501,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2185122012466314049, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
+      propertyPath: reflectionTarget
+      value: 
+      objectReference: {fileID: 1026417969}
     - target: {fileID: 2185122012466314049, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
       propertyPath: reflectionLayer.m_Bits
       value: 4294967279
@@ -3972,18 +3976,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
---- !u!114 &1088902422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001782639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63dc0924d3d4a24fa9904a8c022c6f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1103383735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4326,6 +4318,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcc1895e5e517e149be57687231ce1e1, type: 3}
+--- !u!1001 &1133692065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2532033647857328480, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_Name
+      value: HENRIQUE MESTRE DOS MAGOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532033647857328480, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857658208708411171, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081397349501108409, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.347717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081397349501108409, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.347717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081397349501108409, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.347717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081397349501108409, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081397349501108409, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.21
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d4bde317944c38489d882f23489a1e7, type: 3}
 --- !u!1001 &1135156573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8536,6 +8609,10 @@ PrefabInstance:
     - target: {fileID: 4548825372165885629, guid: 60657fe924b887e43b8bd651f737cb97, type: 3}
       propertyPath: m_Name
       value: 3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548825372193622625, guid: 60657fe924b887e43b8bd651f737cb97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4921159464809684409, guid: 60657fe924b887e43b8bd651f737cb97, type: 3}
       propertyPath: m_IsActive

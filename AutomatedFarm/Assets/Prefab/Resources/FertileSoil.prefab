@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6129281224517335162
 Transform:
@@ -130,6 +130,10 @@ PrefabInstance:
     - target: {fileID: 4177945611144554792, guid: 17953787ceb8a76499a4b8a65773d1c8, type: 3}
       propertyPath: m_Name
       value: Soil
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177945611144554792, guid: 17953787ceb8a76499a4b8a65773d1c8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17953787ceb8a76499a4b8a65773d1c8, type: 3}
