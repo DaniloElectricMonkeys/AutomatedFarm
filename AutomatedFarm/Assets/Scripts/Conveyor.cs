@@ -48,7 +48,8 @@ public class Conveyor : MonoBehaviour
 
     private void OnTriggerExit(Collider other) {
         item = other.gameObject.GetComponent<ConveyorItem>();
-        item.conveyorRef = null;
+        if(item != null)
+            item.conveyorRef = null;
     }
     private void Update() 
     {

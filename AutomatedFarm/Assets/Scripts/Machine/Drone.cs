@@ -13,7 +13,6 @@ public class Drone : PlantGraber
 
     [Header("Drone Attributes")]
     public GameObject resourcePocket;
-    public List<GameObject> helixes = new List<GameObject>();
     public float speed;
     public bool collectBulk;
     public GameObject droneObject;
@@ -28,12 +27,11 @@ public class Drone : PlantGraber
     Tween anyTween;
     List<GameObject> readyPlants = new List<GameObject>();
     PlantGrow currentPlant;
+    bool doOnce;
+    Quaternion q;
 
     private void Start() {
-        foreach (GameObject item in helixes)
-        {
-            item.transform.DOLocalRotate(new Vector3(90, 0, 360),0.2f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
-        }
+        AssignPlants();
     }
 
     private void Awake() {
@@ -41,6 +39,7 @@ public class Drone : PlantGraber
     }
     void FlyToCrop()//Step 01
     {
+        doOnce = false;
         if(readyPlants.Count <= 0)
         {
             FlyToDeployPoint();
@@ -52,12 +51,22 @@ public class Drone : PlantGraber
         distance = (endPoint - droneObject.transform.position);
         timeToTravel = distance.magnitude / speed;
 
+        q = Quaternion.LookRotation((plant - droneObject.transform.position) + new Vector3(0,-1.5f,0), Vector3.up);
+        droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
+
         droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(HarvestPlant);
         anyTween = droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate( () => 
         {
             //move the y based on the curve
             Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
             droneObject.transform.position = nextPoint;
+            if(anyTween.Elapsed() >= (timeToTravel/2) && doOnce == false)
+            {
+                Vector3 newDirection = new Vector3(droneObject.transform.forward.x, 0, droneObject.transform.forward.z);
+                q = Quaternion.LookRotation(newDirection, Vector3.up);
+                droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
+                doOnce = true;
+            }
         });
     }
 
@@ -81,20 +90,33 @@ public class Drone : PlantGraber
 
     void FlyToDeployPoint()//Step 03
     {
+        doOnce = false;
         endPoint = new Vector3(deployPoint.transform.position.x, deployPoint.transform.position.y, deployPoint.transform.position.z);
         distance = (endPoint - droneObject.transform.position);
         timeToTravel = distance.magnitude / speed;
+
+        q = Quaternion.LookRotation((deployPoint.position - plant) + new Vector3(0,-1.5f,0), Vector3.up);
+        droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
 
         droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(FillBase);
         anyTween = droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate(() => {
             //move the y based on the curve
             Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
             droneObject.transform.position = nextPoint;
+            if(anyTween.Elapsed() >= (timeToTravel/2) && doOnce == false)
+            {
+                Vector3 newDirection = new Vector3(droneObject.transform.forward.x, 0, droneObject.transform.forward.z);
+                q = Quaternion.LookRotation(newDirection, Vector3.up);
+                droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
+                doOnce = true;
+            }
         });
     }
 
     void FillBase()//Step 04
     {
+        
+
         resourcePocket.SetActive(false);
         resourceAmount += cahcedResources;
         cahcedResources = 0;

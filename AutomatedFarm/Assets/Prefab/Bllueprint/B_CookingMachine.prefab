@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2025998057305296998}
   - component: {fileID: 2789786111692283558}
   - component: {fileID: 8683190479294586794}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7689209175957638256}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Output
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
@@ -140,9 +140,9 @@ GameObject:
   - component: {fileID: 6376236152792329985}
   - component: {fileID: 3213289033463818417}
   - component: {fileID: 6305046414049604376}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 3966951857167494601}
   - component: {fileID: 788498791399679699}
   - component: {fileID: 4895276894258089207}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950894968838425971}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,12 +362,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309744788639485723}
-  - component: {fileID: 1309744788639485924}
   - component: {fileID: 1309744788639485927}
   - component: {fileID: 5738659932939474241}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: B_CookingMachine
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,19 +399,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1309744788639485924
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309744788639485926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.72923565, z: 1}
-  m_Center: {x: 0, y: 0.32147175, z: 0}
 --- !u!114 &1309744788639485927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,9 +442,9 @@ GameObject:
   - component: {fileID: 4636269007225549529}
   - component: {fileID: 1659516462453785981}
   - component: {fileID: 7054325410453687114}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,7 +539,7 @@ GameObject:
   - component: {fileID: 1562739739620194389}
   - component: {fileID: 6503404927491558949}
   - component: {fileID: 6868329164626497363}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,9 +636,9 @@ GameObject:
   - component: {fileID: 4132021491573352018}
   - component: {fileID: 7295255417544187536}
   - component: {fileID: 8843803454089582993}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +733,7 @@ GameObject:
   - component: {fileID: 7431550001283786121}
   - component: {fileID: 7478288123867666006}
   - component: {fileID: 4154882999342962690}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +830,7 @@ GameObject:
   - component: {fileID: 1089890474951777195}
   - component: {fileID: 6066427337957972403}
   - component: {fileID: 5302808276398530258}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,7 +927,7 @@ GameObject:
   - component: {fileID: 4182588519919133363}
   - component: {fileID: 4298030763941557061}
   - component: {fileID: 5787948862816985552}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,9 +1024,9 @@ GameObject:
   - component: {fileID: 1556038543112366342}
   - component: {fileID: 9082522090582576939}
   - component: {fileID: 998262610931846506}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1135,9 +1121,9 @@ GameObject:
   - component: {fileID: 2270604026354592016}
   - component: {fileID: 6413060519833561341}
   - component: {fileID: 1601985414146767233}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5213876817564488623}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6081,9 +6067,9 @@ GameObject:
   - component: {fileID: 3842677775757191253}
   - component: {fileID: 7593404422474801890}
   - component: {fileID: 2304989964825977475}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6178,7 +6164,7 @@ GameObject:
   - component: {fileID: 7371184634153496513}
   - component: {fileID: 4836990958629070311}
   - component: {fileID: 361983587079591457}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6275,7 +6261,7 @@ GameObject:
   - component: {fileID: 8373452390167765094}
   - component: {fileID: 3055383725084951204}
   - component: {fileID: 361970935370490163}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6372,7 +6358,7 @@ GameObject:
   - component: {fileID: 112456977645688823}
   - component: {fileID: 3406936423516757765}
   - component: {fileID: 2144931362857915797}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

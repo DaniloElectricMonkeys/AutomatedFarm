@@ -40,7 +40,8 @@ public class PlantGraber : OutputMachine
 
         if (plantsHit.Count <= 0) return;
 
-        cachedPlants.Clear();
+        if(cachedPlants.Count > 0)
+            cachedPlants.Clear();
         //Remove plants that are arealdy assigned to a graber
         foreach (var item in plantsHit)
         {
