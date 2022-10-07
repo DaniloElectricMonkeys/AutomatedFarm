@@ -39,7 +39,7 @@ public class ConveyorItem : MonoBehaviour
         if(other.CompareTag("Machine"))
             dontKill = false;
     }
-
+    
     ///<summary>
     /// Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
     ///</summary>

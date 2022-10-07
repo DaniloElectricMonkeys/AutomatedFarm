@@ -798,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309744788639485723, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 1309744788639485723, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1219,11 +1219,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98599c717ee022045892cdda420cd2e4, type: 3}
---- !u!4 &1088902419 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5818895337010085630, guid: 97b3fb820f741104990c555fa0f7c697, type: 3}
-  m_PrefabInstance: {fileID: 5818895336766624537}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1138346658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1748,53 +1743,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcc1895e5e517e149be57687231ce1e1, type: 3}
---- !u!1 &1601154210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1601154211}
-  - component: {fileID: 1601154212}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1601154211
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601154210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1088902419}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1601154212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601154210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42ed3b7eafcd82f4293ac07d5713d0f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  ignore: 1
-  isAssignedToGraber: 0
 --- !u!1001 &1777005240
 PrefabInstance:
   m_ObjectHideFlags: 0

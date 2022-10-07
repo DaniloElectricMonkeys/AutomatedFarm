@@ -12,10 +12,11 @@ public class Drone : PlantGraber
     public AnimationCurve yCurve;
 
     [Header("Drone Attributes")]
+    public GameObject resourcePocket;
+    public List<GameObject> helixes = new List<GameObject>();
     public float speed;
     public bool collectBulk;
     public GameObject droneObject;
-    public GameObject armObject;
     public ResourceType resourceToPick;
     public Transform deployPoint;
     bool isCollecting;
@@ -28,6 +29,12 @@ public class Drone : PlantGraber
     List<GameObject> readyPlants = new List<GameObject>();
     PlantGrow currentPlant;
 
+    private void Start() {
+        foreach (GameObject item in helixes)
+        {
+            item.transform.DOLocalRotate(new Vector3(90, 0, 360),0.2f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
+        }
+    }
 
     private void Awake() {
         PlantGrow.OnPlantReady += ThisAssign;
@@ -49,7 +56,6 @@ public class Drone : PlantGraber
         anyTween = droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate( () => 
         {
             //move the y based on the curve
-            armObject.transform.LookAt(plant);
             Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
             droneObject.transform.position = nextPoint;
         });
@@ -58,6 +64,7 @@ public class Drone : PlantGraber
     void HarvestPlant()//Setp 02
     {
         //Get plant reference and remove it from soil
+        resourcePocket.SetActive(true);
         currentPlant = readyPlants.First().GetComponent<PlantGrow>();
         cahcedResources++;
         Debug.Log(currentPlant.type.ToString());
@@ -81,7 +88,6 @@ public class Drone : PlantGraber
         droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(FillBase);
         anyTween = droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate(() => {
             //move the y based on the curve
-            armObject.transform.LookAt(deployPoint);
             Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
             droneObject.transform.position = nextPoint;
         });
@@ -89,6 +95,7 @@ public class Drone : PlantGraber
 
     void FillBase()//Step 04
     {
+        resourcePocket.SetActive(false);
         resourceAmount += cahcedResources;
         cahcedResources = 0;
 
@@ -204,7 +211,7 @@ public class Drone : PlantGraber
             return;
         }
             
-
+        go.GetComponent<ConveyorItem>().dontKill = true;
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
