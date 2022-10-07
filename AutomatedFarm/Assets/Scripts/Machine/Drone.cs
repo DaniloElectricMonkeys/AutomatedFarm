@@ -26,9 +26,11 @@ public class Drone : PlantGraber
     Vector3 plant;
     Tween anyTween;
     List<GameObject> readyPlants = new List<GameObject>();
+    PlantGrow currentPlant;
+
 
     private void Awake() {
-        PlantGrow.OnPlantReady += CanCollect;
+        PlantGrow.OnPlantReady += ThisAssign;
     }
     void FlyToCrop()//Step 01
     {
@@ -56,10 +58,13 @@ public class Drone : PlantGraber
     void HarvestPlant()//Setp 02
     {
         //Get plant reference and remove it from soil
+        currentPlant = readyPlants.First().GetComponent<PlantGrow>();
         cahcedResources++;
-        Debug.Log(readyPlants.First().GetComponent<PlantGrow>().type.ToString());
-        OnResourceEnter(readyPlants.First().GetComponent<PlantGrow>().type, null);
+        Debug.Log(currentPlant.type.ToString());
+        OnResourceEnter(currentPlant.type, null);
+
         readyPlants.RemoveAt(0);
+        currentPlant.Harvest();
 
         if(collectBulk)
             FlyToCrop();
@@ -92,13 +97,19 @@ public class Drone : PlantGraber
         else
         {
             isCollecting = false;
-            AskForCollection();
+            ThisAssign();
         }
     }
 
     protected override void CollectPlant(GameObject plant)
     {
         //Do nothing here
+    }
+
+    void ThisAssign(GameObject obj = null)
+    {
+        if(isCollecting) return;
+        AssignPlants();
     }
 
     protected override void AssignPlants()
@@ -109,13 +120,7 @@ public class Drone : PlantGraber
 
     protected override void AskForCollection()
     {
-        CanCollect();
-    }
-
-    private void CanCollect(GameObject obj = null)
-    {
         if (isCollecting) return;
-        // FlyThemCollect(cachedPlants.First().gameObject);
         foreach (var item in cachedPlants)
         {
             if (item.GetComponent<PlantGrow>().canBeHarvested)

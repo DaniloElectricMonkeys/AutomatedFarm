@@ -285,6 +285,7 @@ MonoBehaviour:
   isLinked: 0
   enableLinking: 1
   type: 9
+  dontKill: 0
 --- !u!135 &3470429613036182060
 SphereCollider:
   m_ObjectHideFlags: 0

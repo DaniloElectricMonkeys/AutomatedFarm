@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MyEnums;
 using UnityEngine;
 
-public class CrystilizeMachine : OutputMachine
+public class PackingMachine : OutputMachine
 {
     public override void OnResourceEnter(ResourceType type, GameObject obj)
     {
@@ -13,7 +13,12 @@ public class CrystilizeMachine : OutputMachine
     }
 
     public override void OutputResource()
-    {
+    {   
+        if(resourceAmount <= 0)
+        {
+            resourceAmount = 0;
+            return;
+        }
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
 
@@ -42,8 +47,8 @@ public class CrystilizeMachine : OutputMachine
 
                     switch (type)
                     {
-                        case ResourceType.cookedCorn:
-                            go = ObjectPool.Instance.GrabFromPool("crystalCorn", Library.Instance.crystalCorn);
+                        case ResourceType.crystalCorn:
+                            go = ObjectPool.Instance.GrabFromPool("packedCorn", Library.Instance.packedCorn);
                             resourcesInTheMachine[item.Key] -= 1;
                         break;
 
