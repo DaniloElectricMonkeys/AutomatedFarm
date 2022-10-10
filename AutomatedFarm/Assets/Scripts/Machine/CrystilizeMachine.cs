@@ -62,7 +62,7 @@ public class CrystilizeMachine : OutputMachine
             return;
         }
 
-        go.GetComponent<ConveyorItem>().dontKill = true;
+        go.GetComponent<ConveyorItem>().FreshSpawnItem();
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);

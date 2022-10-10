@@ -25,6 +25,12 @@ public class ConveyorItem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    public void FreshSpawnItem()
+    {
+        conveyorRef = null;
+        dontKill = true;
+    }
+
     public bool UsedByOther(Collider conveyorCollider){
         if(conveyorRef == null) return false;
         if(conveyorCollider == conveyorRef.GetComponent<Collider>()){

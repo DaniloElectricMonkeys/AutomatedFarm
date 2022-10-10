@@ -18,6 +18,7 @@ public class PlantGrow : MonoBehaviour
     public static Action<GameObject> OnPlantReady;
     public static Action OnPlantPlaced;
     public bool ignore;
+    public bool istarget;
 
     [HideInInspector] public bool isAssignedToGraber;
 
@@ -80,7 +81,7 @@ public class PlantGrow : MonoBehaviour
 
         if (canBeHarvested)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             /*transform.localScale = Vector3.zero;
             canBeHarvested = false;*/
             return true;
