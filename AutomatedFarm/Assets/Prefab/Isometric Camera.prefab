@@ -78,12 +78,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  minOrtoZoom: 5
-  maxOrtoZoom: 10
+  minOrtoZoom: 2
+  maxOrtoZoom: 7
   minPerspZoom: -5
   maxPerspZoom: -20
   camSpeed: 10
-  minRotAxisX: 20
+  minRotAxisX: 30
   maxRotAxisX: 50
   minBoundsX: -30
   maxBoundsX: 30
