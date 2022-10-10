@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4206698277765962722}
   - component: {fileID: 1770618742787805778}
   - component: {fileID: 6152653697519050564}
+  - component: {fileID: 117056638306750916}
   m_Layer: 0
   m_Name: Corn
   m_TagString: Ore
@@ -62,7 +63,7 @@ SphereCollider:
   m_GameObject: {fileID: 2519493171549123563}
   m_Material: {fileID: 13400000, guid: 7c8dcbce1c4bad742afefbd242071dde, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.52594155
   m_Center: {x: 0, y: 0, z: 0}
@@ -83,6 +84,19 @@ MonoBehaviour:
   conveyorRef: {fileID: 0}
   type: 5
   dontKill: 0
+--- !u!65 &117056638306750916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519493171549123563}
+  m_Material: {fileID: 13400000, guid: 7c8dcbce1c4bad742afefbd242071dde, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2.2213144}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &485569786230344804
 PrefabInstance:
   m_ObjectHideFlags: 0
