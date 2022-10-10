@@ -14,12 +14,12 @@ public class PlantGraber : OutputMachine
     List<Collider> plantsHit = new List<Collider>();
     protected List<Collider> cachedPlants = new List<Collider>();
 
-    private void Awake() {
+    protected virtual void Awake() {
         PlantGrow.OnPlantReady += CollectPlant;
         PlantGrow.OnPlantPlaced += AssignPlants;
     }
 
-    private void OnDestroy() {
+    protected virtual void OnDestroy() {
         PlantGrow.OnPlantReady -= CollectPlant;
         PlantGrow.OnPlantPlaced -= AssignPlants;
     }
