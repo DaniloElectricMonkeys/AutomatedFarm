@@ -46,11 +46,16 @@ public class OutputMachine : Machine
             obj.SetActive(false);
         }
         
-        //resourceAmount++;
+        resourceAmount++;
     }
 
     private void Update() 
     {
+        if(resourceAmount <= 0){
+            refTimer = timeToExtract;
+            return;
+        }
+        
         refTimer -= Time.deltaTime;
         
         if(refTimer <= 0) { 

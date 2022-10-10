@@ -77,14 +77,14 @@ public class Machine : MonoBehaviour
 
     #region Input
 
-        private void OnTriggerStay(Collider other) 
+        private void OnTriggerEnter(Collider other) 
         {
             if(useInput == false) return;
             
             ConveyorItem item = other.GetComponent<ConveyorItem>();
             if(item == null) return;
             if(item.dontKill)
-                item.transform.position += outputPoint.transform.forward * 1 * Time.deltaTime;
+                item.MoveOutFromTheMachine(outputPoint.transform.forward);
             else if(item != null)
                 OnResourceEnter(item.type, other.gameObject);
         }

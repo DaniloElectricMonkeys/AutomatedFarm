@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97350765352665512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,8 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5104165765105177176}
   - component: {fileID: 467820124054618529}
-  - component: {fileID: 8441020438890070705}
   - component: {fileID: 6583364921675405640}
+  - component: {fileID: 5056540000783611860}
   m_Layer: 0
   m_Name: Cereal Box
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 5593034321230137570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 612009552271935639}
@@ -134,19 +134,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &8441020438890070705
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5593034321230137570}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2629708
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6583364921675405640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +151,16 @@ MonoBehaviour:
   conveyorRef: {fileID: 0}
   type: 10
   dontKill: 0
+--- !u!65 &5056540000783611860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593034321230137570}
+  m_Material: {fileID: 13400000, guid: 7c8dcbce1c4bad742afefbd242071dde, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19120726, y: 0.27416226, z: 0.07307903}
+  m_Center: {x: 0, y: 0.14, z: 0}

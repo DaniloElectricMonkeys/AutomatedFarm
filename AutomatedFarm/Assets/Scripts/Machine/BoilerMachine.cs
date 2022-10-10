@@ -8,7 +8,7 @@ public class BoilerMachine : OutputMachine
 {
     public override void OutputResource()
     {
-        //if(resourceAmount <= 0) return;
+        if(resourceAmount <= 0) return;
 
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
