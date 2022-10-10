@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class PackingMachine : OutputMachine
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout)
     {
-        base.OnResourceEnter(type, obj);
-        resourceAmount++;
+        base.OnResourceEnter(type, obj, 1);
     }
 
     public override void OutputResource()

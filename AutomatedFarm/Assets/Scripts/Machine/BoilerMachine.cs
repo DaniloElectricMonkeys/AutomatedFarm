@@ -6,6 +6,11 @@ using System;
 
 public class BoilerMachine : OutputMachine
 {
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
+    {
+        base.OnResourceEnter(type, obj, 1);
+    }
+
     public override void OutputResource()
     {
         if(resourceAmount <= 0) return;
