@@ -7,10 +7,9 @@ using System;
 public class CookingMachine : OutputMachine
 {
     public GameObject smokeVFX;
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
-        base.OnResourceEnter(type, obj);
-        resourceAmount++;
+        base.OnResourceEnter(type, obj, 1);
     }
 
     public override void OutputResource()

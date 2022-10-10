@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class CrystilizeMachine : OutputMachine
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amount)
     {
-        base.OnResourceEnter(type, obj);
-        resourceAmount++;
+        base.OnResourceEnter(type, obj, 1);
     }
 
     public override void OutputResource()

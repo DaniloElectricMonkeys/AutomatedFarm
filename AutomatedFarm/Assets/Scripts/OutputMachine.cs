@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
+using DG.Tweening;
 
 ///<summary>
 /// Create soil based on the input it recives
@@ -21,7 +22,7 @@ public class OutputMachine : Machine
     protected ConveyorItem item;
 
 
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         string key = type.ToString();
 
@@ -41,12 +42,17 @@ public class OutputMachine : Machine
 
         if(obj != null)
         {
-            ObjectPool.Instance.AddToPool(key, obj.gameObject);
             // obj.GetComponent<ConveyorItem>().RemoveLink();
-            obj.SetActive(false);
+            obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract/2)
+            .SetEase(Ease.Linear)
+            .OnComplete( () =>{
+                ObjectPool.Instance.AddToPool(key, obj.gameObject);
+                obj.SetActive(false);
+            });
+            // obj.SetActive(false);
         }
         
-        resourceAmount++;
+        resourceAmount += amout;
     }
 
     private void Update() 

@@ -141,7 +141,7 @@ public class BuildSystem : Singleton<BuildSystem>
 
     void BuildBlueprintObj()
     {
-        if(blueprintObj != null && Input.GetMouseButtonDown(0))
+        if(blueprintObj != null && Input.GetMouseButton(0))
         {
             tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
             BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
