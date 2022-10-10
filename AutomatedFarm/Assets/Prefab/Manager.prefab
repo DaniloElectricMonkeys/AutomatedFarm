@@ -144,8 +144,8 @@ MonoBehaviour:
     m_Bits: 256
   blueprintBlue: {fileID: 2100000, guid: 6086a1be074d9b44488b1f7673982abc, type: 2}
   blueprintRed: {fileID: 2100000, guid: 0cc47042ccb3b5e4780234b41ebb1242, type: 2}
-  tile: {fileID: 0}
-  tilemap: {fileID: 0}
+  tile: {fileID: 11400000, guid: 461b8d665c87cb6408e77a34c7fbb92e, type: 2}
+  tilemap: {fileID: 3705163870553470659}
 --- !u!1 &5818895337010085628
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e351449c00c5c4ebea10558abbe003, type: 3}
+--- !u!1839735485 &3705163870553470659 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 1694092964746171967, guid: c9e351449c00c5c4ebea10558abbe003, type: 3}
+  m_PrefabInstance: {fileID: 2659870891543650556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3705163870784299274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1694092964515135990, guid: c9e351449c00c5c4ebea10558abbe003, type: 3}
