@@ -42,11 +42,13 @@ public class OutputMachine : Machine
 
         if(obj != null)
         {
-            ObjectPool.Instance.AddToPool(key, obj.gameObject);
             // obj.GetComponent<ConveyorItem>().RemoveLink();
             obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract/2)
             .SetEase(Ease.Linear)
-            .OnComplete( () => obj.SetActive(false));
+            .OnComplete( () =>{
+                ObjectPool.Instance.AddToPool(key, obj.gameObject);
+                obj.SetActive(false);
+            });
             // obj.SetActive(false);
         }
         
