@@ -28,7 +28,7 @@ public class Drone : PlantGraber
     public List<GameObject> readyPlants = new List<GameObject>();
     bool doOnce;
     Quaternion q;
-    PlantGrow selectedPlant;
+    public PlantGrow selectedPlant;
     bool _continue;
     int ID;
 
@@ -36,7 +36,7 @@ public class Drone : PlantGraber
         AssignPlants();
     }
 
-    private void Awake() {
+    protected override void Awake() {
         PlantGrow.OnPlantReady += ThisAssign;
     }
 
@@ -79,17 +79,19 @@ public class Drone : PlantGraber
         ID = UnityEngine.Random.Range(0,tempList.Count);
         selectedPlant = tempList[ID].GetComponent<PlantGrow>();
 
-        if(selectedPlant == null) CheckPlantList(out _continue);
-
-        if(selectedPlant.istarget) CheckPlantList(out _continue);
+        if(selectedPlant == null || selectedPlant.istarget){
+            CheckPlantList(out _continue);
+        }
 
         if(selectedPlant != null && selectedPlant.istarget == false) selectedPlant.istarget = true;
-        else CheckPlantList(out _continue);
+        else
+            CheckPlantList(out _continue);
 
         if(_continue == false)
         {
             isCollecting = false;
             AssignPlants();
+            return;
         }
         
         plant = selectedPlant.transform.position;
