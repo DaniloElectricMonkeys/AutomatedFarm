@@ -18,25 +18,54 @@ public class Drone : PlantGraber
     public GameObject droneObject;
     public ResourceType resourceToPick;
     public Transform deployPoint;
-    bool isCollecting;
+    public bool isCollecting;
     float timeToTravel;
     Vector3 endPoint;
     Vector3 distance;
     public int cahcedResources;
     Vector3 plant;
     Tween anyTween;
-    List<GameObject> readyPlants = new List<GameObject>();
-    PlantGrow currentPlant;
+    public List<GameObject> readyPlants = new List<GameObject>();
     bool doOnce;
     Quaternion q;
+    public PlantGrow selectedPlant;
+    bool _continue;
+    int ID;
 
     private void Start() {
         AssignPlants();
     }
 
-    private void Awake() {
+    protected override void Awake() {
         PlantGrow.OnPlantReady += ThisAssign;
     }
+
+    void CheckPlantList(out bool canContinue)
+    {
+        readyPlants.Clear();
+        List<Collider> removeItens = new List<Collider>();
+        if(cachedPlants.Count <= 0){
+            isCollecting = false;
+            AssignPlants();
+            canContinue = false;
+            return;
+        }
+
+        foreach (var item in cachedPlants)
+        {
+            if(item == null)
+                removeItens.Add(item);
+        }       
+
+        foreach (var item in removeItens)
+            cachedPlants.Remove(item);
+
+        foreach (var item in cachedPlants)
+            readyPlants.Add(item.gameObject);
+        
+        canContinue = true;
+    }
+
     void FlyToCrop()//Step 01
     {
         doOnce = false;
@@ -45,8 +74,27 @@ public class Drone : PlantGraber
             FlyToDeployPoint();
             return;
         }
+        
+        List<GameObject> tempList = readyPlants.Where(p => p != null).ToList();
+        ID = UnityEngine.Random.Range(0,tempList.Count);
+        selectedPlant = tempList[ID].GetComponent<PlantGrow>();
 
-        plant = readyPlants.First().transform.position;
+        if(selectedPlant == null || selectedPlant.istarget){
+            CheckPlantList(out _continue);
+        }
+
+        if(selectedPlant != null && selectedPlant.istarget == false) selectedPlant.istarget = true;
+        else
+            CheckPlantList(out _continue);
+
+        if(_continue == false)
+        {
+            isCollecting = false;
+            AssignPlants();
+            return;
+        }
+        
+        plant = selectedPlant.transform.position;
         endPoint = new Vector3(plant.x, plant.y, plant.z);
         distance = (endPoint - droneObject.transform.position);
         timeToTravel = distance.magnitude / speed;
@@ -73,14 +121,17 @@ public class Drone : PlantGraber
     void HarvestPlant()//Setp 02
     {
         //Get plant reference and remove it from soil
-        resourcePocket.SetActive(true);
-        currentPlant = readyPlants.First().GetComponent<PlantGrow>();
-        cahcedResources++;
-        Debug.Log(currentPlant.type.ToString());
-        OnResourceEnter(currentPlant.type, null);
-
-        readyPlants.RemoveAt(0);
-        currentPlant.Harvest();
+        readyPlants.RemoveAt(ID);
+        try{
+            OnResourceEnter(selectedPlant.type, null);
+            selectedPlant.Harvest();
+            resourcePocket.SetActive(true);
+            cahcedResources++;
+        }
+        catch{
+            //Ignore
+        }
+        
 
         if(collectBulk)
             FlyToCrop();
@@ -115,11 +166,11 @@ public class Drone : PlantGraber
 
     void FillBase()//Step 04
     {
-        
-
         resourcePocket.SetActive(false);
         resourceAmount += cahcedResources;
         cahcedResources = 0;
+
+        CheckPlantList(out _continue);
 
         if(readyPlants.Count > 0)
             FlyToCrop();

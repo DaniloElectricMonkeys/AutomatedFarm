@@ -1,10 +1,9 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
-using UnityEngine.EventSystems;
 
-public class SeedContainer : MonoBehaviour, IPointerClickHandler
+public class SeedContainer : MonoBehaviour
 {
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI growTime;
@@ -26,7 +25,7 @@ public class SeedContainer : MonoBehaviour, IPointerClickHandler
         growTime.text = TimeSpan.FromSeconds(seed.timeToGrow).ToString(@"m\:ss");
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Selected()
     {
         SeedsManager.Instance.UpdateSeedDetails(seed.name, seed.price, seed.goldObtained, seed.expObtained, seed.amountObtained);
         SeedsManager.Instance.CurrentSeedSelected(seed);

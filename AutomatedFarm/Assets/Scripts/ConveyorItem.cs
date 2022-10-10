@@ -20,6 +20,7 @@ public class ConveyorItem : MonoBehaviour
     public bool dontKill;
     Rigidbody rb;
     bool usedByOtherConveyor;
+    Vector3 dir;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -43,24 +44,14 @@ public class ConveyorItem : MonoBehaviour
         }
     }
 
+    public void MoveOutFromTheMachine(Vector3 direction){
+        dir = direction;
+    }
+
     private void Update() {
 
-        // if(isLinked)
-        //     rb.useGravity = false;
-        // else
-        //     rb.useGravity = true;
-
-        // if(transform.position == lastPos)
-        // {
-        //     timer += Time.deltaTime;
-        //     lastPos = transform.position;
-        //     if(timer >= 1)
-        //         RemoveLink();
-        // }
-        // else
-        // {
-        //     lastPos = transform.position;
-        // }
+        if(dontKill)
+            transform.position += dir * 1 * Time.deltaTime;
         
     }
 

@@ -12,14 +12,10 @@ public class Conveyor : MonoBehaviour
 {
     public static Action OnConveyorDeleted;
     Rigidbody rb;
-    public Transform start;
     public Transform end;
-    public List<GameObject> itensInConveyor = new List<GameObject>();
 
     [Header("Speed")]
     public float speed;
-
-    public List<GameObject> removeItens = new List<GameObject>();
     ConveyorItem item;
     bool inTrigger;
 
