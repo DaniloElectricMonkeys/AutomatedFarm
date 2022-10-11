@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b192877325112e248a8038ce39ba2b1f
+guid: e02e4c445ce95734883847208186fc1f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -11,12 +11,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Belt_Material
-    second: {fileID: 2100000, guid: e719950ccc58614429b66130fa2a661d, type: 2}
+    second: {fileID: 2100000, guid: ec0311d9f07774b4fb49e71328ca9c7d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Conveyor_Material
-    second: {fileID: 2100000, guid: b34ef9490f06e564cbfd0383be3abce3, type: 2}
+      name: Conveyor_Corner_Material
+    second: {fileID: 2100000, guid: 90eb3ce6de4f711408a70ab3520a91cb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
