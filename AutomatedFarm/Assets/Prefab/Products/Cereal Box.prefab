@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97350765352665512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.182, z: 0}
+  m_LocalScale: {x: 2.2728, y: 2.2728, z: 2.2728}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5104165765105177176}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5104165765105177176}
   - component: {fileID: 467820124054618529}
   - component: {fileID: 6583364921675405640}
-  - component: {fileID: 5056540000783611860}
+  - component: {fileID: 5844047147468125714}
   m_Layer: 0
   m_Name: Cereal Box
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 5593034321230137570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 612009552271935639}
@@ -146,12 +146,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c1bccc35717a243897260074fbdd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isLinked: 0
-  enableLinking: 1
   conveyorRef: {fileID: 0}
   type: 10
   dontKill: 0
---- !u!65 &5056540000783611860
+--- !u!65 &5844047147468125714
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,5 +164,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19120726, y: 0.27416226, z: 0.07307903}
-  m_Center: {x: 0, y: 0.14, z: 0}
+  m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Center: {x: 0, y: -0.06, z: 0}

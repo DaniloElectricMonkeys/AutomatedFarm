@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 1770618742787805778}
   - component: {fileID: 6152653697519050564}
   m_Layer: 0
-  m_Name: Soil
-  m_TagString: Soil
+  m_Name: Cardboard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 20a5414178f881044bd8894055f07089, type: 2}
+  - {fileID: 2100000, guid: 58580be5a1ee44d42a9966d48abb8758, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,5 +132,5 @@ MonoBehaviour:
     m_Bits: 256
   isLinked: 0
   conveyorRef: {fileID: 0}
-  type: 1
+  type: 11
   dontKill: 0

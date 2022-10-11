@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4006561176470505417}
   - component: {fileID: 3376996258326927421}
   - component: {fileID: 2841900801707622436}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plant1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 614334436612402946}
   - component: {fileID: 3578477122752565691}
   - component: {fileID: 3079186776143791429}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4686952199563594075}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 3138352324135489763}
   - component: {fileID: 8577793701212490431}
   - component: {fileID: 5823532305426865095}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 3940072464272388939}
   - component: {fileID: 2949604838016287628}
   - component: {fileID: 4638370303620247463}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 860381267087779559}
   - component: {fileID: 5541392530478269461}
   - component: {fileID: 4929614771149790820}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4507768752462738272}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 6539969828012012161}
   - component: {fileID: 4408558682046421970}
   - component: {fileID: 4791145181075808020}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8232638028973186494}
   - component: {fileID: -4447685715011893453}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: B_Corn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 6713175424595567971}
   - component: {fileID: 6127653496582603442}
   - component: {fileID: 5805197598483980752}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plant2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8709331409485200459}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 1644754925434311807}
   - component: {fileID: 4385734136196395659}
   - component: {fileID: 7287617766113298531}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plant3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9111426060469006068}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Corn_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
