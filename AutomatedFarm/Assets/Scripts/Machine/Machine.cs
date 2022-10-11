@@ -22,7 +22,7 @@ public class Machine : MonoBehaviour
     public virtual void OnSoilEnter(){}
     public virtual void OnOreEnter(){}
     public virtual void OnStoneEnter(){}
-    public virtual void OnResourceEnter(ResourceType type, GameObject obj)
+    public virtual void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         string key = type.ToString();
 

@@ -123,7 +123,7 @@ public class Drone : PlantGraber
         //Get plant reference and remove it from soil
         readyPlants.RemoveAt(ID);
         try{
-            OnResourceEnter(selectedPlant.type, null);
+            OnResourceEnter(selectedPlant.type, null, 0);
             selectedPlant.Harvest();
             resourcePocket.SetActive(true);
             cahcedResources++;

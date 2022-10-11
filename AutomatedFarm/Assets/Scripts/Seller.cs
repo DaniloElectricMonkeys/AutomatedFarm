@@ -8,7 +8,7 @@ using UnityEngine;
 ///</summary>
 public class Seller : Machine
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj)
+    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         base.OnResourceEnter(type, obj);
         switch(type)

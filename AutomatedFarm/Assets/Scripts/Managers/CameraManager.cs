@@ -24,6 +24,7 @@ public class CameraManager : Singleton<CameraManager>
     [SerializeField] float maxBoundsZ = 30;
     readonly float[] Rotations = { 45, -45, -135 , 135 };
     int currentRotation;
+    bool rotatingX;
 
     [Header("References")]
     [SerializeField] Camera myCamera;
@@ -95,15 +96,21 @@ public class CameraManager : Singleton<CameraManager>
 
     void RotateCameraAxisX()
     {        
-        if (Input.GetKey(KeyCode.Z) && transform.eulerAngles.x <= maxRotAxisX)
+        if (Input.GetKey(KeyCode.Z) && transform.eulerAngles.x < maxRotAxisX && !rotatingX)
         {
-            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x + 1, transform.eulerAngles.y, transform.eulerAngles.z);
+            rotatingX = true;
+            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x + 5, transform.eulerAngles.y, transform.eulerAngles.z);
+            Quaternion helperRotation = Quaternion.Euler(helper.eulerAngles.x - 5, helper.eulerAngles.y, helper.eulerAngles.z);
             transform.DORotateQuaternion(updateRotation, 0.3f);
+            helper.DORotateQuaternion(helperRotation, 0.3f).OnComplete(() => rotatingX = false);
         }
-        if (Input.GetKey(KeyCode.X) && transform.eulerAngles.x >= minRotAxisX)
+        if (Input.GetKey(KeyCode.X) && transform.eulerAngles.x > minRotAxisX + 1 && !rotatingX)
         {
-            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x - 1, transform.eulerAngles.y, transform.eulerAngles.z);
+            rotatingX = true;
+            Quaternion updateRotation = Quaternion.Euler(transform.eulerAngles.x - 5, transform.eulerAngles.y, transform.eulerAngles.z);
+            Quaternion helperRotation = Quaternion.Euler(helper.eulerAngles.x + 5, helper.eulerAngles.y, helper.eulerAngles.z);
             transform.DORotateQuaternion(updateRotation, 0.3f);
+            helper.DORotateQuaternion(helperRotation, 0.3f).OnComplete(() => rotatingX = false);
         }
     }
 

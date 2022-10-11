@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor.Tilemaps;
+using UnityEngine.Tilemaps;
 
 ///<summary>
 /// This class handle the building system.
@@ -20,7 +22,12 @@ public class BuildSystem : Singleton<BuildSystem>
     [Header("Materials")]
     public Material blueprintBlue;
     public Material blueprintRed;
-    
+
+    [Space]
+    [Header("Tilemap")]
+    public TileBase tile;
+    public Tilemap tilemap;
+
     int rotation;
     int rotationIndex;
     int id = 0;
@@ -30,7 +37,6 @@ public class BuildSystem : Singleton<BuildSystem>
     bool doOnce;
     bool canBuildAnyway;
     BuildOnlyInTag tagChecker;
-
 
     ///<summary>
     /// Select the desired object on the Build System and create the blueprint of it.
@@ -42,7 +48,7 @@ public class BuildSystem : Singleton<BuildSystem>
             blueprintObj = Instantiate(obj, hit.point, Quaternion.identity);
             blueprintObj.tag = "Untagged";
         }
-    }
+    }    
 
     private void Update() 
     {
@@ -53,6 +59,12 @@ public class BuildSystem : Singleton<BuildSystem>
         RemoveSelection();// Remove the object from the mouse (press ESC)
         RotateSelection();// Rotate the object, press R.
         DeleteMachine();
+    }
+
+    public void SetSoil()
+    {
+        Vector3Int tilePos = tilemap.WorldToCell(hit.point);
+        tilemap.SetTile(tilePos, tile);
     }
 
     void CheckObstructions()
@@ -129,7 +141,7 @@ public class BuildSystem : Singleton<BuildSystem>
 
     void BuildBlueprintObj()
     {
-        if(blueprintObj != null && Input.GetMouseButtonDown(0))
+        if(blueprintObj != null && Input.GetMouseButton(0))
         {
             tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
             BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
