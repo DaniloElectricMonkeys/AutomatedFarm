@@ -627,6 +627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
+  ignore: 0
+  istarget: 0
   isAssignedToGraber: 0
 --- !u!1 &8751713471922454878
 GameObject:

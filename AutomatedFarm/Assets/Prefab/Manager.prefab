@@ -182,6 +182,8 @@ Transform:
   - {fileID: 8328306660339707469}
   - {fileID: 923219793772865293}
   - {fileID: 3705163870784299274}
+  - {fileID: 4438907899541147153}
+  - {fileID: 8198936673750577389}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingsSO: {fileID: 11400000, guid: 91bedfa728f95ba4f91a2a22b87260fa, type: 2}
+  itensSO: {fileID: 0}
   seedScriptable:
   - {fileID: 11400000, guid: 249fbf2d3bedc1f43a7f4d4263b6a8d2, type: 2}
   rawCorn: {fileID: 2519493171549123563, guid: 323159e2c8effd4428c0c1b7e3d80d82, type: 3}
@@ -237,6 +240,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soilCounter: {fileID: 0}
+--- !u!1 &6219331075741211124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8198936673750577389}
+  - component: {fileID: 8965401895297667690}
+  m_Layer: 0
+  m_Name: FarmBaseRamdomizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8198936673750577389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219331075741211124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7565799, y: 0.56387186, z: -3.6487525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5818895337010085630}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8965401895297667690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219331075741211124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1b7222500e02b428548fa9c906570a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles: []
+  gridSize: {x: 3, y: 0, z: 3}
+  xSize: 10
+  zSize: 10
+  parent: {fileID: 0}
 --- !u!1 &6929215487801994525
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +333,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac979a74fe54d7244be5257b5ed04997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8130085681906277750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4438907899541147153}
+  - component: {fileID: 7818503402418077620}
+  m_Layer: 0
+  m_Name: ItemLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4438907899541147153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130085681906277750}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4435709, y: 1.7220755, z: -0.62499917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5818895337010085630}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7818503402418077620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130085681906277750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043446bef04bba64cac40b6139c64840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawCorn: {fileID: 2519493171549123563, guid: 323159e2c8effd4428c0c1b7e3d80d82, type: 3}
+  boiledCorn: {fileID: 2519493171549123563, guid: 9a2759068f089904984eadf416bc6c7a, type: 3}
+  smashedCorn: {fileID: 2519493171549123563, guid: a633b5b8890715740b6ae8a7a6c95569, type: 3}
+  cookedCorn: {fileID: 2519493171549123563, guid: fa332e2f3ccf674428bbc905429e56fa, type: 3}
+  crystalCorn: {fileID: 2519493171549123563, guid: d9ae32303c0f0ff4bb69ff0b5ee13ba8, type: 3}
+  packedCorn: {fileID: 5593034321230137570, guid: d0c834773e18e484dbd8b7677a941b52, type: 3}
 --- !u!1001 &2659870891543650556
 PrefabInstance:
   m_ObjectHideFlags: 0

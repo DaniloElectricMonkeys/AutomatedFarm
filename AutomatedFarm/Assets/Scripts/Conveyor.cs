@@ -13,6 +13,8 @@ public class Conveyor : MonoBehaviour
     public static Action OnConveyorDeleted;
     Rigidbody rb;
     public Transform end;
+    List<ConveyorItem> itensInConveyor = new List<ConveyorItem>();
+    List<ConveyorItem> removeItens = new List<ConveyorItem>();
 
     [Header("Speed")]
     public float speed;
@@ -21,53 +23,40 @@ public class Conveyor : MonoBehaviour
 
     private void Start() => rb = GetComponent<Rigidbody>();
 
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
         item = other.gameObject.GetComponent<ConveyorItem>();
 
-        if(item != null)
-        {
-            if(item.UsedByOther(GetComponent<Collider>()) == false)
-            {
-                item.conveyorRef = this;
-                inTrigger = true;
-                item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
-            }
-            
-            // if(item.isLinked == false)
-            // {
-            //     itensInConveyor.Add(other.gameObject);
-            //     item.Link(this);
-            // }
+        if(item != null && item.isLinked == false) {
+            LinkItem(item);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        item = other.gameObject.GetComponent<ConveyorItem>();
-        if(item != null)
-            item.conveyorRef = null;
-    }
     private void Update() 
     {
-        
-
-        // foreach (GameObject item in itensInConveyor)
+        // for (int i = 0; i < itensInConveyor.Count; i++)
         // {
-        //     if(item == null) return;
-
-        //     item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
-        //     if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
-        //         removeItens.Add(item);
-        //     if(item.transform.position.y <= 0.2f)
-        //         removeItens.Add(item);
+        //     // if(itensInConveyor[i].GetComponent<ConveyorItem>().UsedByOther(GetComponent<Collider>()) == false)
+        //         itensInConveyor[i].transform.position += (end.position - itensInConveyor[i].transform.position).normalized * speed * Time.deltaTime;
         // }
 
-        // // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
-        // foreach (GameObject item in removeItens.ToArray())
-        // {
-        //     if(item != null)
-        //         item.GetComponent<ConveyorItem>().RemoveLink();
-        // }
+        foreach (ConveyorItem item in itensInConveyor)
+        {
+            if(item == null) return;
+
+            item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
+            if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
+                removeItens.Add(item);
+            // if(item.transform.position.y < transform.position.y -0.2f)
+            //     removeItens.Add(item);
+        }
+
+        // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
+        foreach (ConveyorItem item in removeItens.ToArray())
+        {
+            if(item != null)
+                RemoveLinkItem(item);
+        }
     }
     
     bool GetToleranceDistance(Vector3 start, Vector3 end, float tolerance)
@@ -75,17 +64,24 @@ public class Conveyor : MonoBehaviour
         return ((end - start).magnitude <= tolerance);
     }
 
-    ///<summary>
-    /// Remove item from the converyor.
-    ///</summary>
-    // public void RemoveConveyorItem(GameObject conveyorItem)
-    // {
-    //     if(itensInConveyor.Contains(conveyorItem))
-    //     {
-    //         itensInConveyor.Remove(conveyorItem);
-    //         removeItens.Remove(conveyorItem);
-    //     }
-    // }
+    public void LinkItem(ConveyorItem item) {
+        itensInConveyor.Add(item);
+        item.conveyorRef = this;
+        item.isLinked = true;
+        Debug.Log("Linking");
+    }
+
+    public void RemoveLinkItem(ConveyorItem item) {
+        if(itensInConveyor.Contains(item))
+            itensInConveyor.Remove(item);
+        
+        removeItens.Remove(item);
+        item.conveyorRef = null;
+        item.isLinked = false;
+
+        item.CheckForNewConveyor();
+        Debug.Log("Removeing");
+    }
     
     private void OnDestroy() {
         OnConveyorDeleted?.Invoke();

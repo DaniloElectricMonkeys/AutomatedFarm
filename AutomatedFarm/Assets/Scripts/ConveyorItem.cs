@@ -9,17 +9,14 @@ using MyEnums;
 ///</summary>
 public class ConveyorItem : MonoBehaviour
 {
-    [Tooltip("Linked object state")]
+    [Header("Layer")]
+    public LayerMask machineLayer;
+
     public bool isLinked;
-    [Tooltip("Enable item to be linked with the cnveyor that is moving it")]
-    public bool enableLinking = true;
     public Conveyor conveyorRef;
     public ResourceType type;
-    float timer;
-    Vector3 lastPos;
     public bool dontKill;
     Rigidbody rb;
-    bool usedByOtherConveyor;
     Vector3 dir;
 
     private void Start() {
@@ -30,18 +27,7 @@ public class ConveyorItem : MonoBehaviour
     {
         conveyorRef = null;
         dontKill = true;
-    }
-
-    public bool UsedByOther(Collider conveyorCollider){
-        if(conveyorRef == null) return false;
-        if(conveyorCollider == conveyorRef.GetComponent<Collider>()){
-            usedByOtherConveyor = false;
-            return false;
-        } 
-        else{
-            usedByOtherConveyor = false;
-            return true;
-        }
+        isLinked = false;
     }
 
     public void MoveOutFromTheMachine(Vector3 direction){
@@ -52,7 +38,6 @@ public class ConveyorItem : MonoBehaviour
 
         if(dontKill)
             transform.position += dir * 1 * Time.deltaTime;
-        
     }
 
     private void OnTriggerExit(Collider other) {
@@ -60,24 +45,22 @@ public class ConveyorItem : MonoBehaviour
             dontKill = false;
     }
 
-    ///<summary>
-    /// Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
-    ///</summary>
-    // public void RemoveLink(bool disableLinking = false)
-    // {
-    //     if(disableLinking == true) enableLinking = false;
-    //     isLinked = false;
-    //     if(conveyorRef != null)
-    //         conveyorRef.RemoveConveyorItem(gameObject);
-    // }
+    public void CheckForNewConveyor()
+    {
+        Collider[] colls = Physics.OverlapBox(transform.position, new Vector3(0.1f,0.5f,0.1f), Quaternion.identity, machineLayer);
 
-    ///<summary>
-    /// Creat a link between iten and conveyor.
-    ///</summary>
-    // public void Link(Conveyor conveyor)
-    // {
-    //     if(enableLinking == false) return;
-    //     conveyorRef = conveyor;
-    //     isLinked = true;
-    // }
+        foreach (var item in colls)
+        {
+            if(item.GetComponent<Conveyor>()) {
+                item.GetComponent<Conveyor>()?.LinkItem(this);
+                break;
+            }
+
+        }
+        Debug.Log("Checking");
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireCube(transform.position, new Vector3(0.6f,0.6f,0.6f));
+    }
 }

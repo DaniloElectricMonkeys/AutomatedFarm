@@ -20,7 +20,11 @@ public class OutputMachine : Machine
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
     protected List<string> removeKeys = new List<string>();
     protected ConveyorItem item;
+    public List<ResourceType> typesNeededToCraft = new List<ResourceType>();
 
+    private void Start() {
+        RunOutput();
+    }
 
     public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
@@ -70,6 +74,27 @@ public class OutputMachine : Machine
         }
     }
 
+    void RunOutput()
+    {
+        // Grab the iten to be crafted and populate the itens needed list. 
+        // We cache the itens needed to craft for later use.
+        foreach (var item in Library.Instance.itensSO.Itens)
+        {
+            if(item.craftableItem == outputType) {
+                typesNeededToCraft.Clear();
+                foreach (var types in item.itensNeededToCraft)
+                    typesNeededToCraft.Add(types);
+
+                break;
+            }
+        }
+
+        // foreach(var item in typesNeededToCraft)
+        //     if(!resourcesInTheMachine.ContainsKey(item.ToString()))
+        //         Debug.LogError($"No item of {item.ToString()} found.");
+
+    }
+
     public virtual void OutputResource()
     {
         if(resourceAmount <= 0) return;
@@ -77,45 +102,75 @@ public class OutputMachine : Machine
         if(!isConnected) CheckOutput();
         if(!isConnected) return;
 
-        if(outputType == ResourceType.none)
+        // Check if the itens needed to craft are in the machine
+        foreach(var item in typesNeededToCraft)
         {
-            Debug.Log("NO RESOURCE SELECTED");
-            return;
+            // Return if itens are not found
+            if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
+                Debug.LogError($"No item of {item.ToString()} type found.");
+                return;
+            }
+            
+            // In this point we know that all itens needed are inside the machine.
+            // Now we check if we have the required amount (>0).
+
+            // Return if we have less or equal than 0 itens
+            if(resourcesInTheMachine[item.ToString()] <= 0) {
+                Debug.LogError($"You have 0 itens of type {item.ToString()}.");
+                return;
+            }
         }
-
-        foreach(var item in resourcesInTheMachine)
-            if(resourcesInTheMachine[item.Key] <= 0) 
-                removeKeys.Add(item.Key);
-
-        foreach (var item in removeKeys)
-            resourcesInTheMachine.Remove(item);
-
-        removeKeys.Clear();
         
-        switch (outputType)
-        {
-            case ResourceType.soil:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
-            break;
-            case ResourceType.ore:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
-            break;
-            case ResourceType.stone:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
-            break;
-            case ResourceType.corn:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.rawCorn);
-            break;
-            case ResourceType.boiledCorn:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.boiledCorn);
-            break;
-            case ResourceType.smashedCorn:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.smashedCorn);
-            break;
-            case ResourceType.crystalCorn:
-                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.crystalCorn);
-            break;
+        // Now we have all itens, and their quantity is bigger then 0
+        // Lets create the output and remove itens from the machine
+
+        // Create item
+        go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), ItemLibrary.Instance.GetPrefabFromType(outputType));
+
+        // Remove from machine
+        foreach(var item in typesNeededToCraft) {
+            resourcesInTheMachine[item.ToString()]--;
         }
+
+        // if(outputType == ResourceType.none)
+        // {
+        //     Debug.Log("NO RESOURCE SELECTED");
+        //     return;
+        // }
+
+        // foreach(var item in resourcesInTheMachine)
+        //     if(resourcesInTheMachine[item.Key] <= 0) 
+        //         removeKeys.Add(item.Key);
+
+        // foreach (var item in removeKeys)
+        //     resourcesInTheMachine.Remove(item);
+
+        // removeKeys.Clear();
+        
+        // switch (outputType)
+        // {
+        //     case ResourceType.soil:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
+        //     break;
+        //     case ResourceType.ore:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
+        //     break;
+        //     case ResourceType.stone:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.soilPrefab);
+        //     break;
+        //     case ResourceType.corn:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.rawCorn);
+        //     break;
+        //     case ResourceType.boiledCorn:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.boiledCorn);
+        //     break;
+        //     case ResourceType.smashedCorn:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.smashedCorn);
+        //     break;
+        //     case ResourceType.crystalCorn:
+        //         go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), Library.Instance.crystalCorn);
+        //     break;
+        // }
         
         go.GetComponent<ConveyorItem>().FreshSpawnItem();
         go.transform.position = outputPoint.transform.position;

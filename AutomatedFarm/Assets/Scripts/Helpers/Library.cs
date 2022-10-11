@@ -8,6 +8,7 @@ public class Library : Singleton<Library>
 {
     [Header("Dependecys")]
     public SO_Buildings buildingsSO;
+    public SO_Craftables itensSO;
     public SeedSO[] seedScriptable;
 
     [Space]
@@ -30,7 +31,7 @@ public class Library : Singleton<Library>
     
     [Header("UI")]
     public ToolTip toolTip;
-
+    
 
     public void ChooseBuilding(int ID)
     {
