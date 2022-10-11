@@ -16,12 +16,12 @@ public class NewGrid : Singleton<NewGrid>
         position -= transform.position;
 
         xSize = Mathf.RoundToInt(position.x / size);
-        ySize = Mathf.RoundToInt(position.y / size);
+        ySize = Mathf.RoundToInt(position.y / 0.5f);
         zSize = Mathf.RoundToInt(position.z / size);
 
         result = new Vector3(
             xSize * size,
-            ySize * size,
+            ySize * 0.5f,
             zSize * size);
 
         result += transform.position;

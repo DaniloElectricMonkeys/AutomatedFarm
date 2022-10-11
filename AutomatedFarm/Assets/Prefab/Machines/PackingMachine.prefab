@@ -366,7 +366,7 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 7717146990438693819}
   checkConnectionPoint: {fileID: 558222623241340745}
-  outputType: 4
+  outputType: 10
   resourceAmount: 0
   timeToExtract: 1
   typesNeededToCraft: 

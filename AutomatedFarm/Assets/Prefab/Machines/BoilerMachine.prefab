@@ -423,9 +423,10 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 4760575304993527008}
   checkConnectionPoint: {fileID: 5746521365959419890}
-  outputType: 4
+  outputType: 6
   resourceAmount: 0
   timeToExtract: 5
+  typesNeededToCraft: 
 --- !u!1 &4760575304993527008
 GameObject:
   m_ObjectHideFlags: 0

@@ -505,9 +505,10 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 854766499751794729}
   checkConnectionPoint: {fileID: 558222623241340745}
-  outputType: 4
+  outputType: 8
   resourceAmount: 0
   timeToExtract: 3
+  typesNeededToCraft: 
   smokeVFX: {fileID: 6844619881982314558}
 --- !u!1 &1943183939492420911
 GameObject:
