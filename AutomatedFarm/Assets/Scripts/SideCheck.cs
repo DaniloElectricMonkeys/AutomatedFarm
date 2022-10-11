@@ -10,7 +10,7 @@ public class SideCheck : MonoBehaviour
     public Transform left;
     public Transform right;
 
-    public float boxSize;
+    public Vector3 boxSize;
     Collider[] hitsFront;
     Collider[] hitsBack;
     Collider[] hitsLeft;
@@ -34,13 +34,17 @@ public class SideCheck : MonoBehaviour
     public GameObject rightTurn;
     public GameObject rightTurn_FrontRight;
     public GameObject original;
-    Conveyor cachedItem;
+    Conveyor itemThatWasHit;
     bool doOnce;
     public bool doNotUpdate;
     [Space]
     [Header("End Point")]
     public Transform endPoint;
+    Conveyor thisConveyor;
 
+    private void Awake() {
+        thisConveyor = GetComponentInParent<Conveyor>();
+    }
     void Start()
     {
         Invoke("LookForCurve",0.5f);
@@ -54,133 +58,182 @@ public class SideCheck : MonoBehaviour
 
         if(doNotUpdate) return;
 
-        hitsFront = Physics.OverlapBox(front.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize * 1.2f) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
-        hitsBack = Physics.OverlapBox(back.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize * 1.2f) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
-        hitsRight = Physics.OverlapBox(right.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize * 1.2f) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
-        hitsLeft = Physics.OverlapBox(left.position, new Vector3((boxSize / 2) * root.lossyScale.x, (boxSize * 1.2f) * root.lossyScale.y, (boxSize / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
+        hitsFront = Physics.OverlapBox(front.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
+        hitsBack = Physics.OverlapBox(back.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
+        hitsRight = Physics.OverlapBox(right.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
+        hitsLeft = Physics.OverlapBox(left.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
         foreach (Collider item in hitsFront)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                cachedItem = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
                 hitFront = true;
             }
 
         foreach (Collider item in hitsBack)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                cachedItem = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
                 hitBack = true;
             }
         
         foreach (Collider item in hitsRight)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                cachedItem = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
                 hitRight = true;
             }
 
         foreach (Collider item in hitsLeft)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                cachedItem = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
                 hitLeft = true;
             }
 
+        if(hitBack) {
+            if( itemThatWasHit.transform.position.y < thisConveyor.transform.position.y) {
+                Debug.Log(itemThatWasHit.transform.position.y + " - " + thisConveyor.transform.position.y);
+                itemThatWasHit.GetComponentInChildren<SideCheck>().EnableRampUp();
+            }
+            else if( itemThatWasHit.transform.position.y > thisConveyor.transform.position.y)
+                EnableRampDown();
+        }
+        else if(hitFront) {
+            if(itemThatWasHit.transform.position.y > thisConveyor.transform.position.y)
+                EnableRampDown();
+        }
+
+        if(hitRight && !hitLeft) {
+            rightTurn.SetActive(true);
+            rightTurn.transform.right = itemThatWasHit.transform.forward;
+            
+            leftTurn.SetActive(false);
+            leftTurn_FrontLeft.SetActive(false);
+            rightTurn_FrontRight.SetActive(false);
+            original.SetActive(false);
+        }
+        else if(!hitRight && hitLeft) {
+            leftTurn.SetActive(true);
+            leftTurn.transform.right = itemThatWasHit.transform.forward;
+            
+            leftTurn_FrontLeft.SetActive(false);
+            rightTurn.SetActive(false);
+            rightTurn_FrontRight.SetActive(false);
+            original.SetActive(false);
+        }
         
-        if(hitFront && !doOnce) {
-            doOnce = true;
-            leftTurn.SetActive(false);
-            rightTurn.SetActive(false);
-            original.SetActive(true);
+
+        
+        // if(hitFront && !doOnce) {
+        //     doOnce = true;
+        //     leftTurn.SetActive(false);
+        //     rightTurn.SetActive(false);
+        //     if(!rampObj.activeSelf || !rampObj.activeSelf)
+        //         original.SetActive(true);
             
-            cachedItem.GetComponentInChildren<SideCheck>().LookForCurve();
-        }
-        if(hitBack && !doOnce) {
-            doOnce = true;
-            leftTurn.SetActive(false);
-            rightTurn.SetActive(false);
-            original.SetActive(true);
-            cachedItem.GetComponentInChildren<SideCheck>().LookForCurve();
-        }
-        if(!hitRight && !hitFront && hitBack && !hitLeft) {
+        //     itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
+        // }
+        // if(hitBack && !doOnce) {
+        //     doOnce = true;
+        //     leftTurn.SetActive(false);
+        //     rightTurn.SetActive(false);
+        //     if(!rampObj.activeSelf || !rampObj.activeSelf)
+        //         original.SetActive(true);
+        //     itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
+        // }
+        // if(!hitRight && !hitFront && hitBack && !hitLeft) {
 
-            rightTurn.SetActive(false);
-            leftTurn.SetActive(false);
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
-            original.SetActive(false);
+        //     rightTurn.SetActive(false);
+        //     leftTurn.SetActive(false);
+        //     leftTurn_FrontLeft.SetActive(false);
+        //     rightTurn_FrontRight.SetActive(false);
+        //     original.SetActive(false);
 
-            if(cachedItem.transform.position.y > transform.position.y)
-                rampObj.SetActive(true);
-            else if(cachedItem.transform.position.y < transform.position.y) {
-                original.SetActive(true);
-                cachedItem.GetComponentInChildren<SideCheck>().LookForCurve();
-            }
-            else
-                original.SetActive(true);
-        }
-        else if(!hitRight && hitFront && !hitBack && !hitLeft) {
+        //     if(itemThatWasHit.transform.position.y > transform.position.y)
+        //         rampObj.SetActive(true);
+        //     else if(itemThatWasHit.transform.position.y < transform.position.y) {
+        //         original.SetActive(true);
+        //         itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
+        //     }
+        //     else
+        //         original.SetActive(true);
+        // }
+        // else if(!hitRight && hitFront && !hitBack && !hitLeft) {
 
-            rightTurn.SetActive(false);
-            leftTurn.SetActive(false);
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
-            original.SetActive(false);
-
-            if(cachedItem.transform.position.y > transform.position.y) {
-                rampObjUp.SetActive(true);
-                endPoint.position = new Vector3(0, 1.44f, 0.76f);
-            }
-            else
-                original.SetActive(true);
-        }
-        else if(hitRight && !hitFront && !hitBack && !hitLeft) {
-            rightTurn.SetActive(true);
-            rightTurn.transform.right = cachedItem.transform.forward;
+        //     if(itemThatWasHit.transform.position.y > transform.position.y)
+        //         EnableRampUp();
+        //     else
+        //         original.SetActive(true);
+        // }
+        // else if(hitRight && !hitFront && !hitBack && !hitLeft) {
+        //     rightTurn.SetActive(true);
+        //     rightTurn.transform.right = itemThatWasHit.transform.forward;
             
-            leftTurn.SetActive(false);
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
+        //     leftTurn.SetActive(false);
+        //     leftTurn_FrontLeft.SetActive(false);
+        //     rightTurn_FrontRight.SetActive(false);
             
-            original.SetActive(false);
-        }
-        else if(hitRight && hitFront && !hitBack && !hitLeft) {
-            rightTurn.SetActive(true);
-            rightTurn.transform.right = cachedItem.transform.forward;
+        //     original.SetActive(false);
+        // }
+        // else if(hitRight && hitFront && !hitBack && !hitLeft) {
+        //     rightTurn.SetActive(true);
+        //     rightTurn.transform.right = itemThatWasHit.transform.forward;
             
-            leftTurn.SetActive(false);
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
+        //     leftTurn.SetActive(false);
+        //     leftTurn_FrontLeft.SetActive(false);
+        //     rightTurn_FrontRight.SetActive(false);
             
-            original.SetActive(false);
-        }
-        else if(!hitRight && !hitFront && !hitBack && hitLeft) {
-            leftTurn.SetActive(true);
+        //     original.SetActive(false);
+        // }
+        // else if(!hitRight && !hitFront && !hitBack && hitLeft) {
+        //     leftTurn.SetActive(true);
 
-            leftTurn.transform.right = cachedItem.transform.forward;
+        //     leftTurn.transform.right = itemThatWasHit.transform.forward;
             
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
+        //     leftTurn_FrontLeft.SetActive(false);
+        //     rightTurn.SetActive(false);
+        //     rightTurn_FrontRight.SetActive(false);
 
-            original.SetActive(false);
-        }
-        else if(!hitRight && hitFront && !hitBack && hitLeft) {
-            leftTurn.SetActive(true);
+        //     original.SetActive(false);
+        // }
+        // else if(!hitRight && hitFront && !hitBack && hitLeft) {
+        //     leftTurn.SetActive(true);
 
-            leftTurn.transform.right = cachedItem.transform.forward;
+        //     leftTurn.transform.right = itemThatWasHit.transform.forward;
             
-            leftTurn_FrontLeft.SetActive(false);
-            rightTurn.SetActive(false);
-            rightTurn_FrontRight.SetActive(false);
+        //     leftTurn_FrontLeft.SetActive(false);
+        //     rightTurn.SetActive(false);
+        //     rightTurn_FrontRight.SetActive(false);
 
-            original.SetActive(false);
-        }
+        //     original.SetActive(false);
+        // }
 
-        StartCoroutine(WaitDoOnce());
+        // StartCoroutine(WaitDoOnce());
 
     }
 
-    IEnumerator WaitDoOnce()
+    // IEnumerator WaitDoOnce()
+    // {
+    //     yield return new WaitForSeconds(1);
+    //     doOnce = false;
+    // }
+
+    public void EnableRampUp()
     {
-        yield return new WaitForSeconds(1);
-        doOnce = false;
+        rightTurn.SetActive(false);
+        leftTurn.SetActive(false);
+        leftTurn_FrontLeft.SetActive(false);
+        rightTurn_FrontRight.SetActive(false);
+        original.SetActive(false);
+
+        rampObjUp.SetActive(true);
+        endPoint.position = new Vector3(0, 1.44f, 0.76f);
+    }
+
+    public void EnableRampDown() {
+        rightTurn.SetActive(false);
+        leftTurn.SetActive(false);
+        leftTurn_FrontLeft.SetActive(false);
+        rightTurn_FrontRight.SetActive(false);
+        original.SetActive(false);
+
+        rampObj.SetActive(true);
     }
 
     public void CheckForMachineConnection()
