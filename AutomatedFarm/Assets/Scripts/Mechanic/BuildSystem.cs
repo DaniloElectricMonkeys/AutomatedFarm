@@ -143,30 +143,37 @@ public class BuildSystem : Singleton<BuildSystem>
     {
         if(blueprintObj != null && Input.GetMouseButton(0))
         {
-            tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
-            BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
-
-            // Return if player cant buy.
-            if(price != null)
-                if(price.CanPay() == false) return;
-
-            if(tagChecker != null && tagChecker.tag != "")// If tag checker exist, only allow building in the selected tag and layer.
+            if (Library.Instance.currentSelected.name == "FertileSoil")
             {
-                if(tagChecker.RayHitNode())// Do the cheking on tag and layer
+                SetSoil();
+            }
+            else
+            {
+                tagChecker = blueprintObj.GetComponent<BuildOnlyInTag>();
+                BuildPrice price = blueprintObj.GetComponent<BuildPrice>();
+
+                // Return if player cant buy.
+                if (price != null)
+                    if (price.CanPay() == false) return;
+
+                if (tagChecker != null && tagChecker.tag != "")// If tag checker exist, only allow building in the selected tag and layer.
+                {
+                    if (tagChecker.RayHitNode())// Do the cheking on tag and layer
+                    {
+                        id++;
+                        createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
+                        createdObject.name = "Object_" + id;
+                        createdObject.GetComponent<IGrowBuild>()?.StartGrow();
+                        createdObject.GetComponent<Extractor>()?.ChangeResourceType(tagChecker.GetResourceBelow());
+                    }
+                }
+                else
                 {
                     id++;
                     createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
                     createdObject.name = "Object_" + id;
                     createdObject.GetComponent<IGrowBuild>()?.StartGrow();
-                    createdObject.GetComponent<Extractor>()?.ChangeResourceType(tagChecker.GetResourceBelow());
                 }
-            }
-            else
-            {
-                id++;
-                createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
-                createdObject.name = "Object_" + id;
-                createdObject.GetComponent<IGrowBuild>()?.StartGrow();
             }
         }
     }
