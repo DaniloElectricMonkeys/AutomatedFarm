@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1128898508916665831}
-  m_Layer: 0
+  - component: {fileID: -2053301544027406731}
+  - component: {fileID: 1419068944643717223}
+  - component: {fileID: -2237542618117248790}
+  m_Layer: 10
   m_Name: Soil End Left
-  m_TagString: Untagged
+  m_TagString: Soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +35,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2053301544027406731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351693753142114141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35dc68a123239f4aa130303e3319e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 1117337372446320685, guid: 05e51b68b7a21d24a83aecdcb1063e8e, type: 3}
+--- !u!114 &1419068944643717223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351693753142114141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798e9e112ff05234b874638494758498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSize: {x: 0.1, y: 0.1, z: 0.1}
+  finalSize: {x: 1, y: 1, z: 1}
+  growTime: 0.45
+--- !u!65 &-2237542618117248790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351693753142114141}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.14078365, z: 1}
+  m_Center: {x: 0, y: 0.07646953, z: 0}
 --- !u!1 &7082755067032164763
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +87,7 @@ GameObject:
   - component: {fileID: 6413275831758246358}
   - component: {fileID: 7817309532421612943}
   - component: {fileID: 5682755567369309944}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Soil End Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

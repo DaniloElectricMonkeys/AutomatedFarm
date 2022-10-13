@@ -20,10 +20,7 @@ public class SideCheck : MonoBehaviour
     bool hitLeft;
     bool hitRight;
     public LayerMask machineLayer;
-    public GameObject affectedSide;
-    public GameObject affectedBridge;
     public Transform root;
-    public bool isFront;
 
     [Space]
     [Header("Turns & Ramps")]
@@ -35,7 +32,7 @@ public class SideCheck : MonoBehaviour
     public GameObject rightTurn_FrontRight;
     public GameObject original;
     Conveyor itemThatWasHit;
-    bool doOnce;
+    public bool isTurn;
     public bool doNotUpdate;
     [Space]
     [Header("End Point")]
@@ -96,11 +93,19 @@ public class SideCheck : MonoBehaviour
         }
         else if(hitFront) {
             if(itemThatWasHit.transform.position.y > thisConveyor.transform.position.y)
-                EnableRampDown();
+                EnableRampUp();
+            else if(itemThatWasHit.transform.position.y < thisConveyor.transform.position.y)
+                itemThatWasHit.GetComponentInChildren<SideCheck>().EnableRampDown();
         }
 
         if(hitRight && !hitLeft) {
+
+            if(hitRight && hitBack)// If we hit someting in thosse positions
+                if(itemThatWasHit.GetComponentInChildren<SideCheck>().isTurn) // Check if is a turn and return.
+                    return;
+                    
             rightTurn.SetActive(true);
+            isTurn = true;
             rightTurn.transform.right = itemThatWasHit.transform.forward;
             
             leftTurn.SetActive(false);
@@ -109,7 +114,13 @@ public class SideCheck : MonoBehaviour
             original.SetActive(false);
         }
         else if(!hitRight && hitLeft) {
+
+            if(hitLeft && hitBack)// If we hit someting in thosse positions
+                if(itemThatWasHit.GetComponentInChildren<SideCheck>().isTurn) // Check if is a turn and return.
+                    return;
+                    
             leftTurn.SetActive(true);
+            isTurn = true;
             leftTurn.transform.right = itemThatWasHit.transform.forward;
             
             leftTurn_FrontLeft.SetActive(false);
