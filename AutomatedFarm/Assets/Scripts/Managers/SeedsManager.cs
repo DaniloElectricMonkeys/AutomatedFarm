@@ -35,10 +35,10 @@ public class SeedsManager : Singleton<SeedsManager>
     public void UpdateSeedDetails(string seedName, float seedPrice, float seedGold, float seedExp, float seedObtained)
     {
         myName.text = seedName;
-        price.text = "Price: " + seedPrice.ToString();
-        gold.text = "Gold: " + seedGold.ToString();
-        exp.text = "Exp: " + seedExp.ToString();
-        obtain.text = "Obtain: " + seedObtained.ToString();
+        price.text = seedPrice.ToString();
+        gold.text = seedGold.ToString();
+        exp.text = seedExp.ToString();
+        obtain.text = seedObtained.ToString();
     }
 
     public void CurrentSeedSelected(Seed seed)

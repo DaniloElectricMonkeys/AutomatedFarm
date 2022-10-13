@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 4a0157197658abf46b043b3b90037aca
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bainsley
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 927d3ed43953c18469bb7c9572c48ef8, type: 3}
+  - {fileID: 12800000, guid: a20405a72ddd030479ab9abd973e5f4d, type: 3}
+  - {fileID: 12800000, guid: 3a65ffb95a2c24e40b71a427e1c7a725, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
