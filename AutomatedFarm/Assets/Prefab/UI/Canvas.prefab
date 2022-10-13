@@ -3028,6 +3028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedsUI: {fileID: 776405680672830820}
+  buttonsUI: {fileID: 4613371772406481393}
+  cameraSwitch: {fileID: 1774039852388096138}
 --- !u!1 &4613371772816882204
 GameObject:
   m_ObjectHideFlags: 0
