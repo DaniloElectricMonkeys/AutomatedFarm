@@ -34,11 +34,7 @@ public class Conveyor : MonoBehaviour
 
     private void Update() 
     {
-        // for (int i = 0; i < itensInConveyor.Count; i++)
-        // {
-        //     // if(itensInConveyor[i].GetComponent<ConveyorItem>().UsedByOther(GetComponent<Collider>()) == false)
-        //         itensInConveyor[i].transform.position += (end.position - itensInConveyor[i].transform.position).normalized * speed * Time.deltaTime;
-        // }
+        removeItens.Clear();
 
         foreach (ConveyorItem item in itensInConveyor)
         {
@@ -47,8 +43,10 @@ public class Conveyor : MonoBehaviour
             item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
             if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
                 removeItens.Add(item);
-            // if(item.transform.position.y < transform.position.y -0.2f)
-            //     removeItens.Add(item);
+            if(!item.gameObject.activeSelf)
+                removeItens.Add(item);
+            if(item.conveyorRef != this)
+                removeItens.Add(item);
         }
 
         // Remove link between item and conveyor. Release item to be linked by other conveyors or machines.
@@ -68,7 +66,6 @@ public class Conveyor : MonoBehaviour
         itensInConveyor.Add(item);
         item.conveyorRef = this;
         item.isLinked = true;
-        Debug.Log("Linking");
     }
 
     public void RemoveLinkItem(ConveyorItem item) {
@@ -80,7 +77,6 @@ public class Conveyor : MonoBehaviour
         item.isLinked = false;
 
         item.CheckForNewConveyor();
-        Debug.Log("Removeing");
     }
     
     private void OnDestroy() {

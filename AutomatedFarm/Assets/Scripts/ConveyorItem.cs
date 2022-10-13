@@ -57,7 +57,6 @@ public class ConveyorItem : MonoBehaviour
             }
 
         }
-        Debug.Log("Checking");
     }
 
     private void OnDrawGizmos() {
