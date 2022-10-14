@@ -71,7 +71,6 @@ public class Machine : MonoBehaviour
         else
         {
             isConnected = false;
-            Debug.Log("NO OUTPUT HIT + " + gameObject.name);
         }
     }
 

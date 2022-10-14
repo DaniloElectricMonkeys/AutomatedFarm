@@ -107,7 +107,6 @@ public class OutputMachine : Machine
         {
             // Return if itens are not found
             if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
-                Debug.LogError($"No item of {item.ToString()} type found.");
                 return;
             }
             
@@ -116,7 +115,6 @@ public class OutputMachine : Machine
 
             // Return if we have less or equal than 0 itens
             if(resourcesInTheMachine[item.ToString()] <= 0) {
-                Debug.LogError($"You have 0 itens of type {item.ToString()}.");
                 return;
             }
         }
