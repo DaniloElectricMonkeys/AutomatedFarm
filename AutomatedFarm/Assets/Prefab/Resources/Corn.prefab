@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.199
+      value: -0.124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 234529fb79ee3ba449b006d97a080ab2, type: 2}
     - target: {fileID: 919132149155446097, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_Name
       value: Corn Cob (1)
@@ -188,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.199
+      value: -0.124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -222,6 +226,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 234529fb79ee3ba449b006d97a080ab2, type: 2}
     - target: {fileID: 919132149155446097, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_Name
       value: Corn Cob
@@ -262,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12099999
+      value: -0.04599999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -296,6 +304,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.278
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 234529fb79ee3ba449b006d97a080ab2, type: 2}
     - target: {fileID: 919132149155446097, guid: 52eeb13c85ef4694f9e917cb2e72cd77, type: 3}
       propertyPath: m_Name
       value: Corn Cob (2)
