@@ -13,7 +13,7 @@ Material:
   - EFFECT_EXTRA_TEX
   - EFFECT_HUE_VARIATION
   - EFFECT_SUBSURFACE
-  - _WINDQUALITY_NONE
+  - _WINDQUALITY_BETTER
   m_InvalidKeywords:
   - _ENABLEHORIZONTALBENDING_ON
   - _ENABLEHORIZONTALMOVEMENT_ON
@@ -117,7 +117,7 @@ Material:
     - _SubsurfaceKwToggle: 1
     - _TwoSided: 0
     - _UVSec: 0
-    - _WindQuality: 0
+    - _WindQuality: 3
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
