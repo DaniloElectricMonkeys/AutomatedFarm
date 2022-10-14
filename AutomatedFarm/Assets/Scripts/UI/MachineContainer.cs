@@ -27,7 +27,7 @@ public class MachineContainer : MonoBehaviour
 
     public void Selected()
     {
-        MachinesManager.Instance.UpdateMachineDetails(machine.name, machine.price);
+        MachinesManager.Instance.UpdateMachineDetails(machine.name, machine.price, machine.description);
         MachinesManager.Instance.CurrentMachineSelected(machine);
     }
 }
