@@ -9,6 +9,9 @@ public class SO_Buildings : ScriptableObject {
 [System.Serializable]
 public class Building
 {
+    public string name;
+    public float price;
+    public Sprite icon;
     public GameObject blueprint;
     public GameObject original;
 }

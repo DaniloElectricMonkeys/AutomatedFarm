@@ -16,10 +16,12 @@ public class SeedsManager : Singleton<SeedsManager>
     [SerializeField] TextMeshProUGUI obtain;
 
     public Seed currentSeed { get; private set; }
+    public SeedContainer firstContainer { get; private set; }
 
     private void Start()
     {
         SpawnSeedContainer();
+        SelectFirst();
     }
 
     void SpawnSeedContainer()
@@ -28,6 +30,7 @@ public class SeedsManager : Singleton<SeedsManager>
         {
             Seed currentSeed = Library.Instance.seedScriptable[0].seeds[i];
             SeedContainer container = Instantiate(seedContainer, grid.transform);
+            if (i == 0) firstContainer = container;
             container.GetSeed(currentSeed);
         }
     }
@@ -51,5 +54,15 @@ public class SeedsManager : Singleton<SeedsManager>
         CanvasManager.Instance.ToggleSeedsUI();
         Library.Instance.SetCurrentSelected(currentSeed.seed);
         BuildSystem.Instance.ChosseObject(currentSeed.seedBlueprint);
-    }    
+    }
+
+    public void ToggleSeedsUI()
+    {
+        CanvasManager.Instance.ToggleSeedsUI();
+    }
+
+    public void SelectFirst()
+    {
+        firstContainer.FirstSelect();
+    }
 }
