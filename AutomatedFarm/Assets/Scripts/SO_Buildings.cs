@@ -11,6 +11,7 @@ public class Building
 {
     public string name;
     public float price;
+    public string description;
     public Sprite icon;
     public GameObject blueprint;
     public GameObject original;

@@ -9,6 +9,7 @@ public class MachinesManager : Singleton<MachinesManager>
 
     [SerializeField] TextMeshProUGUI myName;
     [SerializeField] TextMeshProUGUI price;
+    [SerializeField] TextMeshProUGUI description;
 
     public Building currentMachine { get; private set; }
     public MachineContainer firstContainer { get; private set; }
@@ -29,10 +30,11 @@ public class MachinesManager : Singleton<MachinesManager>
         }
     }
 
-    public void UpdateMachineDetails(string machineName, float machinePrice)
+    public void UpdateMachineDetails(string machineName, float machinePrice, string machineDesc)
     {
         myName.text = machineName;
         price.text = machinePrice.ToString();
+        description.text = machineDesc;
     }
 
     public void SelectMachine()
