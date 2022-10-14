@@ -13,27 +13,75 @@ MonoBehaviour:
   m_Name: SO_Buildings
   m_EditorClassIdentifier: 
   buildings:
-  - blueprint: {fileID: 1309744788639485926, guid: 45c4303388ad74d4a9217b153001d24a, type: 3}
+  - name: Miner
+    price: 10
+    description: Simple miner, use to extract resources.
+    icon: {fileID: 21300000, guid: 32fb7e0aee1614fe8ac38467a139e9a6, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 45c4303388ad74d4a9217b153001d24a, type: 3}
     original: {fileID: 1309744788639485926, guid: f96aacf0840991f4daf4e16d0df31487, type: 3}
-  - blueprint: {fileID: 4739135483468428020, guid: 002e00db52fd4404ab387ec49b810144, type: 3}
+  - name: Conveyor
+    price: 5
+    description: Used to transport itens.
+    icon: {fileID: 21300000, guid: f1f9911f8a6294b408a336f72a5611b7, type: 3}
+    blueprint: {fileID: 4739135483468428020, guid: 002e00db52fd4404ab387ec49b810144, type: 3}
     original: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: df86acf63169e2049b42651285104941, type: 3}
+  - name: Seller
+    price: 5
+    description: Sell or store resources.
+    icon: {fileID: 21300000, guid: 7e082cc2cf2a4433d85e388c6bf94234, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: df86acf63169e2049b42651285104941, type: 3}
     original: {fileID: 1309744788639485926, guid: bd1736eb157ff7a499f33d6819a4eeb5, type: 3}
-  - blueprint: {fileID: 6467990521855568265, guid: 112eb7b0ef07d2645b4eba492e8c340c, type: 3}
+  - name: Fertile Soil
+    price: 2
+    description: Use to plant crops.
+    icon: {fileID: 21300000, guid: da200880f76fd314badf86c5c874ac90, type: 3}
+    blueprint: {fileID: 6467990521855568265, guid: 112eb7b0ef07d2645b4eba492e8c340c, type: 3}
     original: {fileID: 6467990521855568265, guid: fcc1895e5e517e149be57687231ce1e1, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: d212233513b4f274bacebfc2eef442fa, type: 3}
+  - name: Plant Graber
+    price: 10
+    description: Harvest neaby crops automaticly.
+    icon: {fileID: 21300000, guid: f4e6d63642e720d44bae3916a5aa7f3e, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: d212233513b4f274bacebfc2eef442fa, type: 3}
     original: {fileID: 1309744788639485926, guid: c0e7c603fb89517418de3f6b03e2fe8d, type: 3}
-  - blueprint: {fileID: 6732838891807173496, guid: fbee82f6399c9fb479fe843f7455c3b1, type: 3}
+  - name: Ramp Conveyor
+    price: 2
+    description: Go up hills.
+    icon: {fileID: 21300000, guid: f1f9911f8a6294b408a336f72a5611b7, type: 3}
+    blueprint: {fileID: 6732838891807173496, guid: fbee82f6399c9fb479fe843f7455c3b1, type: 3}
     original: {fileID: 6732838891807173496, guid: 6577a6e22abbb5d4ab3b513118eba1b2, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: 8e4ae1b928a2cae4cb7ada57b21f10fc, type: 3}
+  - name: Boiler Machine
+    price: 3
+    description: Used to boil products that can be boiled.
+    icon: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 8e4ae1b928a2cae4cb7ada57b21f10fc, type: 3}
     original: {fileID: 1309744788639485926, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
-  - blueprint: {fileID: 4859204167602889040, guid: a4e9b1b7296371147aca9d5e6bd349f4, type: 3}
+  - name: Drone
+    price: 5
+    description: Automates the crop collection.
+    icon: {fileID: 21300000, guid: da200880f76fd314badf86c5c874ac90, type: 3}
+    blueprint: {fileID: 4859204167602889040, guid: a4e9b1b7296371147aca9d5e6bd349f4, type: 3}
     original: {fileID: 4859204167602889040, guid: df7ec46a024d53e48b02980fb1e844e8, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: 8b5e8eb00295ece4aa6e97a7a36611f6, type: 3}
+  - name: Cooking Machine
+    price: 7
+    description: Used to cook the resource.
+    icon: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 8b5e8eb00295ece4aa6e97a7a36611f6, type: 3}
     original: {fileID: 1309744788639485926, guid: e4d323b398af3be498531a3a6bb40fac, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: 959fdd7a2ccf2a648998dbf5eddac579, type: 3}
+  - name: Crystilize Machine
+    price: 9
+    description: Envolves the food in sugar for more sweetness.
+    icon: {fileID: 21300000, guid: 32fb7e0aee1614fe8ac38467a139e9a6, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 959fdd7a2ccf2a648998dbf5eddac579, type: 3}
     original: {fileID: 1309744788639485926, guid: 2a898f8033bd3574299898c354303de7, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: 347004fd4b96d2c41b3d2af09e345f02, type: 3}
+  - name: Packing Machine
+    price: 7
+    description: Pack your product.
+    icon: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 347004fd4b96d2c41b3d2af09e345f02, type: 3}
     original: {fileID: 1309744788639485926, guid: 0b7c2bdb5bf9ae1449bbc23e930a0100, type: 3}
-  - blueprint: {fileID: 1309744788639485926, guid: 58f7368015268ea43ae9172daeb32113, type: 3}
+  - name: Smasher
+    price: 4
+    description: Smashe!!!
+    icon: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 58f7368015268ea43ae9172daeb32113, type: 3}
     original: {fileID: 1309744788639485926, guid: 17028d43efd06a94dbcd9f5110e8b5c4, type: 3}
