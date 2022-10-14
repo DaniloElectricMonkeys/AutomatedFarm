@@ -7,6 +7,7 @@ public class SeedContainer : MonoBehaviour
 {
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI growTime;
+    [SerializeField] Button button;
     public Seed seed { get; private set; }
 
     private void Start()
@@ -29,5 +30,11 @@ public class SeedContainer : MonoBehaviour
     {
         SeedsManager.Instance.UpdateSeedDetails(seed.name, seed.price, seed.goldObtained, seed.expObtained, seed.amountObtained);
         SeedsManager.Instance.CurrentSeedSelected(seed);
+    }
+
+    public void FirstSelect()
+    {
+        button.Select();
+        Selected();
     }
 }
