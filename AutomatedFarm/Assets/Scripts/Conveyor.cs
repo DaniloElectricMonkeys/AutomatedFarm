@@ -32,6 +32,18 @@ public class Conveyor : MonoBehaviour
         }
     }
 
+    private void FixedUpdate() {
+        Vector3 pos = rb.position;
+        rb.position += -transform.forward * 0.6f * Time.fixedDeltaTime;
+        rb.MovePosition(pos);
+        foreach (ConveyorItem item in itensInConveyor)
+        {
+            if(item == null) return;
+            // item.GetComponent<Rigidbody>().AddForce((end.position - item.transform.position).normalized * speed * Time.deltaTime);
+            item.GetComponent<Rigidbody>().velocity = ((end.position - item.transform.position).normalized * speed * Time.deltaTime);
+        }
+    }
+
     private void Update() 
     {
         removeItens.Clear();
@@ -40,8 +52,9 @@ public class Conveyor : MonoBehaviour
         {
             if(item == null) return;
 
-            item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
-            if(GetToleranceDistance(item.transform.position, end.position, 0.2f))
+            // item.transform.position += (end.position - item.transform.position).normalized * speed * Time.deltaTime;
+            // item.GetComponent<Rigidbody>().AddForce((end.position - item.transform.position).normalized* speed * Time.deltaTime);
+            if(GetToleranceDistance(item.transform.position, end.position, 0.2f, 1.2f))
                 removeItens.Add(item);
             if(!item.gameObject.activeSelf)
                 removeItens.Add(item);
@@ -57,9 +70,11 @@ public class Conveyor : MonoBehaviour
         }
     }
     
-    bool GetToleranceDistance(Vector3 start, Vector3 end, float tolerance)
+    bool GetToleranceDistance(Vector3 start, Vector3 end, float shortTolerance, float farTolerance)
     {
-        return ((end - start).magnitude <= tolerance);
+        if(((end - start).magnitude >= farTolerance))
+            return true;
+        return ((end - start).magnitude <= shortTolerance);
     }
 
     public void LinkItem(ConveyorItem item) {

@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {fileID: 1470971641234153348}
-  speed: 1
+  speed: 30
 --- !u!114 &249778767904132766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,14 +216,11 @@ MonoBehaviour:
   back: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  boxSize: 0.75
+  boxSize: {x: 0, y: 0, z: 0}
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 4604775240515589337}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -231,6 +228,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 0}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &1533120729821497095
@@ -281,14 +279,11 @@ MonoBehaviour:
   back: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  boxSize: 0.75
+  boxSize: {x: 0, y: 0, z: 0}
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 4604775240515589337}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -296,6 +291,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 1656610056555576071}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &2212139655110783250
@@ -346,14 +342,11 @@ MonoBehaviour:
   back: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  boxSize: 0.75
+  boxSize: {x: 0, y: 0, z: 0}
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 4604775240515589337}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -361,6 +354,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 0}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &3459834508796155161
@@ -415,14 +409,11 @@ MonoBehaviour:
   back: {fileID: 6595410696413353879}
   left: {fileID: 7837808658190445617}
   right: {fileID: 7705027385012834025}
-  boxSize: 0.75
+  boxSize: {x: 0, y: 0, z: 0}
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 4604775240515589337}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 1127432196024396021}
@@ -430,6 +421,7 @@ MonoBehaviour:
   rightTurn: {fileID: 1211635905023110235}
   rightTurn_FrontRight: {fileID: 6422163260479133898}
   original: {fileID: 1656610056555576071}
+  isTurn: 0
   doNotUpdate: 1
   endPoint: {fileID: 0}
 --- !u!1 &3955443118021978359
@@ -480,14 +472,11 @@ MonoBehaviour:
   back: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  boxSize: 0.75
+  boxSize: {x: 0, y: 0, z: 0}
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 4604775240515589337}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -495,6 +484,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 1656610056555576071}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &4324001148785941610

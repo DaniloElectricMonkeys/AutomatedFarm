@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
+using DG.Tweening;
 
 ///<summary>
 /// Handle conveyour itens logic.
