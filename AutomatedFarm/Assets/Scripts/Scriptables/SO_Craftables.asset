@@ -20,6 +20,6 @@ MonoBehaviour:
   - craftableItem: 8
     itensNeededToCraft: 07000000
   - craftableItem: 9
-    itensNeededToCraft: 08000000
+    itensNeededToCraft: 080000000c000000
   - craftableItem: 10
     itensNeededToCraft: 090000000b000000

@@ -47,7 +47,7 @@ public class OutputMachine : Machine
         if(obj != null)
         {
             // obj.GetComponent<ConveyorItem>().RemoveLink();
-            obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract/2)
+            obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract)
             .SetEase(Ease.Linear)
             .OnComplete( () =>{
                 ObjectPool.Instance.AddToPool(key, obj.gameObject);

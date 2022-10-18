@@ -71,7 +71,7 @@ public class TEST_Belt : MonoBehaviour
         var forward = transform.forward;
 
         Ray ray = new Ray(currentBeltTransform.position, forward);
-        if (Physics.Raycast(ray, out hit, 2f))
+        if (Physics.Raycast(ray, out hit, 1f))
         {
             TEST_Belt belt = hit.collider.GetComponent<TEST_Belt>();
 
@@ -80,5 +80,9 @@ public class TEST_Belt : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
     }
 }

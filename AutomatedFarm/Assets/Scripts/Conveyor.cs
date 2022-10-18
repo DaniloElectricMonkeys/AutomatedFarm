@@ -34,7 +34,7 @@ public class Conveyor : MonoBehaviour
 
     private void FixedUpdate() {
         Vector3 pos = rb.position;
-        rb.position += -transform.forward * 1f * Time.fixedDeltaTime;
+        rb.position += -transform.forward * 2f * Time.fixedDeltaTime;
         rb.MovePosition(pos);
         foreach (ConveyorItem item in itensInConveyor)
         {
