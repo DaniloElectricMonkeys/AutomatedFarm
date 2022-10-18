@@ -122,12 +122,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054611662755418815}
-  m_Material: {fileID: 13400000, guid: 1560575207a7b4f27bcd4ab2aeb2e3a1, type: 2}
+  m_Material: {fileID: 13400000, guid: 7c8dcbce1c4bad742afefbd242071dde, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9669771, y: 1, z: 1}
+  m_Center: {x: 0.01651144, y: 0, z: 0}
 --- !u!1 &4739135483468428020
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {fileID: 6078797605869612956}
-  speed: 1
+  speed: 30
 --- !u!114 &-4376743840595739002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,10 +350,7 @@ MonoBehaviour:
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -361,6 +358,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 0}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &6157397002783651615
@@ -415,10 +413,7 @@ MonoBehaviour:
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -426,6 +421,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 6253455671012920095}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &6811364131692331274
@@ -480,10 +476,7 @@ MonoBehaviour:
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -491,6 +484,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 0}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &8085658954255557889
@@ -549,10 +543,7 @@ MonoBehaviour:
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
-  isFront: 1
   rampObj: {fileID: 8249798279121075445}
   rampObjUp: {fileID: 8183020781583430301}
   leftTurn: {fileID: 5733288238478153965}
@@ -560,6 +551,7 @@ MonoBehaviour:
   rightTurn: {fileID: 5829156219662097475}
   rightTurn_FrontRight: {fileID: 1807581347751487698}
   original: {fileID: 6253455671012920095}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 8360402702474279562}
 --- !u!1 &8561699486320269551
@@ -614,10 +606,7 @@ MonoBehaviour:
   machineLayer:
     serializedVersion: 2
     m_Bits: 256
-  affectedSide: {fileID: 0}
-  affectedBridge: {fileID: 0}
   root: {fileID: 9210626987964966081}
-  isFront: 0
   rampObj: {fileID: 0}
   rampObjUp: {fileID: 0}
   leftTurn: {fileID: 0}
@@ -625,6 +614,7 @@ MonoBehaviour:
   rightTurn: {fileID: 0}
   rightTurn_FrontRight: {fileID: 0}
   original: {fileID: 6253455671012920095}
+  isTurn: 0
   doNotUpdate: 0
   endPoint: {fileID: 0}
 --- !u!1 &8949843228814830706
@@ -651,7 +641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8949843228814830706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.907, z: 1.2}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
