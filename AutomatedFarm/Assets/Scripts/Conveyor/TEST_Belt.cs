@@ -10,6 +10,7 @@ public class TEST_Belt : MonoBehaviour
     public TEST_Belt beltInSequence;
     public TEST_BeltItem beltItem;
     public bool isSpaceTaken;
+    public OutputMachine selectedMachine;
 
     private TEST_BeltManager _beltManager;
 
@@ -23,6 +24,19 @@ public class TEST_Belt : MonoBehaviour
 
     private void Update()
     {
+        if(selectedMachine == null)
+            selectedMachine = FindMachine();
+
+        if(selectedMachine != null && beltItem == null && isSpaceTaken == false)
+        {
+            if(selectedMachine.GetResourceAmount() > 0)
+            {
+                beltItem = selectedMachine.AskForBeltItem();
+                // if(beltItem != null)
+                //     StartCoroutine(StartBeltMove());
+            }
+        }
+
         if (beltInSequence == null)
             beltInSequence = FindNextBelt();
 
@@ -82,7 +96,27 @@ public class TEST_Belt : MonoBehaviour
         return null;
     }
 
+    private OutputMachine FindMachine()
+    {
+        Transform currentBeltTransform = transform;
+        RaycastHit hit;
+
+        var forward = -transform.forward;
+
+        Ray ray = new Ray(currentBeltTransform.position, forward);
+        if (Physics.Raycast(ray, out hit, 1f))
+        {
+            OutputMachine machine = hit.collider.GetComponent<OutputMachine>();
+
+            if (machine != null)
+                return machine;
+        }
+
+        return null;
+    }
+
     private void OnDrawGizmos() {
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
+        Gizmos.DrawLine(transform.position, transform.position + (-transform.forward * 1f));
     }
 }

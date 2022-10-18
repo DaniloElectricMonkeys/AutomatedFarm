@@ -214,6 +214,7 @@ public class Drone : PlantGraber
 
     public override void OutputResource()
     {
+        return;
         if(resourceAmount <= 0) return;
 
         if(!isConnected) CheckOutput();
@@ -283,8 +284,10 @@ public class Drone : PlantGraber
             Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
             return;
         }
-            
-        go.GetComponent<ConveyorItem>().dontKill = true;
+
+        if(go.GetComponent<ConveyorItem>() != null)    
+            go.GetComponent<ConveyorItem>().dontKill = true;
+
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
