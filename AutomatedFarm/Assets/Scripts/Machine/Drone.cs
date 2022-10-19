@@ -34,10 +34,23 @@ public class Drone : PlantGraber
 
     private void Start() {
         AssignPlants();
+        foreach (var item in resourcesToInject)
+        {
+            Debug.Log("????");
+            resourcesInTheMachine.Add(item.type.ToString(), item.quantity);
+            resourceAmount += item.quantity;
+            Debug.Log(resourceAmount);
+        }
     }
 
     protected override void Awake() {
         PlantGrow.OnPlantReady += ThisAssign;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        PlantGrow.OnPlantReady -= ThisAssign;
     }
 
     void CheckPlantList(out bool canContinue)
@@ -212,83 +225,86 @@ public class Drone : PlantGraber
         FlyToCrop();
     }
 
-    public override void OutputResource()
-    {
-        if(resourceAmount <= 0) return;
+    // public override void OutputResource()
+    // {
+    //     return;
+    //     if(resourceAmount <= 0) return;
 
-        if(!isConnected) CheckOutput();
-        if(!isConnected) return;
+    //     if(!isConnected) CheckOutput();
+    //     if(!isConnected) return;
 
-        if(outputType == ResourceType.none)
-        {
-            Debug.Log("NO RESOURCE SELECTED");
-            return;
-        }
+    //     if(outputType == ResourceType.none)
+    //     {
+    //         Debug.Log("NO RESOURCE SELECTED");
+    //         return;
+    //     }
 
-        foreach(var item in resourcesInTheMachine)
-            if(resourcesInTheMachine[item.Key] <= 0) 
-                removeKeys.Add(item.Key);
+    //     foreach(var item in resourcesInTheMachine)
+    //         if(resourcesInTheMachine[item.Key] <= 0) 
+    //             removeKeys.Add(item.Key);
 
-        foreach (var item in removeKeys)
-            resourcesInTheMachine.Remove(item);
+    //     foreach (var item in removeKeys)
+    //         resourcesInTheMachine.Remove(item);
 
-        removeKeys.Clear();
+    //     removeKeys.Clear();
 
-        if(outputType == ResourceType.variable)
-        {
-            if(resourcesInTheMachine.Count > 0)
-            {
-                foreach(var item in resourcesInTheMachine)
-                {
-                    ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
+    //     if(outputType == ResourceType.variable)
+    //     {
+    //         if(resourcesInTheMachine.Count > 0)
+    //         {
+    //             foreach(var item in resourcesInTheMachine)
+    //             {
+    //                 ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
                     
-                    switch (type)
-                    {
-                        case ResourceType.corn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.rawCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.boiledCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.smashedCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.smashedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.soil:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.soilPrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.ore:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.orePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.stone:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.stonePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
+    //                 switch (type)
+    //                 {
+    //                     case ResourceType.corn:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.rawCorn);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
+    //                     case ResourceType.boiledCorn:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.boiledCorn);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
+    //                     case ResourceType.smashedCorn:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.smashedCorn);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
+    //                     case ResourceType.soil:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.soilPrefab);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
+    //                     case ResourceType.ore:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.orePrefab);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
+    //                     case ResourceType.stone:
+    //                         go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.stonePrefab);
+    //                         resourcesInTheMachine[item.Key] -= 1;
+    //                     break;
 
-                        default:
-                            return;
-                    }
-                    break;
-                }
-            }
-            else
-                return;
-        }
-        else
-        {
-            Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
-            return;
-        }
-            
-        go.GetComponent<ConveyorItem>().dontKill = true;
-        go.transform.position = outputPoint.transform.position;
-        go.transform.rotation = Quaternion.identity;
-        go.SetActive(true);
+    //                     default:
+    //                         return;
+    //                 }
+    //                 break;
+    //             }
+    //         }
+    //         else
+    //             return;
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("NO RESOURCE SELECTED - BOILING MACHINE");
+    //         return;
+    //     }
 
-        resourceAmount--;
-    }
+    //     if(go.GetComponent<ConveyorItem>() != null)    
+    //         go.GetComponent<ConveyorItem>().dontKill = true;
+
+    //     go.transform.position = outputPoint.transform.position;
+    //     go.transform.rotation = Quaternion.identity;
+    //     go.SetActive(true);
+
+    //     resourceAmount--;
+    // }
 }

@@ -85,7 +85,6 @@ public class SideCheck : MonoBehaviour
 
         if(hitBack) {
             if( itemThatWasHit.transform.position.y < thisConveyor.transform.position.y) {
-                Debug.Log(itemThatWasHit.transform.position.y + " - " + thisConveyor.transform.position.y);
                 itemThatWasHit.GetComponentInChildren<SideCheck>().EnableRampUp();
             }
             else if( itemThatWasHit.transform.position.y > thisConveyor.transform.position.y)

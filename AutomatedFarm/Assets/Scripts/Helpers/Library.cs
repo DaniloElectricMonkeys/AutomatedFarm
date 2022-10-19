@@ -12,15 +12,6 @@ public class Library : Singleton<Library>
     public SeedSO[] seedScriptable;
 
     [Space]
-    [Header("Corn Prefabs")]
-    public GameObject rawCorn;
-    public GameObject boiledCorn;
-    public GameObject smashedCorn;
-    public GameObject cookedCorn;
-    public GameObject crystalCorn;
-    public GameObject packedCorn;
-
-    [Space]
     [Header("Resource Prefabs")]
     public GameObject soilPrefab;
     public GameObject orePrefab;

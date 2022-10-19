@@ -76,17 +76,17 @@ public class Machine : MonoBehaviour
 
     #region Input
 
-        private void OnTriggerEnter(Collider other) 
-        {
-            if(useInput == false) return;
+        // private void OnTriggerEnter(Collider other) 
+        // {
+        //     if(useInput == false) return;
             
-            ConveyorItem item = other.GetComponent<ConveyorItem>();
-            if(item == null) return;
-            if(item.dontKill)
-                item.MoveOutFromTheMachine(outputPoint.transform.forward);
-            else if(item != null)
-                OnResourceEnter(item.type, other.gameObject);
-        }
+        //     ConveyorItem item = other.GetComponent<ConveyorItem>();
+        //     if(item == null) return;
+        //     if(item.dontKill)
+        //         item.MoveOutFromTheMachine(outputPoint.transform.forward);
+        //     else if(item != null)
+        //         OnResourceEnter(item.type, other.gameObject);
+        // }
 
     #endregion 
 

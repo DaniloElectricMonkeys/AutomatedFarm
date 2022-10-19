@@ -9,7 +9,7 @@ using UnityEngine;
 ///</summary>
 public class ObjectPool : Singleton<ObjectPool>
 {
-    public Queue<GameObject> pooling = new Queue<GameObject>();
+    public Queue<GameObject> pool = new Queue<GameObject>();
     public Dictionary<string,Queue<GameObject>> master = new Dictionary<string,Queue<GameObject>>();
 
     //Creat a new pool ot itens and store it on the dictionary
@@ -28,33 +28,33 @@ public class ObjectPool : Singleton<ObjectPool>
             NewPool(key);
         }
 
-        if(master.TryGetValue(key, out pooling))
+        if(master.TryGetValue(key, out pool))
         {
-            pooling.Enqueue(go);
+            pool.Enqueue(go);
         }
     }
 
     //Get from the pool
     public GameObject GrabFromPool(string key, GameObject go)
     {
-        if(master.TryGetValue(key, out pooling))
+        if(master.TryGetValue(key, out pool))
         {
-            if(pooling.Count > 0)
+            if(pool.Count > 0)
             {
-                GameObject obj = pooling.Dequeue();
-                obj.GetComponent<ConveyorItem>().FreshSpawnItem();
+                GameObject obj = pool.Dequeue();
+                // obj.GetComponent<ConveyorItem>().FreshSpawnItem();
                 return obj;
             }
             else
             {
                 AddToPool(key, go);
-                return Instantiate(pooling.Dequeue());
+                return Instantiate(pool.Dequeue());
             }
         }
         else
         {
             AddToPool(key, go);
-            return Instantiate(pooling.Dequeue());
+            return Instantiate(pool.Dequeue());
         }
     }
 }
