@@ -11,8 +11,10 @@ public class TEST_Belt : MonoBehaviour
     public TEST_BeltItem beltItem;
     public bool isSpaceTaken;
     public OutputMachine selectedMachine;
-
     private TEST_BeltManager _beltManager;
+    public bool input;
+    public bool output;
+    bool doOnce;
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class TEST_Belt : MonoBehaviour
         if(selectedMachine == null)
             selectedMachine = FindMachine();
 
-        if(selectedMachine != null && beltItem == null && isSpaceTaken == false)
+        if(selectedMachine != null && beltItem == null && isSpaceTaken == false && output)
         {
             if(selectedMachine.GetResourceAmount() > 0)
             {
@@ -46,7 +48,7 @@ public class TEST_Belt : MonoBehaviour
 
     public Vector3 GetItemPosition()
     {
-        var padding = 1f;
+        var padding = 0.9f;
         var position = transform.position;
         return new Vector3(position.x, position.y + padding, position.z);
     }
@@ -75,6 +77,27 @@ public class TEST_Belt : MonoBehaviour
             beltInSequence.beltItem = beltItem;
             beltItem = null;
         }
+        else if (beltItem.item != null && beltInSequence == null && selectedMachine != null && input && doOnce == false && selectedMachine.InventoryFull() == false)
+        {
+            doOnce = true;
+            Vector3 toPosition = GetItemPosition() + transform.forward;
+
+            var step = _beltManager.speed * Time.deltaTime;
+
+            while (beltItem.item.transform.position != toPosition)
+            {
+                beltItem.item.transform.position = 
+                    Vector3.MoveTowards(beltItem.transform.position, toPosition, step);
+
+                yield return null;
+            }
+
+            selectedMachine.OnResourceEnter(beltItem.type, beltItem.item, 1);
+
+            isSpaceTaken = false;
+            beltItem = null;
+            doOnce = false;
+        }
     }
 
     private TEST_Belt FindNextBelt()
@@ -101,15 +124,29 @@ public class TEST_Belt : MonoBehaviour
         Transform currentBeltTransform = transform;
         RaycastHit hit;
 
-        var forward = -transform.forward;
+        Ray rayForward = new Ray(currentBeltTransform.position, transform.forward);
+        Ray rayBackwards = new Ray(currentBeltTransform.position, -transform.forward);
 
-        Ray ray = new Ray(currentBeltTransform.position, forward);
-        if (Physics.Raycast(ray, out hit, 1f))
+        if (Physics.Raycast(rayForward, out hit, 1f))
         {
             OutputMachine machine = hit.collider.GetComponent<OutputMachine>();
 
             if (machine != null)
+            {
+                input = true;
                 return machine;
+            }
+        }
+
+        if (Physics.Raycast(rayBackwards, out hit, 1f))
+        {
+            OutputMachine machine = hit.collider.GetComponent<OutputMachine>();
+
+            if (machine != null)
+            {
+                output = true;
+                return machine;
+            }
         }
 
         return null;

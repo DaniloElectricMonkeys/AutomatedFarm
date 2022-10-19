@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558222623241340745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.47, z: 3.409}
+  m_LocalPosition: {x: 0, y: 1.413, z: 3.943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,10 +127,12 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 8443502355862148032}
   checkConnectionPoint: {fileID: 558222623241340745}
+  inventoryCapacity: 999
   outputType: 9
   resourceAmount: 0
   timeToExtract: 2
   typesNeededToCraft: 
+  resourcesToInject: []
 --- !u!1 &8443502355862148032
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +171,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1309744788639485723}
     m_Modifications:
+    - target: {fileID: 3242232905459393937, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
+      propertyPath: selectedMachine
+      value: 
+      objectReference: {fileID: 80145004731414037}
+    - target: {fileID: 6144826720627276407, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
+      propertyPath: selectedMachine
+      value: 
+      objectReference: {fileID: 80145004731414037}
+    - target: {fileID: 7071198364946945760, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
+      propertyPath: selectedMachine
+      value: 
+      objectReference: {fileID: 80145004731414037}
     - target: {fileID: 8312870034124356319, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -217,68 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sugar Machine
       objectReference: {fileID: 0}
-    - target: {fileID: 8653367531958493285, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
---- !u!1 &4204803017350988510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2041020760645420072, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
-  m_PrefabInstance: {fileID: 2740826858550822646}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &6066069827335506518
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4204803017350988510}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.24999996, z: 1}
-  m_Center: {x: 0, y: -0.000000037252903, z: 0}
---- !u!1 &5096203053033098221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6967075412166380827, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
-  m_PrefabInstance: {fileID: 2740826858550822646}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1486192090021593840
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5096203053033098221}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.24999996, z: 1}
-  m_Center: {x: 0, y: -0.000000037252903, z: 0.000000059604645}
 --- !u!4 &6148645774272838697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8312870034124356319, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
   m_PrefabInstance: {fileID: 2740826858550822646}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8442588046721512285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5990709550583313835, guid: b8219a7c912322a4ea4a2f1ad2ac52b2, type: 3}
-  m_PrefabInstance: {fileID: 2740826858550822646}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1258684525087328638
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8442588046721512285}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7500002, y: 0.24999996, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000037252903, z: 0}

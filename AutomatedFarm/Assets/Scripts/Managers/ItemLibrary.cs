@@ -12,6 +12,8 @@ public class ItemLibrary : Singleton<ItemLibrary>
     public GameObject cookedCorn;
     public GameObject crystalCorn;
     public GameObject packedCorn;
+    public GameObject cardboard;
+    public GameObject sugar;
     
     public GameObject GetPrefabFromType(ResourceType type) {
         switch(type) {
@@ -27,6 +29,10 @@ public class ItemLibrary : Singleton<ItemLibrary>
                 return crystalCorn;
             case ResourceType.packedCorn:
                 return packedCorn;
+            case ResourceType.cardboard:
+                return cardboard;
+            case ResourceType.sugar:
+                return sugar;
         }
         return null;
     }
