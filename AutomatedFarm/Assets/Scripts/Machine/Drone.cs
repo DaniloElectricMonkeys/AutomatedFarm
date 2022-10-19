@@ -40,6 +40,12 @@ public class Drone : PlantGraber
         PlantGrow.OnPlantReady += ThisAssign;
     }
 
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        PlantGrow.OnPlantReady -= ThisAssign;
+    }
+
     void CheckPlantList(out bool canContinue)
     {
         readyPlants.Clear();
@@ -293,5 +299,10 @@ public class Drone : PlantGraber
         go.SetActive(true);
 
         resourceAmount--;
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        // Do Nothing
     }
 }
