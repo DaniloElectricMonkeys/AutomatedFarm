@@ -15,6 +15,13 @@ public class TEST_Belt : MonoBehaviour
     public bool input;
     public bool output;
     bool doOnce;
+    [Space]
+    [Header("Materials")]
+    public MeshRenderer meshRenderer;
+    public Material movingMat;
+    public Material stopedMat;
+
+    float timeStoped;
 
     private void Start()
     {
@@ -59,6 +66,8 @@ public class TEST_Belt : MonoBehaviour
 
         if (beltItem.item != null && beltInSequence != null && beltInSequence.isSpaceTaken == false)
         {
+            meshRenderer.material = movingMat;
+            timeStoped = 0;
             Vector3 toPosition = beltInSequence.GetItemPosition();
 
             beltInSequence.isSpaceTaken = true;
@@ -79,6 +88,8 @@ public class TEST_Belt : MonoBehaviour
         }
         else if (beltItem.item != null && beltInSequence == null && selectedMachine != null && input && doOnce == false && selectedMachine.InventoryFull() == false)
         {
+            meshRenderer.material = movingMat;
+            timeStoped = 0;
             doOnce = true;
             Vector3 toPosition = GetItemPosition() + transform.forward;
 
@@ -97,6 +108,14 @@ public class TEST_Belt : MonoBehaviour
             isSpaceTaken = false;
             beltItem = null;
             doOnce = false;
+        }
+        else
+        {
+            timeStoped += Time.deltaTime;
+            if(timeStoped >= 1)
+            {
+                meshRenderer.material = stopedMat;
+            }
         }
     }
 
