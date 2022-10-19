@@ -265,6 +265,7 @@ public class OutputMachine : Machine
         go.SetActive(true);
 
         resourceAmount--;
+        FeedbackTextManager.Instance.SpawnText("+1", transform.position + new Vector3(0,4,0));
         return go.GetComponent<TEST_BeltItem>();
     }
 }

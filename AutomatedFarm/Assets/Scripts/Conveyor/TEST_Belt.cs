@@ -112,7 +112,7 @@ public class TEST_Belt : MonoBehaviour
         else
         {
             timeStoped += Time.deltaTime;
-            if(timeStoped >= 1)
+            if(timeStoped >= 1f)
             {
                 meshRenderer.material = stopedMat;
             }
