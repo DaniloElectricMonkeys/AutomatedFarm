@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6185992516200355851}
   - component: {fileID: -4376743840595739002}
   - component: {fileID: -3379362889505026059}
+  - component: {fileID: 2227047504944708994}
   m_Layer: 8
   m_Name: Conveyor
   m_TagString: Conveyor
@@ -238,8 +239,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0381573, y: 0.59833086, z: 1.0519168}
-  m_Center: {x: 0, y: 0.76025933, z: 0}
+  m_Size: {x: 1.0381573, y: 2.0329247, z: 1.0519168}
+  m_Center: {x: 0, y: -0.07682133, z: 0}
 --- !u!54 &2545903447942234252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -263,7 +264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4739135483468428020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57229dd65d3daa64ca1ef314943b1904, type: 3}
   m_Name: 
@@ -298,6 +299,24 @@ MonoBehaviour:
   startSize: {x: 0.1, y: 0.1, z: 0.1}
   finalSize: {x: 1, y: 1, z: 1}
   growTime: 0.45
+--- !u!114 &2227047504944708994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739135483468428020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beltInSequence: {fileID: 0}
+  beltItem: {fileID: 0}
+  isSpaceTaken: 0
+  selectedMachine: {fileID: 0}
+  frontMachine: 0
+  backMachine: 0
 --- !u!1 &5791348601773015091
 GameObject:
   m_ObjectHideFlags: 0
