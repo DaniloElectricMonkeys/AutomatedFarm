@@ -18,6 +18,10 @@ public class OutputMachine : Machine
     public float timeToExtract;
     protected float refTimer;
 
+    [Space]
+    [Header("Machine Door")]
+    public Animator[] doorAnimator;
+
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
     protected List<string> removeKeys = new List<string>();
     protected ConveyorItem item;
@@ -27,24 +31,58 @@ public class OutputMachine : Machine
     [Header("Resource injection")]
     public List<ResourceToInject> resourcesToInject = new List<ResourceToInject>();
 
+    bool open;
+    bool closed;
+
     private void Start() {
         RunOutput();
-
-        
+        UpdateDoorState();
     }
 
-    public bool InventoryFull()
+    public bool IsInventoryFull(ResourceType type = ResourceType.none, int doorNumber = -1)
     {
-        return resourceAmount >= inventoryCapacity;
+        var key = type.ToString();
+        if (resourcesInTheMachine.ContainsKey(key))
+        {
+            if (resourcesInTheMachine[key] >= inventoryCapacity)
+            {
+                if (doorNumber != -1) doorAnimator[doorNumber].Play("Close");
+                return true;
+            }
+        }
+        else
+        {
+            if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+            return false;
+        }
+        
+        if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+        return false;
+    }
+
+    private void UpdateDoorState()
+    {
+        if (resourceAmount >= inventoryCapacity && closed == false)
+        {
+            foreach (var item in doorAnimator)
+                item.Play("Close");
+
+            closed = true;
+            open = false;
+        }
+        else if (open == false && resourceAmount < inventoryCapacity)
+        {
+            foreach (var item in doorAnimator)
+                item.Play("Open");
+
+            open = true;
+            closed = false;
+        }
     }
 
     public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         string key = type.ToString();
-
-        // if(obj != null)
-        //     item = obj.GetComponent<ConveyorItem>();
-        // if(item != null && item.dontKill) return;
 
         //Add object to the list of its type
         if(resourcesInTheMachine.ContainsKey(key))
@@ -56,18 +94,6 @@ public class OutputMachine : Machine
             resourcesInTheMachine.Add(key, q);
         }
 
-        // if(obj != null)
-        // {
-        //     // obj.GetComponent<ConveyorItem>().RemoveLink();
-        //     obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract)
-        //     .SetEase(Ease.Linear)
-        //     .OnComplete( () =>{
-        //         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        //         obj.SetActive(false);
-        //     });
-        //     // obj.SetActive(false);
-        // }
-        
         if(obj != null)
         {
             ObjectPool.Instance.AddToPool(key, obj.gameObject);
@@ -80,6 +106,7 @@ public class OutputMachine : Machine
 
     private void Update() 
     {
+        // UpdateDoorState();
         if(resourceAmount > 0)
             refTimer -= Time.deltaTime;
     }
@@ -168,7 +195,6 @@ public class OutputMachine : Machine
         {
             // Return if itens are not found
             if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
-                Debug.Log("1");
                 return null;
             }
             
@@ -177,7 +203,6 @@ public class OutputMachine : Machine
 
             // Return if we have less or equal than 0 itens
             if(resourcesInTheMachine[item.ToString()] <= 0) {
-                Debug.Log("2");
                 return null;
             }
         }
@@ -266,6 +291,7 @@ public class OutputMachine : Machine
 
         resourceAmount--;
         FeedbackTextManager.Instance.SpawnText("+1", transform.position + new Vector3(0,4,0));
+        ResourceManager.Instance.IncrementSoil(1);
         return go.GetComponent<TEST_BeltItem>();
     }
 }

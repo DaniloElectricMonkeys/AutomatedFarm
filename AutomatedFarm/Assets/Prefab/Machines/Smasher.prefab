@@ -165,7 +165,10 @@ MonoBehaviour:
   outputType: 7
   resourceAmount: 0
   timeToExtract: 2
+  doorAnimator:
+  - {fileID: 2219641255380024662}
   typesNeededToCraft: 
+  resourcesToInject: []
 --- !u!1 &5978905777852073197
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +277,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1309744788639485723}
     m_Modifications:
+    - target: {fileID: 2296859026901424312, guid: 708c2ac05698caf4685669963bbe08da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2647653188672927602, guid: 708c2ac05698caf4685669963bbe08da, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -332,6 +339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708c2ac05698caf4685669963bbe08da, type: 3}
+--- !u!95 &2219641255380024662 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1637676657270588095, guid: 708c2ac05698caf4685669963bbe08da, type: 3}
+  m_PrefabInstance: {fileID: 610112165171068905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2248496649206040186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1676409994443979155, guid: 708c2ac05698caf4685669963bbe08da, type: 3}
