@@ -179,6 +179,8 @@ MonoBehaviour:
   outputType: 8
   resourceAmount: 0
   timeToExtract: 3
+  doorAnimator:
+  - {fileID: 1384232007953114859}
   typesNeededToCraft: 
   resourcesToInject: []
   smokeVFX: {fileID: 6844619881982314558}
@@ -5145,6 +5147,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1309744788639485723}
     m_Modifications:
+    - target: {fileID: 3659336420744313179, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5003363308315067181, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5228,6 +5234,11 @@ BoxCollider:
 --- !u!4 &1285879572403615533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5003363308315067181, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+  m_PrefabInstance: {fileID: 6104586152010560512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1384232007953114859 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5152715482643485419, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
   m_PrefabInstance: {fileID: 6104586152010560512}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5930319372256051842 stripped

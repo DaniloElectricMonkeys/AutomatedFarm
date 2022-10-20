@@ -27,6 +27,7 @@ public class Library : Singleton<Library>
     public void ChooseBuilding(int ID)
     {
         BuildSystem.Instance.ChosseObject(buildingsSO.buildings[ID].blueprint);
+        BuildSystem.Instance.buildPrice = buildingsSO.buildings[ID].price;
         currentSelected = buildingsSO.buildings[ID].original;
     }
 

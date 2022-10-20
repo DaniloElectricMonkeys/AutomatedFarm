@@ -18,6 +18,10 @@ public class OutputMachine : Machine
     public float timeToExtract;
     protected float refTimer;
 
+    [Space]
+    [Header("Machine Door")]
+    public Animator[] doorAnimator;
+
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
     protected List<string> removeKeys = new List<string>();
     protected ConveyorItem item;
@@ -27,14 +31,32 @@ public class OutputMachine : Machine
     [Header("Resource injection")]
     public List<ResourceToInject> resourcesToInject = new List<ResourceToInject>();
 
+    bool open;
+    bool closed;
+
     private void Start() {
         RunOutput();
-
-        
+        InventoryFull();
     }
 
     public bool InventoryFull()
     {
+        if(resourceAmount >= inventoryCapacity && closed == false)
+        {
+            foreach (var item in doorAnimator)
+                item.Play("Close");
+
+            closed = true;
+            open = false;
+        }
+        else if(open == false && resourceAmount < inventoryCapacity)
+        {
+            foreach (var item in doorAnimator)
+                item.Play("Open");
+
+            open = true;
+            closed = false;
+        }
         return resourceAmount >= inventoryCapacity;
     }
 
@@ -80,6 +102,7 @@ public class OutputMachine : Machine
 
     private void Update() 
     {
+        InventoryFull();
         if(resourceAmount > 0)
             refTimer -= Time.deltaTime;
     }
@@ -168,7 +191,6 @@ public class OutputMachine : Machine
         {
             // Return if itens are not found
             if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
-                Debug.Log("1");
                 return null;
             }
             
@@ -177,7 +199,6 @@ public class OutputMachine : Machine
 
             // Return if we have less or equal than 0 itens
             if(resourcesInTheMachine[item.ToString()] <= 0) {
-                Debug.Log("2");
                 return null;
             }
         }
@@ -266,6 +287,7 @@ public class OutputMachine : Machine
 
         resourceAmount--;
         FeedbackTextManager.Instance.SpawnText("+1", transform.position + new Vector3(0,4,0));
+        ResourceManager.Instance.IncrementSoil(1);
         return go.GetComponent<TEST_BeltItem>();
     }
 }

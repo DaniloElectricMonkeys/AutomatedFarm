@@ -130,10 +130,14 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 4760575304993527008}
   checkConnectionPoint: {fileID: 5746521365959419890}
+  inventoryCapacity: 0
   outputType: 6
   resourceAmount: 0
   timeToExtract: 5
+  doorAnimator:
+  - {fileID: 6472850830963019055}
   typesNeededToCraft: 
+  resourcesToInject: []
 --- !u!1 &4760575304993527008
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boiling Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 6219071293470756979, guid: fbdd448da14977d4ca7a7f71817b5b9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8036004853660124429, guid: fbdd448da14977d4ca7a7f71817b5b9a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -419,6 +427,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.24999996, z: 1}
   m_Center: {x: 0, y: -0.000000037252903, z: 0}
+--- !u!95 &6472850830963019055 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3932595202387334538, guid: fbdd448da14977d4ca7a7f71817b5b9a, type: 3}
+  m_PrefabInstance: {fileID: 8018462362809358501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6903473596325322919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3497429535682803714, guid: fbdd448da14977d4ca7a7f71817b5b9a, type: 3}

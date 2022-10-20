@@ -28,6 +28,7 @@ public class CameraManager : Singleton<CameraManager>
 
     [Header("References")]
     [SerializeField] Camera myCamera;
+    [SerializeField] Camera UICamera;
     public Transform helper;
 
     private void Start()
@@ -62,14 +63,30 @@ public class CameraManager : Singleton<CameraManager>
 
     void OrtoZoom()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize >= minOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize <= maxOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize >= minOrtoZoom)
+        {
+            myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
+            UICamera.DOOrthoSize(UICamera.orthographicSize - 1, 0.5f); // In
+        } 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize <= maxOrtoZoom)
+        {
+            myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
+            UICamera.DOOrthoSize(UICamera.orthographicSize + 1, 0.5f); // Out
+        }
     }
 
     void PerspZoom()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.transform.localPosition.z <= minPerspZoom) myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z + 1, 0.3f); // In
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.transform.localPosition.z >= maxPerspZoom) myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z - 1, 0.3f); // Out
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.transform.localPosition.z <= minPerspZoom)
+        {
+            myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z + 1, 0.3f); // In
+            UICamera.transform.DOLocalMoveZ(UICamera.transform.localPosition.z + 1, 0.3f); // In
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.transform.localPosition.z >= maxPerspZoom)
+        {
+            myCamera.transform.DOLocalMoveZ(myCamera.transform.localPosition.z - 1, 0.3f); // Out
+            UICamera.transform.DOLocalMoveZ(UICamera.transform.localPosition.z - 1, 0.3f); // Out
+        }
     }
 
     void CameraRotate()
@@ -119,12 +136,14 @@ public class CameraManager : Singleton<CameraManager>
         if (type == CameraType.Ortographic)
         {
             myCamera.orthographic = true;
+            UICamera.orthographic = true;
             OrtoZoom();
         }
 
         if (type == CameraType.Perspective)
         {
             myCamera.orthographic = false;
+            UICamera.orthographic = false;
             PerspZoom();
         }
     }
@@ -136,11 +155,14 @@ public class CameraManager : Singleton<CameraManager>
             case CameraType.Ortographic:
                 type = CameraType.Perspective;
                 myCamera.transform.DOLocalMoveZ(maxPerspZoom, 0.2f);
+                UICamera.transform.DOLocalMoveZ(maxPerspZoom, 0.2f);
                 break;
             case CameraType.Perspective:
                 myCamera.transform.DOLocalMoveZ(maxPerspZoom, 0);
+                UICamera.transform.DOLocalMoveZ(maxPerspZoom, 0);
                 type = CameraType.Ortographic;
                 myCamera.DOOrthoSize(maxOrtoZoom, 0.2f);
+                UICamera.DOOrthoSize(maxOrtoZoom, 0.2f);
                 break;
         }
     }
