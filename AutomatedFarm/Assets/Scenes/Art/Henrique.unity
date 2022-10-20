@@ -10346,6 +10346,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 4859679625068946651, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5204714708355022433, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -11663,7 +11667,7 @@ PrefabInstance:
     - target: {fileID: 2064995024605301422, guid: 985961abb586c674f9db39caeb08c9a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec0311d9f07774b4fb49e71328ca9c7d, type: 2}
+      objectReference: {fileID: 2100000, guid: 184b237489b37ec4582b44f6866457b7, type: 2}
     - target: {fileID: 8111785378836730080, guid: 985961abb586c674f9db39caeb08c9a6, type: 3}
       propertyPath: m_Name
       value: Conveyor Belt Corner
