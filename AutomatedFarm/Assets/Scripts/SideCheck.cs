@@ -31,16 +31,16 @@ public class SideCheck : MonoBehaviour
     public GameObject rightTurn;
     public GameObject rightTurn_FrontRight;
     public GameObject original;
-    Conveyor itemThatWasHit;
+    TEST_Belt itemThatWasHit;
     public bool isTurn;
     public bool doNotUpdate;
     [Space]
     [Header("End Point")]
     public Transform endPoint;
-    Conveyor thisConveyor;
+    TEST_Belt thisConveyor;
 
     private void Awake() {
-        thisConveyor = GetComponentInParent<Conveyor>();
+        thisConveyor = GetComponentInParent<TEST_Belt>();
     }
     void Start()
     {
@@ -61,25 +61,25 @@ public class SideCheck : MonoBehaviour
         hitsLeft = Physics.OverlapBox(left.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
         foreach (Collider item in hitsFront)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<TEST_Belt>();
                 hitFront = true;
             }
 
         foreach (Collider item in hitsBack)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<TEST_Belt>();
                 hitBack = true;
             }
         
         foreach (Collider item in hitsRight)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<TEST_Belt>();
                 hitRight = true;
             }
 
         foreach (Collider item in hitsLeft)
             if (item.gameObject.CompareTag("Conveyor") && item != root.gameObject.GetComponent<Collider>()) {
-                itemThatWasHit = item.gameObject.GetComponent<Conveyor>();
+                itemThatWasHit = item.gameObject.GetComponent<TEST_Belt>();
                 hitLeft = true;
             }
 

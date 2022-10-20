@@ -7,6 +7,7 @@ public class TEST_Belt : MonoBehaviour
 {
     private static int _beltID = 0;
 
+    [Header("Attributes")]
     public TEST_Belt beltInSequence;
     public TEST_BeltItem beltItem;
     public bool isSpaceTaken;
@@ -14,6 +15,7 @@ public class TEST_Belt : MonoBehaviour
     private TEST_BeltManager _beltManager;
     public bool input;
     public bool output;
+    public int inputDoor = 0;
     bool doOnce;
     [Space]
     [Header("Materials")]
@@ -86,7 +88,7 @@ public class TEST_Belt : MonoBehaviour
             beltInSequence.beltItem = beltItem;
             beltItem = null;
         }
-        else if (beltItem.item != null && beltInSequence == null && selectedMachine != null && input && doOnce == false && selectedMachine.InventoryFull() == false)
+        else if (beltItem.item != null && beltInSequence == null && selectedMachine != null && input && doOnce == false && selectedMachine.IsInventoryFull(beltItem.type, inputDoor) == false)
         {
             meshRenderer.material = movingMat;
             timeStoped = 0;

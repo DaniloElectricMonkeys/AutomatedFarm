@@ -130,7 +130,7 @@ MonoBehaviour:
   isConnected: 0
   outputPoint: {fileID: 8443502355862148032}
   checkConnectionPoint: {fileID: 558222623241340745}
-  inventoryCapacity: 999
+  inventoryCapacity: 3
   outputType: 9
   resourceAmount: 0
   timeToExtract: 2
@@ -180,6 +180,10 @@ PrefabInstance:
     - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: input
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: inputDoor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: selectedMachine
@@ -423,6 +427,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: input
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: inputDoor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}

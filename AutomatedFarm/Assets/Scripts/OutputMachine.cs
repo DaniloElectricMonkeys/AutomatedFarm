@@ -36,12 +36,33 @@ public class OutputMachine : Machine
 
     private void Start() {
         RunOutput();
-        InventoryFull();
+        UpdateDoorState();
     }
 
-    public bool InventoryFull()
+    public bool IsInventoryFull(ResourceType type = ResourceType.none, int doorNumber = -1)
     {
-        if(resourceAmount >= inventoryCapacity && closed == false)
+        var key = type.ToString();
+        if (resourcesInTheMachine.ContainsKey(key))
+        {
+            if (resourcesInTheMachine[key] >= inventoryCapacity)
+            {
+                if (doorNumber != -1) doorAnimator[doorNumber].Play("Close");
+                return true;
+            }
+        }
+        else
+        {
+            if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+            return false;
+        }
+        
+        if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+        return false;
+    }
+
+    private void UpdateDoorState()
+    {
+        if (resourceAmount >= inventoryCapacity && closed == false)
         {
             foreach (var item in doorAnimator)
                 item.Play("Close");
@@ -49,7 +70,7 @@ public class OutputMachine : Machine
             closed = true;
             open = false;
         }
-        else if(open == false && resourceAmount < inventoryCapacity)
+        else if (open == false && resourceAmount < inventoryCapacity)
         {
             foreach (var item in doorAnimator)
                 item.Play("Open");
@@ -57,16 +78,11 @@ public class OutputMachine : Machine
             open = true;
             closed = false;
         }
-        return resourceAmount >= inventoryCapacity;
     }
 
     public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         string key = type.ToString();
-
-        // if(obj != null)
-        //     item = obj.GetComponent<ConveyorItem>();
-        // if(item != null && item.dontKill) return;
 
         //Add object to the list of its type
         if(resourcesInTheMachine.ContainsKey(key))
@@ -78,18 +94,6 @@ public class OutputMachine : Machine
             resourcesInTheMachine.Add(key, q);
         }
 
-        // if(obj != null)
-        // {
-        //     // obj.GetComponent<ConveyorItem>().RemoveLink();
-        //     obj.transform.DOMove(new Vector3(transform.position.x, obj.transform.position.y, transform.position.z), timeToExtract)
-        //     .SetEase(Ease.Linear)
-        //     .OnComplete( () =>{
-        //         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        //         obj.SetActive(false);
-        //     });
-        //     // obj.SetActive(false);
-        // }
-        
         if(obj != null)
         {
             ObjectPool.Instance.AddToPool(key, obj.gameObject);
@@ -102,7 +106,7 @@ public class OutputMachine : Machine
 
     private void Update() 
     {
-        InventoryFull();
+        // UpdateDoorState();
         if(resourceAmount > 0)
             refTimer -= Time.deltaTime;
     }
