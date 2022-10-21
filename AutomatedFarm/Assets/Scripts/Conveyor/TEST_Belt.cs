@@ -10,6 +10,7 @@ public class TEST_Belt : MonoBehaviour
     public TEST_BeltItem beltItem;
     public bool isSpaceTaken;
     public OutputMachine selectedMachine;
+    public Seller sellerMachine;
     private TEST_BeltManager _beltManager;
     public bool input;
     public bool output;
@@ -29,6 +30,7 @@ public class TEST_Belt : MonoBehaviour
     [HideInInspector] public bool isRampUp;
     [HideInInspector] public bool isRampDown;
     public GameObject rampNormal;
+    float timeBugged;
 
     private void Start()
     {
@@ -92,6 +94,7 @@ public class TEST_Belt : MonoBehaviour
                 beltItem.item.transform.position = 
                     Vector3.MoveTowards(beltItem.transform.position, toPosition, step);
 
+                if(beltItem.item == null || beltItem == null) break;
                 yield return null;
             }
 
@@ -121,6 +124,38 @@ public class TEST_Belt : MonoBehaviour
             isSpaceTaken = false;
             beltItem = null;
             doOnce = false;
+        }
+        else if (beltItem.item != null && beltInSequence == null && sellerMachine != null && input && doOnce == false)
+        {
+            meshRenderer.material = movingMat;
+            timeStoped = 0;
+            doOnce = true;
+            Vector3 toPosition = GetItemPosition() + transform.forward;
+
+            var step = _beltManager.speed * Time.deltaTime;
+
+            while (beltItem.item.transform.position != toPosition)
+            {
+                beltItem.item.transform.position = 
+                    Vector3.MoveTowards(beltItem.transform.position, toPosition, step);
+
+                yield return null;
+            }
+
+            sellerMachine.OnResourceEnter(beltItem.type, beltItem.item, 0);
+
+            isSpaceTaken = false;
+            beltItem = null;
+            doOnce = false;
+        }
+        else if(beltItem == null && isSpaceTaken)
+        {
+            timeBugged += Time.deltaTime;
+            if(timeBugged >= 1.5f)
+            {
+                isSpaceTaken = false;
+                timeBugged = 0;    
+            }
         }
         else
         {
@@ -168,6 +203,9 @@ public class TEST_Belt : MonoBehaviour
         {
             OutputMachine machine = hit.collider.GetComponent<OutputMachine>();
 
+            if(sellerMachine == null)
+                sellerMachine = hit.collider.GetComponent<Seller>();
+
             if (machine != null)
             {
                 input = true;
@@ -187,10 +225,5 @@ public class TEST_Belt : MonoBehaviour
         }
 
         return null;
-    }
-
-    private void OnDrawGizmos() {
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
-        Gizmos.DrawLine(transform.position, transform.position + (-transform.forward * 1f));
     }
 }
