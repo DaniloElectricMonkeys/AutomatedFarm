@@ -33,15 +33,15 @@ public class Conveyor : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        Vector3 pos = rb.position;
-        rb.position += -transform.forward * 2f * Time.fixedDeltaTime;
-        rb.MovePosition(pos);
-        foreach (ConveyorItem item in itensInConveyor)
-        {
-            if(item == null) return;
-            // item.GetComponent<Rigidbody>().AddForce((end.position - item.transform.position).normalized * speed * Time.deltaTime);
-            item.GetComponent<Rigidbody>().velocity = ((end.position - item.transform.position).normalized * speed * Time.deltaTime);
-        }
+        // Vector3 pos = rb.position;
+        // rb.position += -transform.forward * 2f * Time.fixedDeltaTime;
+        // rb.MovePosition(pos);
+        // foreach (ConveyorItem item in itensInConveyor)
+        // {
+        //     if(item == null) return;
+        //     // item.GetComponent<Rigidbody>().AddForce((end.position - item.transform.position).normalized * speed * Time.deltaTime);
+        //     item.GetComponent<Rigidbody>().velocity = ((end.position - item.transform.position).normalized * speed * Time.deltaTime);
+        // }
     }
 
     private void Update() 

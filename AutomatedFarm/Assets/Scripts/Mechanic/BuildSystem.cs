@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Tilemaps;
 using UnityEngine.Tilemaps;
 
 ///<summary>
@@ -37,6 +34,7 @@ public class BuildSystem : Singleton<BuildSystem>
     bool doOnce;
     bool canBuildAnyway;
     BuildOnlyInTag tagChecker;
+    public float buildPrice;
 
     ///<summary>
     /// Select the desired object on the Build System and create the blueprint of it.
@@ -160,19 +158,31 @@ public class BuildSystem : Singleton<BuildSystem>
                 {
                     if (tagChecker.RayHitNode())// Do the cheking on tag and layer
                     {
-                        id++;
-                        createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
-                        createdObject.name = "Object_" + id;
-                        createdObject.GetComponent<IGrowBuild>()?.StartGrow();
-                        createdObject.GetComponent<Extractor>()?.ChangeResourceType(tagChecker.GetResourceBelow());
+                        {
+                            if(ResourceManager.Instance.SoilAmount() >= buildPrice)
+                            {
+                                id++;
+                                createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
+                                createdObject.name = "Object_" + id;
+                                createdObject.GetComponent<IGrowBuild>()?.StartGrow();
+                                createdObject.GetComponent<Extractor>()?.ChangeResourceType(tagChecker.GetResourceBelow());
+                                ResourceManager.Instance.DecrementSoil(buildPrice);
+                            }
+                        }
+                        
                     }
                 }
                 else
                 {
-                    id++;
-                    createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
-                    createdObject.name = "Object_" + id;
-                    createdObject.GetComponent<IGrowBuild>()?.StartGrow();
+                    if(ResourceManager.Instance.SoilAmount() >= buildPrice)
+                    {
+                        id++;
+                        createdObject = Instantiate(Library.Instance.currentSelected, NewGrid.Instance.GetGridPoint(hit.point), blueprintObj.transform.rotation);
+                        createdObject.name = "Object_" + id;
+                        createdObject.GetComponent<IGrowBuild>()?.StartGrow();
+                    
+                        ResourceManager.Instance.DecrementSoil(buildPrice);
+                    }
                 }
             }
         }

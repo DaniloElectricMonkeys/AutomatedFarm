@@ -12,6 +12,11 @@ public class ResourceManager : Singleton<ResourceManager>
     public TextMeshProUGUI soilCounter;
     float _soil;
 
+    public float SoilAmount()
+    {
+        return _soil;
+    }
+
     public void IncrementSoil(float amount)
     {
         _soil += amount;
@@ -26,7 +31,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void UpdateSoiltext()
     {
-        soilCounter.text = _soil.ToString("n2");
+        soilCounter.text = "$" + _soil.ToString();
     }
 
     #endregion

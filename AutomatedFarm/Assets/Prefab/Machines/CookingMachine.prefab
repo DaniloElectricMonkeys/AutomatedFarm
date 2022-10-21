@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 1179155495317848486}
   - component: {fileID: 7550209621917163471}
   - component: {fileID: 5628732253025529658}
+  - component: {fileID: 6727543494877396759}
   m_Layer: 8
   m_Name: CookingMachine
   m_TagString: Machine
@@ -179,9 +180,27 @@ MonoBehaviour:
   outputType: 8
   resourceAmount: 0
   timeToExtract: 3
+  doorAnimator:
+  - {fileID: 1384232007953114859}
   typesNeededToCraft: 
   resourcesToInject: []
+  handler: {fileID: 6727543494877396759}
   smokeVFX: {fileID: 6844619881982314558}
+--- !u!114 &6727543494877396759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309744788639485926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6733834bb2534b3498f7af6edfd8564c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxs:
+  - {fileID: 8588091457397146156}
+  anim: {fileID: 0}
 --- !u!1 &6844619881982314558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,6 +5032,18 @@ PrefabInstance:
       propertyPath: selectedMachine
       value: 
       objectReference: {fileID: 5628732253025529658}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[0]
+      value: 
+      objectReference: {fileID: 5700743227517180845}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[1]
+      value: 
+      objectReference: {fileID: 2899148826501881794}
     - target: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: m_Name
       value: Conveyor (1)
@@ -5063,6 +5094,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+--- !u!114 &2899148826501881794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+  m_PrefabInstance: {fileID: 3950738343092068928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5260608870237308545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9210626987964966081, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
@@ -5083,6 +5125,18 @@ PrefabInstance:
       propertyPath: selectedMachine
       value: 
       objectReference: {fileID: 5628732253025529658}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[0]
+      value: 
+      objectReference: {fileID: 5700743227517180845}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[1]
+      value: 
+      objectReference: {fileID: 2899148826501881794}
     - target: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: m_Name
       value: Conveyor
@@ -5138,6 +5192,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9210626987964966081, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
   m_PrefabInstance: {fileID: 5905648661043750447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5700743227517180845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+  m_PrefabInstance: {fileID: 5905648661043750447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6104586152010560512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5145,6 +5210,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1309744788639485723}
     m_Modifications:
+    - target: {fileID: 2565045654747543084, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659336420744313179, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5003363308315067181, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5230,6 +5303,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5003363308315067181, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
   m_PrefabInstance: {fileID: 6104586152010560512}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1384232007953114859 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5152715482643485419, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+  m_PrefabInstance: {fileID: 6104586152010560512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5930319372256051842 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 503104426738398850, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
@@ -5248,3 +5326,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.24999996, z: 1}
   m_Center: {x: 0, y: -0.000000037252903, z: 0}
+--- !u!1 &8588091457397146156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2565045654747543084, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+  m_PrefabInstance: {fileID: 6104586152010560512}
+  m_PrefabAsset: {fileID: 0}

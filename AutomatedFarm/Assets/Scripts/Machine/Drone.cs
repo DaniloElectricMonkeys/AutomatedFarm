@@ -36,10 +36,8 @@ public class Drone : PlantGraber
         AssignPlants();
         foreach (var item in resourcesToInject)
         {
-            Debug.Log("????");
             resourcesInTheMachine.Add(item.type.ToString(), item.quantity);
             resourceAmount += item.quantity;
-            Debug.Log(resourceAmount);
         }
     }
 

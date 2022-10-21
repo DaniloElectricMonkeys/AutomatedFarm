@@ -54,6 +54,7 @@ public class SeedsManager : Singleton<SeedsManager>
         CanvasManager.Instance.ToggleSeedsUI();
         Library.Instance.SetCurrentSelected(currentSeed.seed);
         BuildSystem.Instance.ChosseObject(currentSeed.seedBlueprint);
+        BuildSystem.Instance.buildPrice = currentSeed.price;
     }
 
     public void ToggleSeedsUI()
