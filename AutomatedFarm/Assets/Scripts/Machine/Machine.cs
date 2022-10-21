@@ -15,9 +15,6 @@ public class Machine : MonoBehaviour
     public GameObject outputPoint;
     public GameObject checkConnectionPoint;
 
-    private void Awake() {
-        Conveyor.OnConveyorDeleted += CheckOutput;
-    }
     //Override in other classes to add functionality
     public virtual void OnSoilEnter(){}
     public virtual void OnOreEnter(){}
@@ -25,14 +22,7 @@ public class Machine : MonoBehaviour
     public virtual void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
     {
         string key = type.ToString();
-
-        if(obj == null) return;
-        ConveyorItem item = obj.GetComponent<ConveyorItem>();
-        
-        if(item.dontKill) return;
-        
         ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        // item.RemoveLink();
         obj.SetActive(false);
     }
 
@@ -72,25 +62,5 @@ public class Machine : MonoBehaviour
         {
             isConnected = false;
         }
-    }
-
-    #region Input
-
-        // private void OnTriggerEnter(Collider other) 
-        // {
-        //     if(useInput == false) return;
-            
-        //     ConveyorItem item = other.GetComponent<ConveyorItem>();
-        //     if(item == null) return;
-        //     if(item.dontKill)
-        //         item.MoveOutFromTheMachine(outputPoint.transform.forward);
-        //     else if(item != null)
-        //         OnResourceEnter(item.type, other.gameObject);
-        // }
-
-    #endregion 
-
-    private void OnDestroy() {
-        Conveyor.OnConveyorDeleted -= CheckOutput;
     }
 }

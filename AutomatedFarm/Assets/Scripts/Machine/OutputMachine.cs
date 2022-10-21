@@ -175,7 +175,6 @@ public class OutputMachine : Machine
             resourcesInTheMachine[item.ToString()]--;
         }
         
-        go.GetComponent<ConveyorItem>().FreshSpawnItem();
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
@@ -297,7 +296,6 @@ public class OutputMachine : Machine
             resourcesInTheMachine[item.ToString()]--;
         }
         
-        go.GetComponent<ConveyorItem>()?.FreshSpawnItem();
         go.transform.position = outputPoint.transform.position;
         go.transform.rotation = Quaternion.identity;
         go.SetActive(true);
