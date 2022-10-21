@@ -73,6 +73,8 @@ public class CameraManager : Singleton<CameraManager>
             myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
             UICamera.DOOrthoSize(UICamera.orthographicSize + 1, 0.5f); // Out
         }
+
+        AudioManager.Instance.UpdateAudioSourcesVolume(myCamera.orthographicSize);
     }
 
     void PerspZoom()
