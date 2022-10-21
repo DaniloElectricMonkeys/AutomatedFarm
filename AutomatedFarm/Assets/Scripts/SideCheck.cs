@@ -58,6 +58,7 @@ public class SideCheck : MonoBehaviour
     public void LookForCurve() {
 
         if(doNotUpdate) return;
+        if(root.gameObject.GetComponent<TEST_Belt>().selectedMachine != null) return;
 
         hitsFront = Physics.OverlapBox(front.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
         hitsBack = Physics.OverlapBox(back.position, new Vector3((boxSize.x / 2) * root.lossyScale.x, (boxSize.y * 1.2f) * root.lossyScale.y, (boxSize.z / 2)  * root.lossyScale.z), Quaternion.identity, machineLayer);
@@ -86,6 +87,9 @@ public class SideCheck : MonoBehaviour
                 itemThatWasHit = item.gameObject.GetComponent<TEST_Belt>();
                 hitLeft = true;
             }
+
+        if(hitFront && hitBack && hitRight) return;
+        if(hitFront && hitBack && hitLeft) return;
 
         if(hitBack) {
             if( itemThatWasHit.transform.position.y < thisConveyor.transform.position.y) {
