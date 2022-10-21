@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1179155495317848486}
   - component: {fileID: 7550209621917163471}
   - component: {fileID: 4197841444841662589}
+  - component: {fileID: 7875386341834689969}
   m_Layer: 8
   m_Name: PackingMachine
   m_TagString: Machine
@@ -139,6 +140,21 @@ MonoBehaviour:
   - {fileID: 8381624087788321935}
   typesNeededToCraft: 
   resourcesToInject: []
+  handler: {fileID: 7875386341834689969}
+--- !u!114 &7875386341834689969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309744788639485926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6733834bb2534b3498f7af6edfd8564c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxs: []
+  anim: {fileID: 0}
 --- !u!1 &7717146990438693819
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +289,22 @@ PrefabInstance:
       propertyPath: selectedMachine
       value: 
       objectReference: {fileID: 4197841444841662589}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6117329035851021341}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[1]
+      value: 
+      objectReference: {fileID: 4894401087523509606}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[2]
+      value: 
+      objectReference: {fileID: 5237501985708663744}
     - target: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: m_Name
       value: Conveyor
@@ -328,6 +360,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9210626987964966081, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
   m_PrefabInstance: {fileID: 5335940584776597919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6117329035851021341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+  m_PrefabInstance: {fileID: 5335940584776597919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6217034183210393154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -351,6 +394,22 @@ PrefabInstance:
       propertyPath: selectedMachine
       value: 
       objectReference: {fileID: 4197841444841662589}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6117329035851021341}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[1]
+      value: 
+      objectReference: {fileID: 4894401087523509606}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[2]
+      value: 
+      objectReference: {fileID: 5237501985708663744}
     - target: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: m_Name
       value: Conveyor (2)
@@ -406,6 +465,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9210626987964966081, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
   m_PrefabInstance: {fileID: 6217034183210393154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5237501985708663744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+  m_PrefabInstance: {fileID: 6217034183210393154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6702596715905149156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,6 +495,22 @@ PrefabInstance:
       propertyPath: selectedMachine
       value: 
       objectReference: {fileID: 4197841444841662589}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6117329035851021341}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[1]
+      value: 
+      objectReference: {fileID: 4894401087523509606}
+    - target: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+      propertyPath: avoidThisBelts.Array.data[2]
+      value: 
+      objectReference: {fileID: 5237501985708663744}
     - target: {fileID: 4739135483468428020, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
       propertyPath: m_Name
       value: Conveyor (1)
@@ -480,3 +566,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9210626987964966081, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
   m_PrefabInstance: {fileID: 6702596715905149156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4894401087523509606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2227047504944708994, guid: 16e156a97108d314d85c6d0b4772a915, type: 3}
+  m_PrefabInstance: {fileID: 6702596715905149156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1395adb5abe92d4c8649ed64f6a16e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

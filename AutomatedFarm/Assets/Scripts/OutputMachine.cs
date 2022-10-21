@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
-using DG.Tweening;
 
 ///<summary>
 /// Create soil based on the input it recives
@@ -23,18 +21,22 @@ public class OutputMachine : Machine
     public Animator[] doorAnimator;
 
     protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
-    protected List<string> removeKeys = new List<string>();
-    protected ConveyorItem item;
+
+    [Space]
+    [Header("Crafting")]
     public List<ResourceType> typesNeededToCraft = new List<ResourceType>();
 
     [Space]
     [Header("Resource injection")]
     public List<ResourceToInject> resourcesToInject = new List<ResourceToInject>();
 
+    public VFX_AnimationHandler handler;
+
     bool open;
     bool closed;
 
     private void Start() {
+        refTimer = timeToExtract;
         RunOutput();
         UpdateDoorState();
     }
@@ -101,14 +103,20 @@ public class OutputMachine : Machine
         }
         
         resourceAmount += amout;
-        Debug.Log("Increased resources " + gameObject.name);
     }
 
     private void Update() 
     {
         // UpdateDoorState();
         if(resourceAmount > 0)
+        {
             refTimer -= Time.deltaTime;
+            handler?.ResumeMachine();
+        }
+        else
+        {
+            handler?.StopMachine();
+        }
     }
 
     void RunOutput()
@@ -182,13 +190,16 @@ public class OutputMachine : Machine
 
     public TEST_BeltItem AskForBeltItem()
     {
-        if(refTimer > 0) return null;
+        if(refTimer > 0)
+            return null;
         refTimer = timeToExtract;
 
-        if(resourceAmount <= 0) return null;
+        if(resourceAmount <= 0) 
+            return null;
 
         if(!isConnected) CheckOutput();
-        if(!isConnected) return null;
+        if(!isConnected) 
+            return null;
 
         // Check if the itens needed to craft are in the machine
         foreach(var item in typesNeededToCraft)
@@ -271,7 +282,9 @@ public class OutputMachine : Machine
                 }
             }
             else
+            {
                 return null;
+            }
         }
         else
         {
@@ -290,7 +303,7 @@ public class OutputMachine : Machine
         go.SetActive(true);
 
         resourceAmount--;
-        FeedbackTextManager.Instance.SpawnText("+1", transform.position + new Vector3(0,4,0));
+        FeedbackTextManager.Instance.SpawnText("+", transform.position + new Vector3(0,4,0));
         ResourceManager.Instance.IncrementSoil(1);
         return go.GetComponent<TEST_BeltItem>();
     }

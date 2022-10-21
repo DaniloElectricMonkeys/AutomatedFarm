@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SideCheck : MonoBehaviour
 {
+    public SideCheck upRamp;
+    public SideCheck downRamp;
     [Header("Sides")]
     public Transform front;
     public Transform back;
@@ -21,6 +23,7 @@ public class SideCheck : MonoBehaviour
     bool hitRight;
     public LayerMask machineLayer;
     public Transform root;
+    public Transform rampRoot;
 
     [Space]
     [Header("Turns & Ramps")]
@@ -31,12 +34,13 @@ public class SideCheck : MonoBehaviour
     public GameObject rightTurn;
     public GameObject rightTurn_FrontRight;
     public GameObject original;
+    public GameObject originalCollider;
+    public GameObject rampNormal;
     TEST_Belt itemThatWasHit;
     public bool isTurn;
     public bool doNotUpdate;
     [Space]
     [Header("End Point")]
-    public Transform endPoint;
     TEST_Belt thisConveyor;
 
     private void Awake() {
@@ -111,6 +115,7 @@ public class SideCheck : MonoBehaviour
             leftTurn_FrontLeft.SetActive(false);
             rightTurn_FrontRight.SetActive(false);
             original.SetActive(false);
+            originalCollider.SetActive(false);
         }
         else if(!hitRight && hitLeft) {
 
@@ -126,103 +131,9 @@ public class SideCheck : MonoBehaviour
             rightTurn.SetActive(false);
             rightTurn_FrontRight.SetActive(false);
             original.SetActive(false);
+            originalCollider.SetActive(false);
         }
-        
-
-        
-        // if(hitFront && !doOnce) {
-        //     doOnce = true;
-        //     leftTurn.SetActive(false);
-        //     rightTurn.SetActive(false);
-        //     if(!rampObj.activeSelf || !rampObj.activeSelf)
-        //         original.SetActive(true);
-            
-        //     itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
-        // }
-        // if(hitBack && !doOnce) {
-        //     doOnce = true;
-        //     leftTurn.SetActive(false);
-        //     rightTurn.SetActive(false);
-        //     if(!rampObj.activeSelf || !rampObj.activeSelf)
-        //         original.SetActive(true);
-        //     itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
-        // }
-        // if(!hitRight && !hitFront && hitBack && !hitLeft) {
-
-        //     rightTurn.SetActive(false);
-        //     leftTurn.SetActive(false);
-        //     leftTurn_FrontLeft.SetActive(false);
-        //     rightTurn_FrontRight.SetActive(false);
-        //     original.SetActive(false);
-
-        //     if(itemThatWasHit.transform.position.y > transform.position.y)
-        //         rampObj.SetActive(true);
-        //     else if(itemThatWasHit.transform.position.y < transform.position.y) {
-        //         original.SetActive(true);
-        //         itemThatWasHit.GetComponentInChildren<SideCheck>().LookForCurve();
-        //     }
-        //     else
-        //         original.SetActive(true);
-        // }
-        // else if(!hitRight && hitFront && !hitBack && !hitLeft) {
-
-        //     if(itemThatWasHit.transform.position.y > transform.position.y)
-        //         EnableRampUp();
-        //     else
-        //         original.SetActive(true);
-        // }
-        // else if(hitRight && !hitFront && !hitBack && !hitLeft) {
-        //     rightTurn.SetActive(true);
-        //     rightTurn.transform.right = itemThatWasHit.transform.forward;
-            
-        //     leftTurn.SetActive(false);
-        //     leftTurn_FrontLeft.SetActive(false);
-        //     rightTurn_FrontRight.SetActive(false);
-            
-        //     original.SetActive(false);
-        // }
-        // else if(hitRight && hitFront && !hitBack && !hitLeft) {
-        //     rightTurn.SetActive(true);
-        //     rightTurn.transform.right = itemThatWasHit.transform.forward;
-            
-        //     leftTurn.SetActive(false);
-        //     leftTurn_FrontLeft.SetActive(false);
-        //     rightTurn_FrontRight.SetActive(false);
-            
-        //     original.SetActive(false);
-        // }
-        // else if(!hitRight && !hitFront && !hitBack && hitLeft) {
-        //     leftTurn.SetActive(true);
-
-        //     leftTurn.transform.right = itemThatWasHit.transform.forward;
-            
-        //     leftTurn_FrontLeft.SetActive(false);
-        //     rightTurn.SetActive(false);
-        //     rightTurn_FrontRight.SetActive(false);
-
-        //     original.SetActive(false);
-        // }
-        // else if(!hitRight && hitFront && !hitBack && hitLeft) {
-        //     leftTurn.SetActive(true);
-
-        //     leftTurn.transform.right = itemThatWasHit.transform.forward;
-            
-        //     leftTurn_FrontLeft.SetActive(false);
-        //     rightTurn.SetActive(false);
-        //     rightTurn_FrontRight.SetActive(false);
-
-        //     original.SetActive(false);
-        // }
-
-        // StartCoroutine(WaitDoOnce());
-
     }
-
-    // IEnumerator WaitDoOnce()
-    // {
-    //     yield return new WaitForSeconds(1);
-    //     doOnce = false;
-    // }
 
     public void EnableRampUp()
     {
@@ -231,9 +142,11 @@ public class SideCheck : MonoBehaviour
         leftTurn_FrontLeft.SetActive(false);
         rightTurn_FrontRight.SetActive(false);
         original.SetActive(false);
+        originalCollider.SetActive(false);
 
         rampObjUp.SetActive(true);
-        endPoint.position = new Vector3(0, 1.44f, 0.76f);
+        root.gameObject.GetComponent<TEST_Belt>().isRampUp = true;
+        root.gameObject.GetComponent<TEST_Belt>().rampNormal = upRamp.rampNormal;
     }
 
     public void EnableRampDown() {
@@ -242,8 +155,11 @@ public class SideCheck : MonoBehaviour
         leftTurn_FrontLeft.SetActive(false);
         rightTurn_FrontRight.SetActive(false);
         original.SetActive(false);
+        originalCollider.SetActive(false);
 
         rampObj.SetActive(true);
+        root.gameObject.GetComponent<TEST_Belt>().isRampDown = true;
+        root.gameObject.GetComponent<TEST_Belt>().rampNormal = downRamp.rampNormal;
     }
 
     public void CheckForMachineConnection()

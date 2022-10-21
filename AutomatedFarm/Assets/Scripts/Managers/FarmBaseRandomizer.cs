@@ -37,15 +37,15 @@ public class FarmBaseRandomizer : MonoBehaviour
 
 }
 
-[CustomEditor(typeof(FarmBaseRandomizer))]
-public class FarmBaseRandomizerEditor : Editor {
-    public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
+// [CustomEditor(typeof(FarmBaseRandomizer))]
+// public class FarmBaseRandomizerEditor : Editor {
+//     public override void OnInspectorGUI() {
+//         base.OnInspectorGUI();
 
-        FarmBaseRandomizer randomizer = (FarmBaseRandomizer)target;
+//         FarmBaseRandomizer randomizer = (FarmBaseRandomizer)target;
 
-        if(GUILayout.Button("Randomize Tiles")) {
-            randomizer.CreatTiles();
-        }
-    }
-}
+//         if(GUILayout.Button("Randomize Tiles")) {
+//             randomizer.CreatTiles();
+//         }
+//     }
+// }

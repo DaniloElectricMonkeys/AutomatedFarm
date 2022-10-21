@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +19,19 @@ public class TEST_Belt : MonoBehaviour
     public int inputDoor = 0;
     bool doOnce;
     [Space]
+    [Header("Evade Belts")]
+    public TEST_Belt[] avoidThisBelts;
+
+    [Space]
     [Header("Materials")]
     public MeshRenderer meshRenderer;
     public Material movingMat;
     public Material stopedMat;
 
     float timeStoped;
+    [HideInInspector] public bool isRampUp;
+    [HideInInspector] public bool isRampDown;
+    public GameObject rampNormal;
 
     private void Start()
     {
@@ -58,6 +66,10 @@ public class TEST_Belt : MonoBehaviour
     public Vector3 GetItemPosition()
     {
         var padding = 0.9f;
+
+        if(isRampUp) padding = 1.1f;
+        if(isRampDown) padding = 1.1f;
+
         var position = transform.position;
         return new Vector3(position.x, position.y + padding, position.z);
     }
@@ -70,7 +82,9 @@ public class TEST_Belt : MonoBehaviour
         {
             meshRenderer.material = movingMat;
             timeStoped = 0;
+
             Vector3 toPosition = beltInSequence.GetItemPosition();
+            beltItem.currentConveyor = beltInSequence;
 
             beltInSequence.isSpaceTaken = true;
 
@@ -132,6 +146,11 @@ public class TEST_Belt : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1f))
         {
             TEST_Belt belt = hit.collider.GetComponent<TEST_Belt>();
+            
+            if(belt == this) return null;
+            
+            for (int i = 0; i < avoidThisBelts.Length; i++)
+                if(belt == avoidThisBelts[i]) return null;
 
             if (belt != null)
                 return belt;
