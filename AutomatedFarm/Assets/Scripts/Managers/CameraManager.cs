@@ -64,6 +64,8 @@ public class CameraManager : Singleton<CameraManager>
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && myCamera.orthographicSize >= minOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize - 1, 0.5f); // In
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && myCamera.orthographicSize <= maxOrtoZoom) myCamera.DOOrthoSize(myCamera.orthographicSize + 1, 0.5f); // Out
+
+        AudioManager.Instance.UpdateAudioSourcesVolume(myCamera.orthographicSize);
     }
 
     void PerspZoom()
