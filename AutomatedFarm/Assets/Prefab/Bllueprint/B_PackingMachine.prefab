@@ -88,6 +88,7 @@ MonoBehaviour:
   doorAnimator: []
   typesNeededToCraft: 
   resourcesToInject: []
+  handler: {fileID: 0}
 --- !u!114 &8496678832533177505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +113,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6086a1be074d9b44488b1f7673982abc, type: 2}
+    - target: {fileID: 584834768187315663, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 617543381755480181, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -153,6 +158,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2976386768520954887, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601622013968761, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919297203538402213, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -213,6 +226,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5877571147671819571, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201661017160663853, guid: 264d7535526789b40a18e602ba9c2b58, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
