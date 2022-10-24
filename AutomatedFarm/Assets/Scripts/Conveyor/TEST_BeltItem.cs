@@ -34,7 +34,7 @@ public class TEST_BeltItem : MonoBehaviour
             ray = new Ray(transform.position, Vector3.down);
             if(Physics.Raycast(ray, out hit, 0.5f, conveyorTurnLayer))
             {
-                currentUp = Vector3.Lerp(currentUp, hit.normal, 0.10f);
+                currentUp = Vector3.Lerp(currentUp, hit.normal, 0.15f);
                 item.transform.up = currentUp;
             }
         }
