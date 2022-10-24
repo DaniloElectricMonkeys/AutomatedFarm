@@ -6,14 +6,22 @@ public class VFX_AnimationHandler : MonoBehaviour
 {
     public GameObject[] vfxs;
     public Animator anim;
+    ParticleSystem ps;
+    float rateOverTime;
 
+    private void Start() {
+        StopMachine();
+    }
 
     public void StopMachine()
     {
         if(vfxs.Length > 0)
             for (int i = 0; i < vfxs.Length; i++)
-                vfxs[i].SetActive(false);
-        
+            {
+                ps = vfxs[i].GetComponent<ParticleSystem>();
+                var temp = ps.emission;
+                temp.enabled = false;
+            }
         if(anim != null) anim.speed = 0;
     }
 
@@ -21,8 +29,11 @@ public class VFX_AnimationHandler : MonoBehaviour
     {
         if(vfxs.Length > 0)
             for (int i = 0; i < vfxs.Length; i++)
-                vfxs[i].SetActive(true);
-
+            {
+                ps = vfxs[i].GetComponent<ParticleSystem>();
+                var temp = ps.emission;
+                temp.enabled = true;
+            }
         if(anim != null) anim.speed = 1;
 
     }
