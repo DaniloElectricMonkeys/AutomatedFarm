@@ -185,7 +185,6 @@ MonoBehaviour:
   typesNeededToCraft: 
   resourcesToInject: []
   handler: {fileID: 6727543494877396759}
-  smokeVFX: {fileID: 6844619881982314558}
 --- !u!114 &6727543494877396759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfxs:
-  - {fileID: 8588091457397146156}
+  - {fileID: 8588091456960558450}
+  - {fileID: 8588091456960585012}
   anim: {fileID: 0}
 --- !u!1 &6844619881982314558
 GameObject:
@@ -5326,8 +5326,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.24999996, z: 1}
   m_Center: {x: 0, y: -0.000000037252903, z: 0}
---- !u!1 &8588091457397146156 stripped
+--- !u!1 &8588091456960558450 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 2565045654747543084, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2565045654244606322, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
+  m_PrefabInstance: {fileID: 6104586152010560512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8588091456960585012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2565045654244583732, guid: 1cd73ab8d136b7f4c82fe6bc05a3cf13, type: 3}
   m_PrefabInstance: {fileID: 6104586152010560512}
   m_PrefabAsset: {fileID: 0}

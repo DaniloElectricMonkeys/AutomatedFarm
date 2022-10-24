@@ -1,33 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MachineContainer : MonoBehaviour
+namespace AutomatedFarm
 {
-    [SerializeField] Image icon;
-
-    public Building machine { get; private set; }
-
-    private void Start()
+    public class MachineContainer : MonoBehaviour
     {
-        LoadSettings();
-    }
+        [SerializeField] Image icon;
 
-    void LoadSettings()
-    {
-        if (machine.icon != null)
+        public Building machine { get; private set; }
+
+        private void Start()
         {
-            icon.sprite = machine.icon;
+            LoadSettings();
         }
-    }
 
-    public void GetMachine(Building buildingSettings)
-    {
-        machine = buildingSettings;
-    }
+        void LoadSettings()
+        {
+            if (machine.icon != null)
+            {
+                icon.sprite = machine.icon;
+            }
+        }
 
-    public void Selected()
-    {
-        MachinesManager.Instance.UpdateMachineDetails(machine.name, machine.price, machine.description);
-        MachinesManager.Instance.CurrentMachineSelected(machine);
+        public void GetMachine(Building buildingSettings)
+        {
+            machine = buildingSettings;
+        }
+
+        public void Selected()
+        {
+            MachinesManager.Instance.UpdateMachineDetails(machine.name, machine.price, machine.description);
+            MachinesManager.Instance.CurrentMachineSelected(machine);
+        }
     }
 }

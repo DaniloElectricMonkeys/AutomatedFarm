@@ -626,9 +626,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ed3b7eafcd82f4293ac07d5713d0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soilLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   type: 5
   ignore: 0
   istarget: 0
+  currentSoil: {fileID: 0}
   isAssignedToGraber: 0
 --- !u!1 &8751713471922454878
 GameObject:

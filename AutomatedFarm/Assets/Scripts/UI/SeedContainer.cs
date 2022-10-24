@@ -3,38 +3,41 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SeedContainer : MonoBehaviour
+namespace AutomatedFarm
 {
-    [SerializeField] Image icon;
-    [SerializeField] TextMeshProUGUI growTime;
-    [SerializeField] Button button;
-    public Seed seed { get; private set; }
-
-    private void Start()
+    public class SeedContainer : MonoBehaviour
     {
-        LoadSettings();
-    }
+        [SerializeField] Image icon;
+        [SerializeField] TextMeshProUGUI growTime;
+        [SerializeField] Button button;
+        public Seed seed { get; private set; }
 
-    public void GetSeed(Seed seedSettings)
-    {
-        seed = seedSettings;
-    }
+        private void Start()
+        {
+            LoadSettings();
+        }
 
-    void LoadSettings()
-    {
-        icon.sprite = seed.icon;
-        growTime.text = TimeSpan.FromSeconds(seed.timeToGrow).ToString(@"m\:ss");
-    }
+        public void GetSeed(Seed seedSettings)
+        {
+            seed = seedSettings;
+        }
 
-    public void Selected()
-    {
-        SeedsManager.Instance.UpdateSeedDetails(seed.name, seed.price, seed.goldObtained, seed.expObtained, seed.amountObtained);
-        SeedsManager.Instance.CurrentSeedSelected(seed);
-    }
+        void LoadSettings()
+        {
+            icon.sprite = seed.icon;
+            growTime.text = TimeSpan.FromSeconds(seed.timeToGrow).ToString(@"m\:ss");
+        }
 
-    public void FirstSelect()
-    {
-        button.Select();
-        Selected();
+        public void Selected()
+        {
+            SeedsManager.Instance.UpdateSeedDetails(seed.name, seed.price, seed.goldObtained, seed.expObtained, seed.amountObtained);
+            SeedsManager.Instance.CurrentSeedSelected(seed);
+        }
+
+        public void FirstSelect()
+        {
+            button.Select();
+            Selected();
+        }
     }
 }

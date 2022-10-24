@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7856315247982970399}
   - component: {fileID: -6723761068594068062}
   - component: {fileID: 4951857683917812560}
+  - component: {fileID: 7718185748773061406}
   m_Layer: 10
   m_Name: FertileSoil
   m_TagString: Soil
@@ -76,6 +77,19 @@ MonoBehaviour:
   startSize: {x: 0.1, y: 0.1, z: 0.1}
   finalSize: {x: 1, y: 1, z: 1}
   growTime: 0.45
+--- !u!114 &7718185748773061406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467990521855568265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2f63c3fb6fffa468f6d00457f9cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!1001 &548949863656294785
 PrefabInstance:
   m_ObjectHideFlags: 0

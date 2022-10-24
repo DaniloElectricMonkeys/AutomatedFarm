@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 906555053030112627}
   - component: {fileID: -7263377998090154987}
   - component: {fileID: -4460927431170695775}
+  - component: {fileID: -2353947857810698749}
   m_Layer: 10
   m_Name: Soil End Down
   m_TagString: Soil
@@ -76,6 +77,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.09045047, z: 1}
   m_Center: {x: 0, y: 0.04388169, z: 0}
+--- !u!114 &-2353947857810698749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351693753142114141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2f63c3fb6fffa468f6d00457f9cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!1 &3637155398141449458
 GameObject:
   m_ObjectHideFlags: 0

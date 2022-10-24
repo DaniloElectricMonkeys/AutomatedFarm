@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8293540634122674738}
   - component: {fileID: -7826185202722727474}
   - component: {fileID: -3915636886810546820}
+  - component: {fileID: -1550237352602455786}
   m_Layer: 10
   m_Name: Soil Down Left
   m_TagString: Soil
@@ -76,6 +77,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.17708045, z: 1}
   m_Center: {x: 0, y: 0.09, z: 0}
+--- !u!114 &-1550237352602455786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788699083702082273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2f63c3fb6fffa468f6d00457f9cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!1 &9152405528992954455
 GameObject:
   m_ObjectHideFlags: 0

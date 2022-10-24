@@ -4,10 +4,14 @@ using UnityEngine;
 using MyEnums;
 using System;
 
-public class BoilerMachine : OutputMachine
+namespace AutomatedFarm
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
+    public class BoilerMachine : OutputMachine
     {
-        base.OnResourceEnter(type, obj, 1);
+        public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
+        {
+            base.OnResourceEnter(type, obj, 1);
+        }
     }
 }
+

@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 2771945780271090218}
   - component: {fileID: 1285836609689519503}
   - component: {fileID: 3908212829444665669}
+  - component: {fileID: 7257317759094128774}
+  - component: {fileID: -4845559169315655646}
+  - component: {fileID: -6035883533365498035}
   m_Layer: 0
   m_Name: Soil Line
   m_TagString: Untagged
@@ -83,3 +86,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7257317759094128774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259549141633847440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35dc68a123239f4aa130303e3319e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 1117337372446320685, guid: 05e51b68b7a21d24a83aecdcb1063e8e, type: 3}
+--- !u!114 &-4845559169315655646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259549141633847440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798e9e112ff05234b874638494758498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSize: {x: 0.1, y: 0.1, z: 0.1}
+  finalSize: {x: 1, y: 1, z: 1}
+  growTime: 0.45
+--- !u!114 &-6035883533365498035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259549141633847440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2f63c3fb6fffa468f6d00457f9cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0

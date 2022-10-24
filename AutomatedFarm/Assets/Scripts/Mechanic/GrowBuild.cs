@@ -11,8 +11,6 @@ public class GrowBuild : MonoBehaviour, IGrowBuild, ISpawnParticle
     public Vector3 startSize = new Vector3(.1f,.1f,.1f);
     public Vector3 finalSize = new Vector3(1,1,1);
     public float growTime = .45f;
-    float timeRef = 0;
-
     public event Action OnGrowEnd;
 
     public void SpawnParticle()

@@ -2,43 +2,47 @@ using System;
 using MyEnums;
 using UnityEngine;
 
-public class TEST_BeltItem : MonoBehaviour
+namespace AutomatedFarm
 {
-    public GameObject item;
-    public TEST_Belt currentConveyor;
-    public ResourceType type;
-
-    Ray ray;
-    RaycastHit hit;
-    public LayerMask conveyorTurnLayer;
-
-    Vector3 currentUp;
-    public bool onRamp;
-    private void Awake()
+    public class TEST_BeltItem : MonoBehaviour
     {
-        item = gameObject;
-        currentUp = Vector3.up;
-    }
+        public GameObject item;
+        public TEST_Belt currentConveyor;
+        public ResourceType type;
 
-    private void Update() 
-    {
-        if(currentConveyor != null && currentConveyor.rampNormal != null)
+        Ray ray;
+        RaycastHit hit;
+        public LayerMask conveyorTurnLayer;
+
+        Vector3 currentUp;
+        public bool onRamp;
+        private void Awake()
         {
-            currentUp = Vector3.Lerp(currentUp, currentConveyor.rampNormal.transform.up, 0.10f);
-            item.transform.up = currentUp;
-            onRamp = true;
+            item = gameObject;
+            currentUp = Vector3.up;
         }
-        else if(!onRamp)
+
+        private void Update() 
         {
-            onRamp = false;
-            ray = new Ray(transform.position, Vector3.down);
-            if(Physics.Raycast(ray, out hit, 0.5f, conveyorTurnLayer))
+            if(currentConveyor != null && currentConveyor.rampNormal != null)
             {
-                currentUp = Vector3.Lerp(currentUp, hit.normal, 0.10f);
+                currentUp = Vector3.Lerp(currentUp, currentConveyor.rampNormal.transform.up, 0.10f);
                 item.transform.up = currentUp;
+                onRamp = true;
             }
+            else if(!onRamp)
+            {
+                onRamp = false;
+                ray = new Ray(transform.position, Vector3.down);
+                if(Physics.Raycast(ray, out hit, 0.5f, conveyorTurnLayer))
+                {
+                    currentUp = Vector3.Lerp(currentUp, hit.normal, 0.15f);
+                    item.transform.up = currentUp;
+                }
+            }
+            else
+                onRamp = false;
         }
-        else
-            onRamp = false;
     }
 }
+

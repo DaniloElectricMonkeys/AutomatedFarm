@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using MyEnums;
 using UnityEngine;
 
-public class CrystilizeMachine : OutputMachine
+namespace AutomatedFarm
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj, int amount)
+    public class CrystilizeMachine : OutputMachine
     {
-        base.OnResourceEnter(type, obj, 1);
+        public override void OnResourceEnter(ResourceType type, GameObject obj, int amount)
+        {
+            base.OnResourceEnter(type, obj, 1);
+        }
     }
 }
