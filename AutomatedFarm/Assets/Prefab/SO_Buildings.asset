@@ -89,5 +89,5 @@ MonoBehaviour:
     price: 1
     description: Plant crops automaticly
     icon: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
-    blueprint: {fileID: 1309744788639485926, guid: 45c4303388ad74d4a9217b153001d24a, type: 3}
+    blueprint: {fileID: 1309744788639485926, guid: 115d3ea42ca34344a9bac8295f56740e, type: 3}
     original: {fileID: 1309744788639485926, guid: d5c3c54c63309e24bb792bcf6e1d9800, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CollapseTile : MonoBehaviour
 {
-    public enum TileType{none, sand, water, grass, forest, deepWater}
+    public enum TileType{none, sand, water, grass, forest, deepWater, hill, morro, montanha}
     public TileType type;
     public List<bool> outcomes = new List<bool>();
 
@@ -48,6 +48,9 @@ public class CollapseTile : MonoBehaviour
         if(possibleOutcomes[id].name == "Grass") type = TileType.grass;
         if(possibleOutcomes[id].name == "Forest") type = TileType.forest;
         if(possibleOutcomes[id].name == "DeepWater") type = TileType.deepWater;
+        if(possibleOutcomes[id].name == "Hill") type = TileType.hill;
+        if(possibleOutcomes[id].name == "Morro") type = TileType.morro;
+        if(possibleOutcomes[id].name == "Montanha") type = TileType.montanha;
 
         colapsed = true;
 
@@ -74,24 +77,69 @@ public class CollapseTile : MonoBehaviour
             case TileType.sand:
                 outcomes[0] = false;
                 outcomes[4] = false;
+                outcomes[5] = false;
+                outcomes[6] = false;
+                outcomes[7] = false;
                 break;
             case TileType.forest:
                 outcomes[0] = false;
                 outcomes[1] = false;
                 outcomes[2] = false;
+                outcomes[6] = false;
+                outcomes[7] = false;
+                
                 break;
             case TileType.water:
                 outcomes[3] = false;
                 outcomes[4] = false;
+                outcomes[5] = false;
+                outcomes[6] = false;
+                outcomes[7] = false;
                 break;
             case TileType.grass:
                 outcomes[0] = false;
                 outcomes[1] = false;
+                outcomes[5] = false;
+                outcomes[6] = false;
+                outcomes[7] = false;
                 break;
             case TileType.deepWater:
                 outcomes[2] = false;
                 outcomes[3] = false;
                 outcomes[4] = false;
+                outcomes[5] = false;
+                outcomes[6] = false;
+                outcomes[7] = false;
+                break;
+            case TileType.hill:
+                outcomes[0] = false;
+                outcomes[1] = false;
+                outcomes[2] = false;
+                outcomes[3] = false;
+                // outcomes[4] = false;
+                // outcomes[5] = false;
+                // outcomes[6] = false;
+                outcomes[7] = false;
+                break;
+            case TileType.morro:
+                outcomes[0] = false;
+                outcomes[1] = false;
+                outcomes[2] = false;
+                outcomes[3] = false;
+                outcomes[4] = false;
+                // outcomes[5] = false;
+                // outcomes[6] = false;
+                // outcomes[7] = false;
+                break;
+            case TileType.montanha:
+                outcomes[0] = false;
+                outcomes[1] = false;
+                outcomes[2] = false;
+                outcomes[3] = false;
+                outcomes[4] = false;
+                outcomes[5] = false;
+                // outcomes[6] = false;
+                // outcomes[7] = false;
                 break;
             
         }

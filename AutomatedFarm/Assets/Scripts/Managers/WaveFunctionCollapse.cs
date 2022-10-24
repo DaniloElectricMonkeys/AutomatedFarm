@@ -64,15 +64,17 @@ public class WaveFunctionCollapse : MonoBehaviour
 }
 
 
-// [CustomEditor(typeof(WaveFunctionCollapse))]
-// public class WaveFunctionCollapseEditor : Editor {
-//     public override void OnInspectorGUI() {
-//         base.OnInspectorGUI();
-
-//         if(GUILayout.Button("Generate World"))
-//         {
-//             WaveFunctionCollapse waveFunction = (WaveFunctionCollapse)target;
-//             waveFunction.GenerateWorld();
-//         }
-//     }
-// }
+#if UNITY_EDITOR
+    [CustomEditor(typeof(WaveFunctionCollapse))]
+    public class WaveFunctionCollapseEditor : Editor {
+        public override void OnInspectorGUI() {
+            base.OnInspectorGUI();
+    
+            if(GUILayout.Button("Generate World"))
+            {
+                WaveFunctionCollapse waveFunction = (WaveFunctionCollapse)target;
+                waveFunction.GenerateWorld();
+            }
+        }
+    }
+#endif
