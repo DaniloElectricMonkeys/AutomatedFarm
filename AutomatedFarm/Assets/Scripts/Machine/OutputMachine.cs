@@ -221,69 +221,7 @@ public class OutputMachine : Machine
         // Lets create the output and remove itens from the machine
         if(outputType == ResourceType.variable)
         {
-            if(resourcesInTheMachine.Count > 0)
-            {
-                foreach(var item in resourcesInTheMachine)
-                {
-                    ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
-                    
-                    switch (type)
-                    {
-                        case ResourceType.corn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.rawCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.boiledCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.boiledCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.smashedCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.smashedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.cookedCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.cookedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.crystalCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.crystalCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.packedCorn:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.packedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.soil:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.soilPrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.ore:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.orePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.stone:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), Library.Instance.stonePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.sugar:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.sugar);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.cardboard:
-                            go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.cardboard);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-
-                        default:
-                            return null;
-                    }
-                    break;
-                }
-            }
-            else
-            {
-                return null;
-            }
+            go = VariableItem();
         }
         else
         {
@@ -301,11 +239,83 @@ public class OutputMachine : Machine
         go.SetActive(true);
 
         resourceAmount--;
-        FeedbackTextManager.Instance.SpawnText("+", transform.position + new Vector3(0,4,0));
+        // FeedbackTextManager.Instance.SpawnText("+", transform.position + new Vector3(0,4,0));
         ResourceManager.Instance.IncrementSoil(1);
         return go.GetComponent<TEST_BeltItem>();
     }
+
+    public virtual GameObject VariableItem()
+    {
+        GameObject returnedGo = null;
+        if(resourcesInTheMachine.Count > 0)
+            {
+                foreach(var item in resourcesInTheMachine)
+                {
+                    ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
+                    
+                    switch (type)
+                    {
+                        case ResourceType.corn:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("boiledCorn", ItemLibrary.Instance.boiledCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.boiledCorn:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("smashedCorn", ItemLibrary.Instance.smashedCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.smashedCorn:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("cookedCorn", ItemLibrary.Instance.cookedCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.cookedCorn:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("crystalCorn", ItemLibrary.Instance.crystalCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.crystalCorn:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("packedCorn", ItemLibrary.Instance.packedCorn);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        // case ResourceType.packedCorn:
+                        //     go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.packedCorn);
+                        //     resourcesInTheMachine[item.Key] -= 1;
+                        // break;
+                        case ResourceType.soil:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("soilPrefab", Library.Instance.soilPrefab);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.ore:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("orePrefab", Library.Instance.orePrefab);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.stone:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("stonePrefab", Library.Instance.stonePrefab);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.sugar:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("sugar", ItemLibrary.Instance.sugar);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+                        case ResourceType.cardboard:
+                            returnedGo = ObjectPool.Instance.GrabFromPool("cardboard", ItemLibrary.Instance.cardboard);
+                            resourcesInTheMachine[item.Key] -= 1;
+                        break;
+
+                        default:
+                            return null;
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                return null;
+            }
+
+            return returnedGo;
+    }
 }
+
+
 
 [Serializable]
 public class ResourceToInject

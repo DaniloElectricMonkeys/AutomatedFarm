@@ -5392,6 +5392,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoilerMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: outputType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: resourcesToInject.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: typesNeededToCraft.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: typesNeededToCraft.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: resourcesToInject.Array.data[0].type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600837332730120340, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
+      propertyPath: resourcesToInject.Array.data[0].quantity
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09452d4c10bec5b4bb5dbc8e84e2ad4d, type: 3}
 --- !u!82 &389037146 stripped
