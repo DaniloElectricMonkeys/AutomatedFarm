@@ -26,7 +26,7 @@ Material:
   - EFFECT_EXTRA_TEX
   - EFFECT_HUE_VARIATION
   - EFFECT_SUBSURFACE
-  - _WINDQUALITY_NONE
+  - _WINDQUALITY_BETTER
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _GRADIENTUV_UV2
@@ -161,7 +161,7 @@ Material:
     - _WindDirectionZ: 0
     - _WindMultiplier: 1
     - _WindNoiseScale: 1
-    - _WindQuality: 0
+    - _WindQuality: 3
     - _WindStrength: 0.7
     - _ZWrite: 1
     - __dirty: 0
