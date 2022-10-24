@@ -3,64 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 
-public class Machine : MonoBehaviour
+namespace AutomatedFarm
 {
-    [Header("Options")]
-    public bool useInput;
-    public bool useOutput;
-
-    [Space]
-    [Header("OutputOptions")]
-    public bool isConnected;
-    public GameObject outputPoint;
-    public GameObject checkConnectionPoint;
-
-    //Override in other classes to add functionality
-    public virtual void OnSoilEnter(){}
-    public virtual void OnOreEnter(){}
-    public virtual void OnStoneEnter(){}
-    public virtual void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
+    public class Machine : MonoBehaviour
     {
-        string key = type.ToString();
-        ObjectPool.Instance.AddToPool(key, obj.gameObject);
-        obj.SetActive(false);
-    }
+        [Header("Options")]
+        public bool useInput;
+        public bool useOutput;
 
+        [Space]
+        [Header("OutputOptions")]
+        public bool isConnected;
+        public GameObject outputPoint;
+        public GameObject checkConnectionPoint;
 
-    ///<summary>
-    /// Check if there is a conveyor below the output
-    ///</summary>
-    protected void CheckOutput()
-    {
-        if(useOutput == false) return;
-
-        if(Physics.Raycast(checkConnectionPoint.transform.position, Vector3.down, out RaycastHit hit, 10f))
+        //Override in other classes to add functionality
+        public virtual void OnSoilEnter(){}
+        public virtual void OnOreEnter(){}
+        public virtual void OnStoneEnter(){}
+        public virtual void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
         {
-            if(!hit.collider.gameObject.CompareTag("Conveyor"))
-            {
-                isConnected = false;
-                return;
-            }
+            string key = type.ToString();
+            ObjectPool.Instance.AddToPool(key, obj.gameObject);
+            obj.SetActive(false);
+        }
 
-            if(hit.collider.gameObject.CompareTag("Conveyor") && isConnected == false)
-            {
-                isConnected = true;
-                SideCheck[] checkers = hit.collider.gameObject.GetComponentsInChildren<SideCheck>();
-                if(checkers == null) return;
 
-                foreach (SideCheck item in checkers)
+        ///<summary>
+        /// Check if there is a conveyor below the output
+        ///</summary>
+        protected void CheckOutput()
+        {
+            if(useOutput == false) return;
+
+            if(Physics.Raycast(checkConnectionPoint.transform.position, Vector3.down, out RaycastHit hit, 10f))
+            {
+                if(!hit.collider.gameObject.CompareTag("Conveyor"))
                 {
-                    item.CheckForMachineConnection();
+                    isConnected = false;
+                    return;
                 }
+
+                if(hit.collider.gameObject.CompareTag("Conveyor") && isConnected == false)
+                {
+                    isConnected = true;
+                    SideCheck[] checkers = hit.collider.gameObject.GetComponentsInChildren<SideCheck>();
+                    if(checkers == null) return;
+
+                    foreach (SideCheck item in checkers)
+                    {
+                        item.CheckForMachineConnection();
+                    }
+                }
+                else if(isConnected)
+                    return;
+                else
+                    isConnected = false;
             }
-            else if(isConnected)
-                return;
             else
+            {
                 isConnected = false;
-        }
-        else
-        {
-            isConnected = false;
+            }
         }
     }
+
 }
+

@@ -4,10 +4,13 @@ using UnityEngine;
 using MyEnums;
 using System;
 
-public class Smasher : OutputMachine
+namespace AutomatedFarm
 {
-    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout)
+    public class Smasher : OutputMachine
     {
-        base.OnResourceEnter(type, obj, 1);
+        public override void OnResourceEnter(ResourceType type, GameObject obj, int amout)
+        {
+            base.OnResourceEnter(type, obj, 1);
+        }
     }
 }

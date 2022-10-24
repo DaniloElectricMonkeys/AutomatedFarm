@@ -3,325 +3,329 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyEnums;
 
-///<summary>
-/// Create soil based on the input it recives
-///</summary>
-public class OutputMachine : Machine
+namespace AutomatedFarm
 {
-    [Header("Output Resource")]
-    public int inventoryCapacity;
-    public ResourceType outputType;
-    protected GameObject go;
-    [SerializeField] protected int resourceAmount;
-    public float timeToExtract;
-    protected float refTimer;
 
-    [Space]
-    [Header("Machine Door")]
-    public Animator[] doorAnimator;
 
-    protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
-
-    [Space]
-    [Header("Crafting")]
-    public List<ResourceType> typesNeededToCraft = new List<ResourceType>();
-
-    [Space]
-    [Header("Resource injection")]
-    public List<ResourceToInject> resourcesToInject = new List<ResourceToInject>();
-
-    public VFX_AnimationHandler handler;
-
-    bool open;
-    bool closed;
-
-    private void Start() {
-        refTimer = timeToExtract;
-        RunOutput();
-        UpdateDoorState();
-    }
-
-    public bool IsInventoryFull(ResourceType type = ResourceType.none, int doorNumber = -1)
+    ///<summary>
+    /// Create soil based on the input it recives
+    ///</summary>
+    public class OutputMachine : Machine
     {
-        var key = type.ToString();
-        if (resourcesInTheMachine.ContainsKey(key))
+        [Header("Output Resource")]
+        public int inventoryCapacity;
+        public ResourceType outputType;
+        protected GameObject go;
+        [SerializeField] protected int resourceAmount;
+        public float timeToExtract;
+        protected float refTimer;
+
+        [Space]
+        [Header("Machine Door")]
+        public Animator[] doorAnimator;
+
+        protected Dictionary<string, int> resourcesInTheMachine = new Dictionary<string, int>();
+
+        [Space]
+        [Header("Crafting")]
+        public List<ResourceType> typesNeededToCraft = new List<ResourceType>();
+
+        [Space]
+        [Header("Resource injection")]
+        public List<ResourceToInject> resourcesToInject = new List<ResourceToInject>();
+
+        public VFX_AnimationHandler handler;
+
+        bool open;
+        bool closed;
+
+        private void Start() {
+            refTimer = timeToExtract;
+            RunOutput();
+            UpdateDoorState();
+        }
+
+        public bool IsInventoryFull(ResourceType type = ResourceType.none, int doorNumber = -1)
         {
-            if (resourcesInTheMachine[key] >= inventoryCapacity)
+            var key = type.ToString();
+            if (resourcesInTheMachine.ContainsKey(key))
             {
-                if (doorNumber != -1) doorAnimator[doorNumber].Play("Close");
-                return true;
-            }
-        }
-        else
-        {
-            if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
-            return false;
-        }
-        
-        if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
-        return false;
-    }
-
-    private void UpdateDoorState()
-    {
-        if (resourceAmount >= inventoryCapacity && closed == false)
-        {
-            foreach (var item in doorAnimator)
-                item.Play("Close");
-
-            closed = true;
-            open = false;
-        }
-        else if (open == false && resourceAmount < inventoryCapacity)
-        {
-            foreach (var item in doorAnimator)
-                item.Play("Open");
-
-            open = true;
-            closed = false;
-        }
-    }
-
-    public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
-    {
-        string key = type.ToString();
-
-        //Add object to the list of its type
-        if(resourcesInTheMachine.ContainsKey(key))
-            resourcesInTheMachine[key] += 1;
-        //Add object to the list of its type by creating a new list if it is a new resource type
-        else
-        {
-            int q = 1;
-            resourcesInTheMachine.Add(key, q);
-        }
-
-        if(obj != null)
-        {
-            ObjectPool.Instance.AddToPool(key, obj.gameObject);
-            obj.SetActive(false);
-        }
-        
-        resourceAmount += amout;
-    }
-
-    private void Update() 
-    {
-        // UpdateDoorState();
-        if(resourceAmount > 0)
-        {
-            refTimer -= Time.deltaTime;
-            handler?.ResumeMachine();
-        }
-        else
-        {
-            handler?.StopMachine();
-        }
-    }
-
-    void RunOutput()
-    {
-        // Grab the iten to be crafted and populate the itens needed list. 
-        // We cache the itens needed to craft for later use.
-        foreach (var item in Library.Instance.itensSO.Itens)
-        {
-            if(item.craftableItem == outputType) {
-                typesNeededToCraft.Clear();
-                foreach (var types in item.itensNeededToCraft)
-                    typesNeededToCraft.Add(types);
-
-                break;
-            }
-        }
-
-        // foreach(var item in typesNeededToCraft)
-        //     if(!resourcesInTheMachine.ContainsKey(item.ToString()))
-        //         Debug.LogError($"No item of {item.ToString()} found.");
-
-    }
-
-    public virtual void OutputResource()
-    {
-        if(resourceAmount <= 0) return;
-
-        if(!isConnected) CheckOutput();
-        if(!isConnected) return;
-
-        // Check if the itens needed to craft are in the machine
-        foreach(var item in typesNeededToCraft)
-        {
-            // Return if itens are not found
-            if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
-                return;
-            }
-            
-            // In this point we know that all itens needed are inside the machine.
-            // Now we check if we have the required amount (>0).
-
-            // Return if we have less or equal than 0 itens
-            if(resourcesInTheMachine[item.ToString()] <= 0) {
-                return;
-            }
-        }
-        
-        // Now we have all itens, and their quantity is bigger then 0
-        // Lets create the output and remove itens from the machine
-
-        // Create item
-        go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), ItemLibrary.Instance.GetPrefabFromType(outputType));
-
-        // Remove from machine
-        foreach(var item in typesNeededToCraft) {
-            resourcesInTheMachine[item.ToString()]--;
-        }
-        
-        go.transform.position = outputPoint.transform.position;
-        go.transform.rotation = Quaternion.identity;
-        go.SetActive(true);
-
-        resourceAmount--;
-    }
-
-    public int GetResourceAmount()
-    {
-        return resourceAmount;
-    }
-
-    public TEST_BeltItem AskForBeltItem()
-    {
-        if(refTimer > 0)
-            return null;
-        refTimer = timeToExtract;
-
-        if(resourceAmount <= 0) 
-            return null;
-
-        if(!isConnected) CheckOutput();
-        if(!isConnected) 
-            return null;
-
-        // Check if the itens needed to craft are in the machine
-        foreach(var item in typesNeededToCraft)
-        {
-            // Return if itens are not found
-            if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
-                return null;
-            }
-            
-            // In this point we know that all itens needed are inside the machine.
-            // Now we check if we have the required amount (>0).
-
-            // Return if we have less or equal than 0 itens
-            if(resourcesInTheMachine[item.ToString()] <= 0) {
-                return null;
-            }
-        }
-        
-        // Now we have all itens, and their quantity is bigger then 0
-        // Lets create the output and remove itens from the machine
-        if(outputType == ResourceType.variable)
-        {
-            go = VariableItem();
-        }
-        else
-        {
-            // Create item
-            go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), ItemLibrary.Instance.GetPrefabFromType(outputType));   
-        }
-
-        // Remove from machine
-        foreach(var item in typesNeededToCraft) {
-            resourcesInTheMachine[item.ToString()]--;
-        }
-        
-        go.transform.position = outputPoint.transform.position;
-        go.transform.rotation = Quaternion.identity;
-        go.SetActive(true);
-
-        resourceAmount--;
-        // FeedbackTextManager.Instance.SpawnText("+", transform.position + new Vector3(0,4,0));
-        ResourceManager.Instance.IncrementSoil(1);
-        return go.GetComponent<TEST_BeltItem>();
-    }
-
-    public virtual GameObject VariableItem()
-    {
-        GameObject returnedGo = null;
-        if(resourcesInTheMachine.Count > 0)
-            {
-                foreach(var item in resourcesInTheMachine)
+                if (resourcesInTheMachine[key] >= inventoryCapacity)
                 {
-                    ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
-                    
-                    switch (type)
-                    {
-                        case ResourceType.corn:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("boiledCorn", ItemLibrary.Instance.boiledCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.boiledCorn:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("smashedCorn", ItemLibrary.Instance.smashedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.smashedCorn:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("cookedCorn", ItemLibrary.Instance.cookedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.cookedCorn:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("crystalCorn", ItemLibrary.Instance.crystalCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.crystalCorn:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("packedCorn", ItemLibrary.Instance.packedCorn);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        // case ResourceType.packedCorn:
-                        //     go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.packedCorn);
-                        //     resourcesInTheMachine[item.Key] -= 1;
-                        // break;
-                        case ResourceType.soil:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("soilPrefab", Library.Instance.soilPrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.ore:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("orePrefab", Library.Instance.orePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.stone:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("stonePrefab", Library.Instance.stonePrefab);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.sugar:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("sugar", ItemLibrary.Instance.sugar);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-                        case ResourceType.cardboard:
-                            returnedGo = ObjectPool.Instance.GrabFromPool("cardboard", ItemLibrary.Instance.cardboard);
-                            resourcesInTheMachine[item.Key] -= 1;
-                        break;
-
-                        default:
-                            return null;
-                    }
-                    break;
+                    if (doorNumber != -1) doorAnimator[doorNumber].Play("Close");
+                    return true;
                 }
             }
             else
             {
-                return null;
+                if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+                return false;
+            }
+            
+            if (doorNumber != -1) doorAnimator[doorNumber].Play("Open");
+            return false;
+        }
+
+        private void UpdateDoorState()
+        {
+            if (resourceAmount >= inventoryCapacity && closed == false)
+            {
+                foreach (var item in doorAnimator)
+                    item.Play("Close");
+
+                closed = true;
+                open = false;
+            }
+            else if (open == false && resourceAmount < inventoryCapacity)
+            {
+                foreach (var item in doorAnimator)
+                    item.Play("Open");
+
+                open = true;
+                closed = false;
+            }
+        }
+
+        public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
+        {
+            string key = type.ToString();
+
+            //Add object to the list of its type
+            if(resourcesInTheMachine.ContainsKey(key))
+                resourcesInTheMachine[key] += 1;
+            //Add object to the list of its type by creating a new list if it is a new resource type
+            else
+            {
+                int q = 1;
+                resourcesInTheMachine.Add(key, q);
             }
 
-            return returnedGo;
+            if(obj != null)
+            {
+                ObjectPool.Instance.AddToPool(key, obj.gameObject);
+                obj.SetActive(false);
+            }
+            
+            resourceAmount += amout;
+        }
+
+        private void Update() 
+        {
+            // UpdateDoorState();
+            if(resourceAmount > 0)
+            {
+                refTimer -= Time.deltaTime;
+                handler?.ResumeMachine();
+            }
+            else
+            {
+                handler?.StopMachine();
+            }
+        }
+
+        void RunOutput()
+        {
+            // Grab the iten to be crafted and populate the itens needed list. 
+            // We cache the itens needed to craft for later use.
+            foreach (var item in Library.Instance.itensSO.Itens)
+            {
+                if(item.craftableItem == outputType) {
+                    typesNeededToCraft.Clear();
+                    foreach (var types in item.itensNeededToCraft)
+                        typesNeededToCraft.Add(types);
+
+                    break;
+                }
+            }
+
+            // foreach(var item in typesNeededToCraft)
+            //     if(!resourcesInTheMachine.ContainsKey(item.ToString()))
+            //         Debug.LogError($"No item of {item.ToString()} found.");
+
+        }
+
+        public virtual void OutputResource()
+        {
+            if(resourceAmount <= 0) return;
+
+            if(!isConnected) CheckOutput();
+            if(!isConnected) return;
+
+            // Check if the itens needed to craft are in the machine
+            foreach(var item in typesNeededToCraft)
+            {
+                // Return if itens are not found
+                if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
+                    return;
+                }
+                
+                // In this point we know that all itens needed are inside the machine.
+                // Now we check if we have the required amount (>0).
+
+                // Return if we have less or equal than 0 itens
+                if(resourcesInTheMachine[item.ToString()] <= 0) {
+                    return;
+                }
+            }
+            
+            // Now we have all itens, and their quantity is bigger then 0
+            // Lets create the output and remove itens from the machine
+
+            // Create item
+            go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), ItemLibrary.Instance.GetPrefabFromType(outputType));
+
+            // Remove from machine
+            foreach(var item in typesNeededToCraft) {
+                resourcesInTheMachine[item.ToString()]--;
+            }
+            
+            go.transform.position = outputPoint.transform.position;
+            go.transform.rotation = Quaternion.identity;
+            go.SetActive(true);
+
+            resourceAmount--;
+        }
+
+        public int GetResourceAmount()
+        {
+            return resourceAmount;
+        }
+
+        public TEST_BeltItem AskForBeltItem()
+        {
+            if(refTimer > 0)
+                return null;
+            refTimer = timeToExtract;
+
+            if(resourceAmount <= 0) 
+                return null;
+
+            if(!isConnected) CheckOutput();
+            if(!isConnected) 
+                return null;
+
+            // Check if the itens needed to craft are in the machine
+            foreach(var item in typesNeededToCraft)
+            {
+                // Return if itens are not found
+                if(!resourcesInTheMachine.ContainsKey(item.ToString())) {
+                    return null;
+                }
+                
+                // In this point we know that all itens needed are inside the machine.
+                // Now we check if we have the required amount (>0).
+
+                // Return if we have less or equal than 0 itens
+                if(resourcesInTheMachine[item.ToString()] <= 0) {
+                    return null;
+                }
+            }
+            
+            // Now we have all itens, and their quantity is bigger then 0
+            // Lets create the output and remove itens from the machine
+            if(outputType == ResourceType.variable)
+            {
+                go = VariableItem();
+            }
+            else
+            {
+                // Create item
+                go = ObjectPool.Instance.GrabFromPool(outputType.ToString(), ItemLibrary.Instance.GetPrefabFromType(outputType));   
+            }
+
+            // Remove from machine
+            foreach(var item in typesNeededToCraft) {
+                resourcesInTheMachine[item.ToString()]--;
+            }
+            
+            go.transform.position = outputPoint.transform.position;
+            go.transform.rotation = Quaternion.identity;
+            go.SetActive(true);
+
+            resourceAmount--;
+            // FeedbackTextManager.Instance.SpawnText("+", transform.position + new Vector3(0,4,0));
+            ResourceManager.Instance.IncrementSoil(1);
+            return go.GetComponent<TEST_BeltItem>();
+        }
+
+        public virtual GameObject VariableItem()
+        {
+            GameObject returnedGo = null;
+            if(resourcesInTheMachine.Count > 0)
+                {
+                    foreach(var item in resourcesInTheMachine)
+                    {
+                        ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), item.Key);
+                        
+                        switch (type)
+                        {
+                            case ResourceType.corn:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("boiledCorn", ItemLibrary.Instance.boiledCorn);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.boiledCorn:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("smashedCorn", ItemLibrary.Instance.smashedCorn);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.smashedCorn:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("cookedCorn", ItemLibrary.Instance.cookedCorn);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.cookedCorn:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("crystalCorn", ItemLibrary.Instance.crystalCorn);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.crystalCorn:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("packedCorn", ItemLibrary.Instance.packedCorn);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            // case ResourceType.packedCorn:
+                            //     go = ObjectPool.Instance.GrabFromPool(type.ToString(), ItemLibrary.Instance.packedCorn);
+                            //     resourcesInTheMachine[item.Key] -= 1;
+                            // break;
+                            case ResourceType.soil:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("soilPrefab", Library.Instance.soilPrefab);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.ore:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("orePrefab", Library.Instance.orePrefab);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.stone:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("stonePrefab", Library.Instance.stonePrefab);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.sugar:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("sugar", ItemLibrary.Instance.sugar);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+                            case ResourceType.cardboard:
+                                returnedGo = ObjectPool.Instance.GrabFromPool("cardboard", ItemLibrary.Instance.cardboard);
+                                resourcesInTheMachine[item.Key] -= 1;
+                            break;
+
+                            default:
+                                return null;
+                        }
+                        break;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+
+                return returnedGo;
+        }
+    }
+
+
+
+    [Serializable]
+    public class ResourceToInject
+    {
+        public ResourceType type;
+        public int quantity;
+
     }
 }
-
-
-
-[Serializable]
-public class ResourceToInject
-{
-    public ResourceType type;
-    public int quantity;
-
-}
-

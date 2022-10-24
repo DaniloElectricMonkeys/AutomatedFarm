@@ -1,48 +1,51 @@
 using UnityEngine;
 using MyEnums;
 
-///<summary>
-/// Hold all the info about buildings and prefabs;
-///</summary>
-public class Library : Singleton<Library>
+namespace AutomatedFarm
 {
-    [Header("Dependecys")]
-    public SO_Buildings buildingsSO;
-    public SO_Craftables itensSO;
-    public SeedSO[] seedScriptable;
-
-    [Space]
-    [Header("Resource Prefabs")]
-    public GameObject soilPrefab;
-    public GameObject orePrefab;
-    public GameObject stonePrefab;
-
-    [Header("Building")]
-    public GameObject currentSelected;
-    
-    [Header("UI")]
-    public ToolTip toolTip;
-    
-
-    public void ChooseBuilding(int ID)
+    ///<summary>
+    /// Hold all the info about buildings and prefabs;
+    ///</summary>
+    public class Library : Singleton<Library>
     {
-        BuildSystem.Instance.ChosseObject(buildingsSO.buildings[ID].blueprint);
-        BuildSystem.Instance.buildPrice = buildingsSO.buildings[ID].price;
-        currentSelected = buildingsSO.buildings[ID].original;
-    }
+        [Header("Dependecys")]
+        public SO_Buildings buildingsSO;
+        public SO_Craftables itensSO;
+        public SeedSO[] seedScriptable;
 
-    public void SetCurrentSelected(GameObject obj)
-    {
-        currentSelected = obj;
-    }
+        [Space]
+        [Header("Resource Prefabs")]
+        public GameObject soilPrefab;
+        public GameObject orePrefab;
+        public GameObject stonePrefab;
 
-    public Seed GetType(ResourceType resource)
-    {
-        for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
+        [Header("Building")]
+        public GameObject currentSelected;
+        
+        [Header("UI")]
+        public ToolTip toolTip;
+        
+
+        public void ChooseBuilding(int ID)
         {
-            if (resource == seedScriptable[0].seeds[i].type) return seedScriptable[0].seeds[i];
+            BuildSystem.Instance.ChosseObject(buildingsSO.buildings[ID].blueprint);
+            BuildSystem.Instance.buildPrice = buildingsSO.buildings[ID].price;
+            currentSelected = buildingsSO.buildings[ID].original;
         }
 
-        return null;
+        public void SetCurrentSelected(GameObject obj)
+        {
+            currentSelected = obj;
+        }
+
+        public Seed GetType(ResourceType resource)
+        {
+            for (int i = 0; i < seedScriptable[0].seeds.Length; i++)
+            {
+                if (resource == seedScriptable[0].seeds[i].type) return seedScriptable[0].seeds[i];
+            }
+
+            return null;
+        }
     }
 }
