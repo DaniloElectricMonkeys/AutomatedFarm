@@ -10,6 +10,7 @@ namespace AutomatedFarm
         [Header("Options")]
         public bool useInput;
         public bool useOutput;
+        public LayerMask machineLayer;
 
         [Space]
         [Header("OutputOptions")]
@@ -36,10 +37,11 @@ namespace AutomatedFarm
         {
             if(useOutput == false) return;
 
-            if(Physics.Raycast(checkConnectionPoint.transform.position, Vector3.down, out RaycastHit hit, 10f))
+            if(Physics.Raycast(checkConnectionPoint.transform.position, Vector3.down, out RaycastHit hit, 10f, machineLayer))
             {
                 if(!hit.collider.gameObject.CompareTag("Conveyor"))
                 {
+                    Debug.Log(hit.collider.gameObject.name);
                     isConnected = false;
                     return;
                 }

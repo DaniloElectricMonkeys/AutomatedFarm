@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8260813660094149120}
   - component: {fileID: 1215133521578800415}
   - component: {fileID: 2655218961760523834}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,8 +236,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0381573, y: 1.9370849, z: 1.0519168}
-  m_Center: {x: 0, y: -0.12474123, z: 0}
+  m_Size: {x: 1.0381573, y: 1.9795878, z: 1.0519168}
+  m_Center: {x: 0, y: -0.10348973, z: 0}
 --- !u!54 &2545903447942234252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -298,6 +298,7 @@ MonoBehaviour:
   beltItem: {fileID: 0}
   isSpaceTaken: 0
   selectedMachine: {fileID: 0}
+  sellerMachine: {fileID: 0}
   input: 0
   output: 0
   inputDoor: 0

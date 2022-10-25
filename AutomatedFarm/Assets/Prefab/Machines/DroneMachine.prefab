@@ -909,13 +909,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useInput: 1
   useOutput: 1
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isConnected: 0
   outputPoint: {fileID: 5113635368061341847}
   checkConnectionPoint: {fileID: 4913125744741666974}
+  inventoryCapacity: 0
   outputType: 4
   resourceAmount: 0
   timeToExtract: 1
+  doorAnimator: []
   typesNeededToCraft: 
+  resourcesToInject: []
+  handler: {fileID: 0}
   boxSize: {x: 20, y: 4, z: 20}
   boxOffset: {x: 0, y: 1.5, z: 0}
   plantLayerMask:
