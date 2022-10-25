@@ -10,8 +10,18 @@ namespace AutomatedFarm
     ///</summary>
     public class Seller : Machine
     {
+        S_PalletItemHolder itemHolder;
         public override void OnResourceEnter(ResourceType type, GameObject obj, int amout = 0)
         {
+            if(itemHolder == null)
+                itemHolder = GetComponent<S_PalletItemHolder>();
+
+            if(itemHolder != null)
+            {
+                itemHolder.StackPallet();
+                return;
+            }
+            
             base.OnResourceEnter(type, obj);
             switch(type)
             {

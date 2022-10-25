@@ -159,6 +159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useInput: 1
   useOutput: 1
+  machineLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isConnected: 0
   outputPoint: {fileID: 5978905777852073197}
   checkConnectionPoint: {fileID: 558222623241340745}
