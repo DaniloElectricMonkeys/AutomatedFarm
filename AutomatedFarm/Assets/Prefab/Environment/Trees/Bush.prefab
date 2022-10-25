@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5968956760615104980}
   - component: {fileID: 5968956760633162294}
   - component: {fileID: 5968956760631955292}
+  - component: {fileID: 6011383771123241439}
   m_Layer: 7
   m_Name: Bush
   m_TagString: Untagged
@@ -94,3 +95,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &6011383771123241439
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968956760630194404}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5968956760631955292}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5968956760631955292}
+  - screenRelativeHeight: 0.005236376
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5968956760631955292}
+  m_Enabled: 1
