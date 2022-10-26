@@ -12,6 +12,7 @@ namespace AutomatedFarm
     public class PlantGrow : MonoBehaviour
     {
         [Header("Options")]
+        public GameObject vfxToSpawn;
         public LayerMask soilLayer;
         string myName;
         float time = 11;
@@ -95,6 +96,9 @@ namespace AutomatedFarm
             {
                 if(currentSoil!= null)
                     currentSoil.ChangeStateToFree();
+
+                if(vfxToSpawn != null)
+                    Instantiate(vfxToSpawn, transform.position, Quaternion.identity);
                     
                 Destroy(gameObject);
                 /*transform.localScale = Vector3.zero;
