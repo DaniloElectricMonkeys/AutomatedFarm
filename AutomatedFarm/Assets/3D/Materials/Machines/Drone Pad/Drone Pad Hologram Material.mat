@@ -42,13 +42,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha_Clip_Threshold: 0
-    - _Fresnel_Power: 8
+    - _Alpha_Clip_Threshold: 0.5
+    - _Fresnel_Power: 1
+    - _Intersection_Multiplier: 2
+    - _Intersection_Offset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scroll_Speed: 0.4
     m_Colors:
-    - _Emission_Color: {r: 3067.9844, g: 417.63138, b: 0, a: 0}
+    - _Emission_Color: {r: 11.984314, g: 1.6313726, b: 0, a: 0}
     - _Fresnel_Color: {r: 0.7490196, g: 0.101960786, b: 0, a: 0}
     - _Hologram_Tiling: {r: 8, g: 8, b: 0, a: 0}
     - _Main_Color: {r: 0.0009765625, g: 0.00013020834, b: 0, a: 0}
