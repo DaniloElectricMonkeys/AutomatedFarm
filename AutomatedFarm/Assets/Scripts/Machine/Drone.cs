@@ -14,7 +14,6 @@ namespace AutomatedFarm
         public AnimationCurve yCurve;
 
         [Header("Drone Attributes")]
-        public GameObject resourcePocket;
         public float speed;
         public bool collectBulk;
         public GameObject droneObject;
@@ -115,12 +114,13 @@ namespace AutomatedFarm
             q = Quaternion.LookRotation((plant - droneObject.transform.position) + new Vector3(0,-1.5f,0), Vector3.up);
             droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
 
-            droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(HarvestPlant);
-            anyTween = droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate( () => 
+            // droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(HarvestPlant);
+            // droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic);
+            anyTween = droneObject.transform.DOMove(endPoint, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(HarvestPlant).OnUpdate( () => 
             {
                 //move the y based on the curve
-                Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
-                droneObject.transform.position = nextPoint;
+                // Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate((timeToTravel-anyTween.Elapsed()) / timeToTravel), droneObject.transform.position.z);
+                // droneObject.transform.position = nextPoint;
                 if(anyTween.Elapsed() >= (timeToTravel/2) && doOnce == false)
                 {
                     Vector3 newDirection = new Vector3(droneObject.transform.forward.x, 0, droneObject.transform.forward.z);
@@ -138,7 +138,6 @@ namespace AutomatedFarm
             try{
                 OnResourceEnter(selectedPlant.type, null, 0);
                 selectedPlant.Harvest();
-                resourcePocket.SetActive(true);
                 cahcedResources++;
             }
             catch{
@@ -155,7 +154,7 @@ namespace AutomatedFarm
         void FlyToDeployPoint()//Step 03
         {
             doOnce = false;
-            endPoint = new Vector3(deployPoint.transform.position.x, deployPoint.transform.position.y, deployPoint.transform.position.z);
+            endPoint = new Vector3(deployPoint.transform.position.x, (deployPoint.transform.position.y - 0.5f), deployPoint.transform.position.z);
             distance = (endPoint - droneObject.transform.position);
             timeToTravel = distance.magnitude / speed;
 
@@ -163,10 +162,12 @@ namespace AutomatedFarm
             droneObject.transform.DORotateQuaternion(q, 1f).SetEase(Ease.InOutCubic);
 
             droneObject.transform.DOMoveX(endPoint.x, timeToTravel).SetEase(Ease.InOutCubic).OnComplete(FillBase);
-            anyTween = droneObject.transform.DOMoveZ(endPoint.z, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate(() => {
+            
+            // droneObject.transform.DOMoveZ(endPoint.z, timeToTravel);
+            anyTween = droneObject.transform.DOMove(endPoint, timeToTravel).SetEase(Ease.InOutCubic).OnUpdate(() => {
                 //move the y based on the curve
-                Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate(anyTween.Elapsed() / timeToTravel), droneObject.transform.position.z);
-                droneObject.transform.position = nextPoint;
+                // Vector3 nextPoint = new Vector3(droneObject.transform.position.x, yCurve.Evaluate( Mathf.Clamp(anyTween.Elapsed(), 0.01f, 10) / timeToTravel), droneObject.transform.position.z);
+                // droneObject.transform.position = nextPoint;
                 if(anyTween.Elapsed() >= (timeToTravel/2) && doOnce == false)
                 {
                     Vector3 newDirection = new Vector3(droneObject.transform.forward.x, 0, droneObject.transform.forward.z);
@@ -179,7 +180,6 @@ namespace AutomatedFarm
 
         void FillBase()//Step 04
         {
-            resourcePocket.SetActive(false);
             resourceAmount += cahcedResources;
             cahcedResources = 0;
 

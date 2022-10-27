@@ -56,7 +56,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1.25
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4938,7 +4938,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9694,6 +9694,7 @@ GameObject:
   - component: {fileID: 4748730675913877251}
   - component: {fileID: 4748730675913877250}
   - component: {fileID: 4748730675913877245}
+  - component: {fileID: -1043050109025707448}
   m_Layer: 0
   m_Name: Harvest
   m_TagString: Untagged
@@ -14510,6 +14511,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-1043050109025707448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4748730675913877244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e0ecb09f0b25340a1af1d334e7e7cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 2
 --- !u!1 &8393762634687683999
 GameObject:
   m_ObjectHideFlags: 0
@@ -14566,7 +14580,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
